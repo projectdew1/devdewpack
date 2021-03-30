@@ -49,7 +49,7 @@ const Home = ({ props }) => {
 				</Parallax>
 				{/* <label>asd</label> */}
 				{/* <Image src="/bg.jpg" alt="Picture of the author" width={500} height={500} /> */}
-				<div style={{ height: 2000, backgroundColor: "white" }}></div>
+				<div style={{ height: 2000, backgroundColor: "blue" }}></div>
 			</Layouts>
 		</React.Fragment>
 	)
