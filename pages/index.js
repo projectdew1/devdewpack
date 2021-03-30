@@ -55,15 +55,15 @@ const Home = ({ props }) => {
 	)
 }
 
-Home.getInitialProps = async () => {
-	const res = await fetch("https://api.github.com/repos/vercel/next.js")
-	const json = await res.json()
+// Home.getInitialProps = async () => {
+// 	const res = await fetch("https://api.github.com/repos/vercel/next.js")
+// 	const json = await res.json()
 
-	return {
-		props: {
-			stars2: json.stargazers_count,
-		},
-	}
-}
+// 	return {
+// 		props: {
+// 			stars2: json.stargazers_count,
+// 		},
+// 	}
+// }
 
 export default Home
