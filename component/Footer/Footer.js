@@ -83,9 +83,13 @@ const useStyles = makeStyles(theme => ({
 		padding: theme.spacing(2),
 		display: "flex",
 		justifyContent: "center",
+		width: "100%",
 		[theme.breakpoints.down("md")]: {
 			justifyContent: "flex-start",
 		},
+	},
+	Itemfacebook: {
+		padding: theme.spacing(2),
 	},
 }))
 
@@ -145,7 +149,7 @@ export default function Footer() {
 				<Grid item sm={12} md={4}>
 					<div className={classes.setItems}>
 						<p style={{ fontSize: "0.9em", fontWeight: "500", margin: 0, color: "#949699", marginBottom: "5px" }}>
-							<RoomIcon style={{ fontSize: "1em", marginRight: "5px" }} />
+							<i className="fas fa-map-marker-alt" style={{ fontSize: "1em", marginRight: "5px" }} />
 							ACI MACHINERY Co. Ltd
 						</p>
 						<p style={{ margin: 0 }}>
@@ -195,10 +199,10 @@ export default function Footer() {
 						</div>
 					</div>
 				</Grid>
-				<Grid item sm={12} md={4}>
-					<div className={classes.setItemfacebook}>
+				<Grid item sm={12} md={4} className={classes.setItemfacebook}>
+					<div className={classes.Itemfacebook}>
 						<FacebookProvider appId="VoiceOnlineTH">
-							<Page href="https://www.facebook.com/VoiceOnlineTH" tabs="timeline" height={"1px"} />
+							<Page href="https://www.facebook.com/VoiceOnlineTH" tabs="timeline" height={20} />
 						</FacebookProvider>
 					</div>
 				</Grid>

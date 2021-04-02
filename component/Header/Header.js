@@ -65,7 +65,7 @@ export default function Header(props) {
 			<Toolbar className={classes.container}>
 				<img className={classes.logo} src={"/ACI885-322.png"} onClick={() => router.push("/")} />
 
-				<Hidden mdDown implementation="css">
+				<Hidden mdDown implementation="js">
 					{Links}
 				</Hidden>
 				<Hidden mdUp>

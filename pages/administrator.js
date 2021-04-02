@@ -16,7 +16,7 @@ import Alert from "@material-ui/core/Alert"
 
 import Axios from "axios"
 import Cookies from "js-cookie"
-import config from "../api/Config"
+import config from "../setApi/Config"
 
 import { useRouter } from "next/router"
 

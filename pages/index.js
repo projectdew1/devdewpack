@@ -60,7 +60,7 @@ const Home = ({ props }) => {
 						<Grid container spacing={2} className={classes.gridBander}>
 							<Grid item sm={6} md={6} className={classes.gridItemsTextImage}>
 								<div className={classes.gridImage}>
-									<img src={"/QSJ-5040A.png"} className={classes.image1}></img>
+									<img loading="lazy" src={"/QSJ-5040A.png"} className={classes.image1}></img>
 								</div>
 							</Grid>
 							<Grid item sm={6} md={6} className={classes.gridItemsTextImage}>

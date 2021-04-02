@@ -1,13 +1,13 @@
 module.exports = {
+	// future: {
+	// 	webpack5: true,
+	// },
+	// generateEtags: false,
+
 	images: {
 		loader: "imgix",
 		path: "http://localhost:3000/",
 	},
-
-	// future: {
-	// 	webpack5: true,
-	// 	strictPostcssConfiguration: true,
-	// },
 
 	async headers() {
 		return [
