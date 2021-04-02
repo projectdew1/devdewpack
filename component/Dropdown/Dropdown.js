@@ -98,12 +98,12 @@ export default function Dropdown(props) {
 	}
 	return (
 		<div onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
-			<div>
-				<Button aria-label="Notifications" aria-owns={anchorEl ? "menu-list" : null} aria-haspopup="true" {...buttonProps} onClick={handleClick}>
+			<div style={{ cursor: "pointer" }}>
+				<div style={{ display: "flex", alignItems: "center" }} aria-label="Notifications" aria-owns={anchorEl ? "menu-list" : null} aria-haspopup="true" {...buttonProps} onClick={handleClick}>
 					{icon}
 					{buttonText !== undefined ? buttonText : null}
 					{caret ? <b className={caretClasses} /> : null}
-				</Button>
+				</div>
 			</div>
 			<Popper
 				open={Boolean(anchorEl)}

@@ -28,15 +28,15 @@ const useStyles = makeStyles(styles)
 export default function Header(props) {
 	const [mobileOpen, setMobileOpen] = React.useState(false)
 
-	const { Links } = props
+	const { Links, sticky, fixed, appColor } = props
 
 	const classes = useStyles()
 	const appBarClasses = classNames({
 		[classes.appBar]: false,
-		[classes.appColor]: true,
+		[classes["appColor" + appColor]]: true,
 		[classes.absolute]: false,
-		[classes.fixed]: false,
-		[classes.sticky]: true,
+		[classes.fixed]: fixed,
+		[classes.sticky]: sticky,
 	})
 
 	const router = useRouter()
@@ -52,10 +52,10 @@ export default function Header(props) {
 	const headerColorChange = () => {
 		const windowsScrollTop = window.pageYOffset
 		if (windowsScrollTop > props.height) {
-			document.body.getElementsByTagName("header")[0].classList.remove(classes.appColor)
+			document.body.getElementsByTagName("header")[0].classList.remove(classes["appColor" + appColor])
 			document.body.getElementsByTagName("header")[0].classList.add(classes.appColorC)
 		} else {
-			document.body.getElementsByTagName("header")[0].classList.add(classes.appColor)
+			document.body.getElementsByTagName("header")[0].classList.add(classes["appColor" + appColor])
 			document.body.getElementsByTagName("header")[0].classList.remove(classes.appColorC)
 		}
 	}
@@ -73,6 +73,7 @@ export default function Header(props) {
 						style={{
 							color: "black",
 						}}
+						size={"medium"}
 						color="inherit"
 						aria-label="open drawer"
 						onClick={() => setMobileOpen(!mobileOpen)}
@@ -96,6 +97,12 @@ export default function Header(props) {
 			</Hidden>
 		</AppBar>
 	)
+}
+
+Header.defaultProps = {
+	sticky: false,
+	fixed: false,
+	appColor: "white",
 }
 
 Header.propTypes = {

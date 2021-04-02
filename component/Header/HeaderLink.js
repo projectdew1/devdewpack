@@ -60,30 +60,30 @@ function HeaderLinks(props) {
 				/>
 			</ListItem>
 			<ListItem className={classes.listItem}>
-				<Button className={active === 2 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/about")}>
+				<div className={active === 2 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/about")}>
 					เกี่ยวกับเรา
-				</Button>
+				</div>
 			</ListItem>
 			<ListItem className={classes.listItem}>
-				<Button className={active === 3 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/payment")}>
+				<div className={active === 3 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/payment")}>
 					วิธีสั่งซื้อและชำระเงิน
-				</Button>
+				</div>
 			</ListItem>
 			<ListItem className={classes.listItem}>
-				<Button className={active === 4 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/contact")}>
+				<div className={active === 4 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/contact")}>
 					{" "}
 					ติดต่อเรา
-				</Button>
+				</div>
 			</ListItem>
 			<ListItem className={classes.listItem}>
-				<Button className={active === 5 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/portfolio")}>
+				<div className={active === 5 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/portfolio")}>
 					ผลงาน
-				</Button>
+				</div>
 			</ListItem>
 			<ListItem className={classes.listItem}>
-				<Button className={active === 6 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/article")}>
+				<div className={active === 6 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/article")}>
 					บทความ
-				</Button>
+				</div>
 			</ListItem>
 		</List>
 	)

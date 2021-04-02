@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import React from "react"
 import { orangeP, whiteP } from "../../assets/colorProject"
 import { FacebookProvider, Page } from "react-facebook"
+import RoomIcon from "@material-ui/icons/Room"
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -22,8 +23,9 @@ const useStyles = makeStyles(theme => ({
 		fontSize: "1rem",
 	},
 	line: {
-		padding: theme.spacing(5),
-		backgroundColor: "#11365f",
+		padding: `${theme.spacing(5)} , ${theme.spacing(1)}`,
+		// backgroundColor: "#11365f",
+		backgroundColor: "#2a2d34",
 		// background: " linear-gradient(180deg, rgba(0,51,102,1) 20%, rgba(255,255,255,1) 80%)",
 	},
 	social: {
@@ -44,20 +46,18 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 	bottom: {
-		height: "50px",
-		backgroundColor: "#3a3939",
-		color: whiteP,
-		fontWeight: "200",
+		fontFamily: "Kanit, sans-serif",
+		height: "auto",
+		paddingTop: "10px",
+		// backgroundColor: "#3a3939",
+		backgroundColor: "#2a2d34",
+		color: "#949699",
+		fontWeight: "500",
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
 	},
-	lineItems: {
-		borderRight: "1px solid white",
-		[theme.breakpoints.down("md")]: {
-			borderRight: "none",
-		},
-	},
+
 	call: {
 		backgroundColor: "#009aff",
 		width: "200px",
@@ -77,6 +77,15 @@ const useStyles = makeStyles(theme => ({
 		fontSize: "20px",
 		cursor: "pointer",
 		fontWeight: "400",
+	},
+	setItemfacebook: {
+		overflow: "hidden",
+		padding: theme.spacing(2),
+		display: "flex",
+		justifyContent: "center",
+		[theme.breakpoints.down("md")]: {
+			justifyContent: "flex-start",
+		},
 	},
 }))
 
@@ -133,12 +142,20 @@ export default function Footer() {
 				</Grid>
 			</Hidden> */}
 			<Grid container spacing={2} className={classes.line}>
-				<Grid item sm={12} md={4} className={classes.lineItems}>
+				<Grid item sm={12} md={4}>
 					<div className={classes.setItems}>
-						<p style={{ fontWeight: "500", marginTop: 0 }}>ACI MACHINERY Co. Ltd</p>
+						<p style={{ fontSize: "0.9em", fontWeight: "500", margin: 0, color: "#949699", marginBottom: "5px" }}>
+							<RoomIcon style={{ fontSize: "1em", marginRight: "5px" }} />
+							ACI MACHINERY Co. Ltd
+						</p>
 						<p style={{ margin: 0 }}>
-							{/* <label style={{ fontWeight: "bold" }}>Address : </label> */}
-							<label style={{ fontWeight: "200" }}>The Season Petkasem69, No. 79/57, Liap Khlong Phasi Charoen-South Road, Nong Khaem, Nong Khaem, Bangkok 10160 Thailand</label>
+							<label style={{ fontSize: "0.9em", fontWeight: "300", color: "#949699" }}>The Season Petkasem69, No. 79/57, </label>
+						</p>
+						<p style={{ margin: 0 }}>
+							<label style={{ fontSize: "0.9em", fontWeight: "300", color: "#949699" }}>Liap Khlong Phasi Charoen-South Road,</label>
+						</p>
+						<p style={{ margin: 0 }}>
+							<label style={{ fontSize: "0.9em", fontWeight: "300", color: "#949699" }}>Nong Khaem, Bangkok 10160 Thailand</label>
 						</p>
 
 						<div
@@ -157,9 +174,9 @@ export default function Footer() {
 						/>
 					</div>
 				</Grid>
-				<Grid item sm={12} md={4} className={classes.lineItems}>
+				<Grid item sm={12} md={4}>
 					<div className={classes.setItems}>
-						<p style={{ fontWeight: "500", marginTop: 0 }}>Call Center</p>
+						<p style={{ fontWeight: "500", marginTop: 0, color: "#949699", marginBottom: "5px" }}>Call Center</p>
 
 						<div className={classes.call} onClick={() => window.open("tel:0954565550")}>
 							<i className="fas fa-phone-alt" style={{ fontSize: "1rem", marginRight: "10px" }} />
@@ -170,7 +187,7 @@ export default function Footer() {
 							086-918-0060
 						</div>
 
-						<p style={{ fontWeight: "500" }}>Line</p>
+						<p style={{ fontWeight: "500", color: "#949699", marginBottom: "5px" }}>Line</p>
 
 						<div className={classes.addLine}>
 							<i className="fab fa-line" style={{ fontSize: "1.5rem", marginRight: "10px" }} />
@@ -178,10 +195,12 @@ export default function Footer() {
 						</div>
 					</div>
 				</Grid>
-				<Grid item sm={12} md={4} style={{ overflow: "hidden" }}>
-					<FacebookProvider appId="VoiceOnlineTH">
-						<Page href="https://www.facebook.com/VoiceOnlineTH" tabs="timeline" height={"1px"} />
-					</FacebookProvider>
+				<Grid item sm={12} md={4}>
+					<div className={classes.setItemfacebook}>
+						<FacebookProvider appId="VoiceOnlineTH">
+							<Page href="https://www.facebook.com/VoiceOnlineTH" tabs="timeline" height={"1px"} />
+						</FacebookProvider>
+					</div>
 				</Grid>
 			</Grid>
 			<div className={classes.bottom}>Copyright 2021 ACI MACHINERY | All Rights Reserved</div>

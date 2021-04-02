@@ -1,5 +1,6 @@
-**/.next
-**/.git
-**/.gitignore
-**/.vs
-**/.vscode
+/.next
+/.git
+/.gitignore
+/.vs
+/.vscode
+/out

@@ -13,7 +13,7 @@
 		"axios": "^0.21.1",
 		"clsx": "latest",
 		"js-cookie": "^2.2.1",
-		"next": "latest",
+		"next": "^10.1.2",
 		"next-images": "^1.7.0",
 		"next-redux-wrapper": "^6.0.2",
 		"prop-types": "latest",
@@ -28,5 +28,8 @@
 		"dev": "next dev",
 		"build": "next build && next export",
 		"start": "next start"
+	},
+	"devDependencies": {
+		"webpack": "^5.28.0"
 	}
 }

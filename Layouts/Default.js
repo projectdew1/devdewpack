@@ -24,7 +24,7 @@ export default function Default(props) {
 	const scrollClasses = classNames({
 		[classes.shape]: true,
 	})
-	const { title, children, active } = props
+	const { title, children, active, fixed, sticky, appColor } = props
 
 	const dispatch = useDispatch()
 
@@ -58,7 +58,7 @@ export default function Default(props) {
 			<Head>
 				<title>{title}</title>
 			</Head>
-			<Header height={200} Links={<Link active={active} />} />
+			<Header height={100} Links={<Link active={active} />} fixed={fixed} sticky={sticky} appColor={appColor} />
 			{children}
 			<Social {...props} />
 			<ScrollTop {...props} click={() => window.scroll({ top: 0, left: 0, behavior: "smooth" })}>

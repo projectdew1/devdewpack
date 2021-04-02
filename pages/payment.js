@@ -14,7 +14,7 @@ const Payment = () => {
 
 	return (
 		<React.Fragment>
-			<Layouts title="วิธีสั่งซื้อและชำระเงิน | ACI MACHINERY Co. Ltd" active={3}>
+			<Layouts title="วิธีสั่งซื้อและชำระเงิน | ACI MACHINERY Co. Ltd" active={3} sticky={true}>
 				<div className={classes.container} style={{ height: "55vh" }}>
 					ชำระเงิน
 				</div>

@@ -14,7 +14,7 @@ const Portfolio = () => {
 
 	return (
 		<React.Fragment>
-			<Layouts title="ผลงาน | ACI MACHINERY Co. Ltd" active={5}>
+			<Layouts title="ผลงาน | ACI MACHINERY Co. Ltd" active={5} sticky={true}>
 				<div className={classes.container} style={{ height: "55vh" }}>
 					ผลงาน
 				</div>

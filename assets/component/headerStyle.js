@@ -131,12 +131,16 @@ const headerStyle = theme => ({
 		paddingLeft: "0",
 		...transition,
 	},
-	appColor: {
+	appColorwhite: {
 		backgroundColor: "white",
 		boxShadow: "none",
 	},
+	appColortransparent: {
+		backgroundColor: "transparent",
+		boxShadow: "none",
+	},
 	appColorC: {
-		backgroundColor: "white",
+		backgroundColor: "#fffffff2",
 		animation: `$itemsIn 800ms ${theme.transitions.easing.easeInOut}`,
 		[theme.breakpoints.down("md")]: {
 			animation: "none",

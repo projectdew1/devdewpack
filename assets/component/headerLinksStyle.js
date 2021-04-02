@@ -23,6 +23,7 @@ const headerLinksStyle = theme => ({
 		width: "auto",
 		margin: "0",
 		padding: "0",
+		cursor: "pointer",
 		[theme.breakpoints.down("md")]: {
 			width: "100%",
 			"&:after": {
