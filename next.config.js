@@ -1,8 +1,7 @@
 module.exports = {
-	// future: {
-	// 	webpack5: true,
-	// },
-	// generateEtags: false,
+	future: {
+		webpack5: true,
+	},
 
 	images: {
 		loader: "imgix",

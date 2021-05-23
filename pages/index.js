@@ -11,10 +11,51 @@ import { makeStyles } from "@material-ui/core/styles"
 import componentsStyle from "../assets/component/component"
 import Grid from "@material-ui/core/Grid"
 
+import Slider from "react-slick"
+
 const Parallax = dynamic(() => import("../component/Parallax/Parallax"))
 const Layouts = dynamic(() => import("../Layouts/Default"))
 
 const useStylec = makeStyles(componentsStyle)
+
+const settings = {
+	dots: true,
+	infinite: true,
+	slidesToShow: 4,
+	slidesToScroll: 1,
+	// autoplay: true,
+	speed: 500,
+	// autoplaySpeed: 5000,
+	cssEase: "linear",
+	nextArrow: <Next />,
+	prevArrow: <Prev />,
+	responsive: [
+		{
+			breakpoint: 1024,
+			settings: {
+				slidesToShow: 3,
+				slidesToScroll: 3,
+				infinite: true,
+				dots: true,
+			},
+		},
+		// {
+		// 	breakpoint: 600,
+		// 	settings: {
+		// 		slidesToShow: 2,
+		// 		slidesToScroll: 2,
+		// 		initialSlide: 2,
+		// 	},
+		// },
+		{
+			breakpoint: 600,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+			},
+		},
+	],
+}
 
 const Home = ({ props }) => {
 	const classes = useStylec()
@@ -67,7 +108,8 @@ const Home = ({ props }) => {
 								<div className={classes.gridText}>
 									<h1 className={classes.Text1}>ACI MACHINERY</h1>
 									<h1 className={classes.Text2}>ศูนย์รวมเครื่องแพ็คกิ้งและบรรจุภัณฑ์</h1>
-									<h1 className={classes.Text3}>สินค้าคุณภาพมาตรฐาน บริการฉับไว</h1>
+									<h1 className={classes.Text3}>สินค้าได้รับมาตรฐาน บริการจริงใจ</h1>
+									<h1 className={classes.Text3}>นำเข้าและจัดหน่าย เครื่องแพ็คกิ้งและบรรจุภัณฑ์</h1>
 									<div className={classes.centerBtn}>
 										<a className={classes.buttonShow}>สินค้า</a>
 									</div>
@@ -76,19 +118,82 @@ const Home = ({ props }) => {
 						</Grid>
 					</div>
 				</div>
-				<div className={classes.bgZone2}>
+				<div style={{ padding: "2em 5em" }}>
+					<div style={{ height: "auto" }}>
+						<Grid container spacing={2}>
+							<Grid item sm={12} md={4} className={classes.Gridy} style={{ width: "100%" }}>
+								<div className={classes.Gridy} style={{ padding: "1em", backgroundColor: "#FFEED0", borderRadius: "10px" }}>
+									<i className="fas fa-shipping-fast" style={{ fontSize: "2em", color: "#ff6600" }} />
+								</div>
+								<label style={{ fontWeight: "bold" }}>Free Shipping</label>
+								<p>All purchases over $199 are eligible for free shipping via USPS First Class Mail</p>
+							</Grid>
+							<Grid item sm={12} md={4} className={classes.Gridy} style={{ width: "100%" }}>
+								<div className={classes.Gridy} style={{ padding: "1em", backgroundColor: "#FFEED0", borderRadius: "10px" }}>
+									<i className="fas fa-boxes" style={{ fontSize: "2em", color: "#ff6600" }} />
+								</div>
+								<label style={{ fontWeight: "bold" }}>Finest Quality</label>
+								<p>Designed to last, each of our products has been crafted with the finest materials.</p>
+							</Grid>
+							<Grid item sm={12} md={4} className={classes.Gridy} style={{ width: "100%" }}>
+								<div className={classes.Gridy} style={{ padding: "1em", backgroundColor: "#FFEED0", borderRadius: "10px" }}>
+									<i className="fas fa-headset" style={{ fontSize: "2em", color: "#ff6600" }} />
+								</div>
+								<label style={{ fontWeight: "bold" }}>Free Shipping</label>
+								<p>All purchases over $199 are eligible </p>
+							</Grid>
+						</Grid>
+					</div>
+				</div>
+				{/* <div className={classes.bgZone2}>
 					<svg className={classes.expain} viewBox="0 0 1440 320">
 						<path
 							fill="#001c38"
 							fillOpacity="1"
 							d="M0,256L48,245.3C96,235,192,213,288,224C384,235,480,277,576,256C672,235,768,149,864,128C960,107,1056,149,1152,176C1248,203,1344,213,1392,218.7L1440,224L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
 						></path>
-					</svg>
-					<div>
-						<label>asd</label>
-						<label>asd</label>
-					</div>
-				</div>
+					</svg> */}
+				{/* <div style={{ padding: "0em 5em" }}>
+						<h2 className={classes.line_title}>เครื่องแพ็คกิ้งและบรรจุภัณฑ์</h2>
+						<div>
+							<h3 className={classes.line_title}>เครื่องแพ็คกิ้งและบรรจุภัณฑ์</h3>
+							<Slider {...settings}>
+								<div>
+									<div className={classes.itemImage} style={{ backgroundImage: "url(https://ucarecdn.com/2a5f69bc-befa-49f4-acc6-ab1dcae514c7/winter3.jpg)" }}>
+										<div>
+											<h3>The Witcher 3</h3>
+											<p>The Witcher 3 is a multiplayer online battle arena by Valve.</p>
+										</div>
+									</div>
+								</div>
+								<div>
+									<div className={classes.itemImage} style={{ backgroundImage: "url(https://ucarecdn.com/2a5f69bc-befa-49f4-acc6-ab1dcae514c7/winter3.jpg)" }}>
+										<div>
+											<h3>The Witcher 3</h3>
+											<p>The Witcher 3 is a multiplayer online battle arena by Valve.</p>
+										</div>
+									</div>
+								</div>
+								<div>
+									<div className={classes.itemImage} style={{ backgroundImage: "url(https://ucarecdn.com/2a5f69bc-befa-49f4-acc6-ab1dcae514c7/winter3.jpg)" }}>
+										<div>
+											<h3>The Witcher 3</h3>
+											<p>The Witcher 3 is a multiplayer online battle arena by Valve.</p>
+										</div>
+									</div>
+								</div>
+								<div>
+									<div className={classes.itemImage} style={{ backgroundImage: "url(https://ucarecdn.com/2a5f69bc-befa-49f4-acc6-ab1dcae514c7/winter3.jpg)" }}>
+										<div>
+											<h3>The Witcher 3</h3>
+											<p>The Witcher 3 is a multiplayer online battle arena by Valve.</p>
+										</div>
+									</div>
+								</div>
+							</Slider>
+						</div>
+					</div> */}
+				{/* </div> */}
 			</Layouts>
 		</React.Fragment>
 	)
@@ -104,5 +209,23 @@ const Home = ({ props }) => {
 // 		},
 // 	}
 // }
+
+function Next(props) {
+	const { className, style, onClick } = props
+	return (
+		<div className={className} onClick={onClick} style={{ ...style, display: "block" }}>
+			<i class="fas fa-chevron-right" />
+		</div>
+	)
+}
+
+function Prev(props) {
+	const { className, style, onClick } = props
+	return (
+		<div className={className} onClick={onClick} style={{ ...style, display: "block" }}>
+			<i class="fas fa-chevron-left" />
+		</div>
+	)
+}
 
 export default Home

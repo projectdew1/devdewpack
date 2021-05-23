@@ -5,7 +5,14 @@ import { Grid } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
-import SendIcon from "@material-ui/icons/Send"
+import { Send } from "@material-ui/icons"
+import CircularProgress from "@material-ui/core/CircularProgress"
+
+import Snackbar from "@material-ui/core/Snackbar"
+import Alert from "@material-ui/core/Alert"
+
+import Axios from "axios"
+import config from "../setApi/Config"
 
 const Layouts = dynamic(() => import("../Layouts/Default"))
 
@@ -86,8 +93,63 @@ const useStylec = makeStyles(theme => ({
 const Contact = () => {
 	const classes = useStylec()
 
-	const Submitt = e => {
+	const [Loading, setLoading] = React.useState(false)
+	const [open, setOpen] = React.useState(false)
+	const [AlertName, setAlertName] = React.useState("")
+	const [AlertType, setAlertType] = React.useState("error")
+
+	const refName = React.useRef("")
+	const refTel = React.useRef("")
+	const refMail = React.useRef("")
+	const refTitle = React.useRef("")
+	const refDetail = React.useRef("")
+
+	const Submitt = async e => {
 		e.preventDefault()
+		await sendData()
+	}
+
+	const cleatData = () => {
+		refName.current.value = ""
+		refTel.current.value = ""
+		refMail.current.value = ""
+		refTitle.current.value = ""
+		refDetail.current.value = ""
+	}
+
+	const sendData = async () => {
+		setLoading(true)
+		await Axios.post(config.api.addcontact, null, {
+			params: {
+				name: refName.current.value,
+				mail: refMail.current.value,
+				tel: refTel.current.value,
+				title: refTitle.current.value,
+				detail: refDetail.current.value,
+			},
+		})
+			.then(res => {
+				const data = res.data.message
+
+				if (data === "success") {
+					AlertData("ส่งข้อมูลสำเร็จ !", "success")
+					cleatData()
+				} else {
+					AlertData("ส่งข้อมูลไม่สำเร็จ !", "error")
+				}
+			})
+			.catch(e => {
+				AlertData("เกิดข้อผิดพลาดจาก Server", "error")
+			})
+			.finally(async () => {
+				setLoading(false)
+			})
+	}
+
+	const AlertData = (name, type) => {
+		setOpen(true)
+		setAlertName(name)
+		setAlertType(type)
 	}
 
 	return (
@@ -149,8 +211,12 @@ const Contact = () => {
 													InputLabelProps={{
 														shrink: true,
 													}}
+													inputProps={{
+														maxLength: 100,
+													}}
 													required
 													variant="outlined"
+													inputRef={refName}
 												/>
 											</div>
 											<div>
@@ -169,6 +235,7 @@ const Contact = () => {
 													required
 													type="text"
 													helperText="ระบุเบอร์โทรศัพท์ เพื่อความสะดวกในการติดต่อ"
+													inputRef={refTel}
 												/>
 												<TextField
 													label={"อีเมลล์"}
@@ -181,6 +248,10 @@ const Contact = () => {
 													required
 													type="email"
 													helperText="ระบุอีเมลล์ที่ใช้งาน เพื่อความสะดวกในการติดต่อ"
+													inputRef={refMail}
+													inputProps={{
+														maxLength: 45,
+													}}
 												/>
 											</div>
 											<div>
@@ -193,6 +264,10 @@ const Contact = () => {
 														shrink: true,
 													}}
 													variant="outlined"
+													inputRef={refTitle}
+													inputProps={{
+														maxLength: 200,
+													}}
 												/>
 											</div>
 											<div>
@@ -207,10 +282,14 @@ const Contact = () => {
 													multiline
 													rows={4}
 													fullWidth
+													inputRef={refDetail}
+													inputProps={{
+														maxLength: 500,
+													}}
 												/>
 											</div>
 											<div style={{ marginLeft: "5px" }}>
-												<Button type="submit" variant="contained" size="small" color="inherit" startIcon={<SendIcon />}>
+												<Button disabled={Loading} type="submit" variant="contained" size="small" color="inherit" startIcon={Loading ? <CircularProgress size={15} /> : <Send />}>
 													ส่ง
 												</Button>
 											</div>
@@ -226,6 +305,11 @@ const Contact = () => {
 						loading="lazy"
 					></iframe>
 				</div>
+				<Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={open} autoHideDuration={3000} onClose={() => setOpen(!open)}>
+					<Alert onClose={() => setOpen(!open)} severity={AlertType}>
+						{AlertName}
+					</Alert>
+				</Snackbar>
 			</Layouts>
 		</React.Fragment>
 	)

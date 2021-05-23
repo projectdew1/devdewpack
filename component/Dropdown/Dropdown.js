@@ -144,9 +144,9 @@ export default function Dropdown(props) {
 								return (
 									<ClickAwayListener onClickAway={handleCloseAway} key={index}>
 										<MenuList key={index} role="menu" className={classes.menuList} style={value.headerLink.length - 1 !== index ? { borderRight: "1px solid rgba(0, 0, 0, 0.12)" } : null}>
-											<MenuItem key={index} onClick={() => handleClose(row.group)} className={dropdownItemH}>
+											{/* <MenuItem key={index} onClick={() => handleClose(row.group)} className={dropdownItemH}>
 												{row.group}
-											</MenuItem>
+											</MenuItem> */}
 											{row.list.map((value, key) => {
 												return (
 													<MenuItem key={key} onClick={() => handleClose(value.name)} className={dropdownItem}>

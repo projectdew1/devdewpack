@@ -1,3 +1,5 @@
 export const LOGIN = "LOGIN"
 export const REGISTER = "REGISTER"
 export const SET = "SET"
+export const ADMIN = "ADMIN"
+export const STATE = "STATE"

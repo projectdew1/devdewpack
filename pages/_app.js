@@ -9,7 +9,10 @@ import theme from "../src/theme"
 import "../node_modules/@fortawesome/fontawesome-free/js/brands"
 import "../node_modules/@fortawesome/fontawesome-free/js/solid"
 import "../node_modules/@fortawesome/fontawesome-free/js/fontawesome"
+import "../node_modules/slick-carousel/slick/slick.css"
+import "../node_modules/slick-carousel/slick/slick-theme.css"
 import "../styles/globals.css"
+import "antd/dist/antd.css"
 
 import { wrapper } from "../redux"
 

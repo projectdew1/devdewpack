@@ -48,15 +48,15 @@ function HeaderLinks(props) {
 					}
 					// buttonIcon={Apps}
 					dropdownHeader="หัวข้อ"
-					dropdownList={[
-						<Link href="/about">
-							<a className={classes.dropdownLink}>ทั้งหมด</a>
-						</Link>,
-						{ divider: true },
-						<a href="https://creativetimofficial.github.io/nextjs-material-kit/#/documentation?ref=njsmk-navbar" target="_blank" className={classes.dropdownLink}>
-							ห้องสมุด
-						</a>,
-					]}
+					// dropdownList={[
+					// 	<Link href="/about">
+					// 		<a className={classes.dropdownLink}>ทั้งหมด</a>
+					// 	</Link>,
+					// 	{ divider: true },
+					// 	<a href="https://creativetimofficial.github.io/nextjs-material-kit/#/documentation?ref=njsmk-navbar" target="_blank" className={classes.dropdownLink}>
+					// 		ห้องสมุด
+					// 	</a>,
+					// ]}
 				/>
 			</ListItem>
 			<ListItem className={classes.listItem}>

@@ -10,6 +10,7 @@ import FormControl from "@material-ui/core/FormControl"
 import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import Button from "@material-ui/core/Button"
+import CircularProgress from "@material-ui/core/CircularProgress"
 
 import Snackbar from "@material-ui/core/Snackbar"
 import Alert from "@material-ui/core/Alert"
@@ -31,6 +32,8 @@ export default function administrator() {
 		password: "",
 	})
 	const [open, setOpen] = React.useState(false)
+	const [Loading, setLoading] = React.useState(false)
+	const [Alertname, setAlertname] = React.useState("")
 
 	const router = useRouter()
 
@@ -44,6 +47,7 @@ export default function administrator() {
 	}
 
 	const Login = async () => {
+		setLoading(true)
 		const params = {
 			username: datainput.username,
 			password: datainput.password,
@@ -58,10 +62,22 @@ export default function administrator() {
 				router.push("/manager/")
 			})
 			.catch(e => {
-				if (e.response.status === 401) {
-					setOpen(true)
+				if (e.response) {
+					if (e.response.status === 401) {
+						AlertError("กรุณาลงชื่อเข้าสู่ระบบใหม่ !")
+					}
+				} else {
+					AlertError("เกิดความผิดพลาดที่ Server")
 				}
 			})
+			.finally(() => {
+				setLoading(false)
+			})
+	}
+
+	const AlertError = name => {
+		setAlertname(name)
+		setOpen(true)
 	}
 
 	return (
@@ -79,7 +95,7 @@ export default function administrator() {
 								<InputLabel htmlFor="outlined-adornment-text" style={{ fontFamily: "Kanit, sans-serif" }}>
 									ผู้ใช้งาน
 								</InputLabel>
-								<OutlinedInput id="outlined-adornment-text" value={datainput.username} onChange={handleChange("username")} autoComplete={"off"} type={"text"} labelWidth={70} required style={{ fontFamily: "Kanit, sans-serif" }} />
+								<OutlinedInput id="outlined-adornment-text" disabled={Loading} value={datainput.username} onChange={handleChange("username")} autoComplete={"off"} type={"text"} labelWidth={70} required style={{ fontFamily: "Kanit, sans-serif" }} />
 							</FormControl>
 							<br />
 							<FormControl variant="outlined" style={{ marginTop: 20 }} fullWidth={true}>
@@ -87,6 +103,7 @@ export default function administrator() {
 									รหัสผ่าน
 								</InputLabel>
 								<OutlinedInput
+									disabled={Loading}
 									required
 									autoComplete={"new-password"}
 									style={{ fontFamily: "Kanit, sans-serif" }}
@@ -111,8 +128,8 @@ export default function administrator() {
 							</FormControl>
 							<br />
 
-							<Button variant="outlined" color="primary" type="submit" size="large" style={{ marginTop: "20px", fontFamily: "Kanit, sans-serif" }}>
-								เข้าสู่ระบบ
+							<Button disabled={Loading} variant="outlined" color="primary" type="submit" size="large" style={{ marginTop: "20px", fontFamily: "Kanit, sans-serif" }}>
+								{Loading ? <CircularProgress size={30} /> : "เข้าสู่ระบบ"}
 							</Button>
 						</form>
 					</Grid>
@@ -120,7 +137,7 @@ export default function administrator() {
 			</div>
 			<Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={open} autoHideDuration={3000} onClose={() => setOpen(!open)}>
 				<Alert onClose={() => setOpen(!open)} severity="error">
-					กรุณาลงชื่อเข้าสู่ระบบใหม่ !
+					{Alertname}
 				</Alert>
 			</Snackbar>
 		</div>

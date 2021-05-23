@@ -281,6 +281,141 @@ const componentsStyle = theme => ({
 		// marginTop: "-10px",
 		zIndex: "-2",
 	},
+
+	// ********************** react slick *******************//
+
+	line_title: {
+		position: "relative",
+		width: "100%",
+		paddingBottom: "10px",
+		cursor: "pointer",
+		"&::before,&::after": {
+			content: "'' !important",
+			position: "absolute",
+			bottom: 0,
+			left: 0,
+			height: "4px",
+			borderRadius: "2px",
+		},
+		"&::before": {
+			width: "100%",
+			background: "#f2f2f2",
+		},
+		"&::after": {
+			width: "10%",
+			background: orangeLogo,
+			transition: "all 0.4s ease-in-out 0.2s",
+			WebkitTransition: "all 0.4s ease-in-out 0.2s",
+		},
+		"&:hover": {
+			color: orangeLogo,
+			"&::after": {
+				width: "70%",
+				background: orangeLogo,
+			},
+		},
+	},
+
+	itemImage: {
+		margin: "0 15px 60px",
+		width: "auto",
+		height: "300px",
+		display: "flex",
+		display: "-webkit-flex",
+		alignItems: "flex-end",
+		WebkitAlignItems: "flex-end",
+		background: "#343434 no-repeat center center / cover",
+		borderRadius: "16px",
+		overflow: "hidden",
+		position: "relative",
+		transition: "all 0.4s ease-in-out",
+		WebkitTransition: "all 0.4s ease-in-out",
+		cursor: "pointer",
+		"&::after": {
+			content: "'' !important",
+			display: "block",
+			position: "absolute",
+			height: "100%",
+			width: "100%",
+			left: 0,
+			top: 0,
+			backgroundImage: "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1))",
+		},
+		"& div": {
+			padding: "0 24px 12px",
+			color: "#fff",
+			position: "relative",
+			zIndex: "1",
+			overflow: "hidden",
+			transform: "translateY(calc(100% - 54px))",
+			WebkitTransform: "translateY(calc(100% - 54px))",
+			transition: "all 0.4s ease-in-out",
+			WebkitTransition: "all 0.4s ease-in-out",
+		},
+		"& p": {
+			opacity: 0,
+			WebkitTransform: "translateY(32px)",
+			transform: "translateY(32px)",
+			transition: "all 0.4s ease-in-out 0.2s",
+			WebkitTransition: "all 0.4s ease-in-out 0.2s",
+		},
+		"&:hover": {
+			// width: "500px",
+			boxShadow: "12px 30px 30px rgba(0, 0, 0, 0.25)",
+			WebkitBoxShadow: "12px 30px 30px rgba(0, 0, 0, 0.25)",
+			"& div": {
+				transform: "none",
+				WebkitTransform: "none",
+			},
+			"& p": {
+				opacity: 1,
+				WebkitTransform: "translateY(0)",
+				transform: "translateY(0)",
+			},
+		},
+		[theme.breakpoints.down("md")]: {
+			margin: "0 12px 60px",
+			// width: "240px",
+			height: "230px",
+			"& h3": {
+				margin: "0 0 8px",
+				fontSize: "20px",
+				lineHeight: "28px",
+			},
+			"& div": {
+				transform: "translateY(calc(100% - 42px))",
+				WebkitTransform: "translateY(calc(100% - 42px))",
+			},
+		},
+		[theme.breakpoints.down("sm")]: {
+			margin: "0 10px 40px",
+			// width: "240px",
+			height: "160px",
+			"& h3": {
+				margin: "0 0 8px",
+				fontSize: "16px",
+				lineHeight: "24px",
+			},
+			"& div": {
+				padding: "0 14px 5px",
+				transform: "translateY(calc(100% - 30px))",
+				WebkitTransform: "translateY(calc(100% - 30px))",
+			},
+		},
+	},
+
+	// ********************** react slick *******************//
+
+	// ********************** why use me *******************//
+
+	Gridy: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		flexDirection: "column",
+	},
+
+	// ********************** why use me *******************//
 })
 
 export default componentsStyle

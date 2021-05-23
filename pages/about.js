@@ -32,11 +32,20 @@ const useStylec = makeStyles(theme => ({
 			width: "960px",
 		},
 	},
-	col: {
+	row: {
 		width: "100%",
+		position: "relative",
+		marginTop: "5px",
+		margin: "-8px",
+	},
+	col: {
+		padding: "8px",
 		animation: `$itemsLeft 800ms ${theme.transitions.easing.easeInOut}`,
 	},
-	ItemsCol: {
+	Itemscol: {
+		width: "100%",
+	},
+	ItemsAbout: {
 		padding: "8px",
 	},
 	symbolCen: {
@@ -124,10 +133,10 @@ const About = () => {
 					<div className={classes.bg} />
 					<div className={classes.content}>
 						<div className={classes.container}>
-							<Grid container>
-								<Grid item sm={12}>
-									<div className={classes.col}>
-										<div className={classes.ItemsCol}>
+							<Grid container className={classes.row}>
+								<Grid item sm={12} className={classes.col}>
+									<div className={classes.Itemscol}>
+										<div className={classes.ItemsAbout}>
 											<p style={{ margin: 0, fontSize: "1.5em", fontWeight: "500" }}>บริษัท เอซีไอ แมชชีนเนอร์รี่ จำกัด</p>
 											<p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>
 												{`  \xa0\xa0\xa0\xa0\xa0\xa0\xa0 ดำเนินธุรกิจเกี่ยวกับเครื่องบรรจุภัณฑ์ มีสินค้ามากมายหลายชนิด เช่น เครื่องบรรจุของเหลว , น้ำยาล้างจาน ,แชมพู,แอลกอฮอล์,ครีม เครื่องบรรจุซองแนวตั้ง เมล็ด,ผงกาแฟ,คอลลาเจน, เครื่องบรรจุแนวนอน เครื่องซีลสูญญากาศ เครื่องอบฟิล์มหด

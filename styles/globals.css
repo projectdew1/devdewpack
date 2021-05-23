@@ -3,7 +3,7 @@ html,
 body {
 	padding: 0;
 	margin: 0;
-	font-family: "Kanit", sans-serif;
+	font-family: "Kanit", sans-serif !important;
 }
 ::-webkit-scrollbar {
 	width: 8px;
@@ -18,4 +18,27 @@ body {
 	background-color: #cccccc;
 	border: 1px solid rgb(187, 186, 186);
 	border-radius: 10px;
+}
+
+/* .slick-slide div {
+	outline: none;
+} */
+
+.slick-prev,
+.slick-next {
+	font-size: 40px !important;
+	color: #969696;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+	color: #e0e0e0;
+}
+
+.slick-prev:before,
+.slick-next:before {
+	content: "" !important;
 }
