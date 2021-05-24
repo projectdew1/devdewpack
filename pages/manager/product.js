@@ -43,7 +43,7 @@ const formItemLayoutWithOutLabel = {
 	},
 }
 
-export default function group() {
+export default function Product() {
 	const [form] = Form.useForm()
 	const [formTech] = Form.useForm()
 

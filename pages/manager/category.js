@@ -23,7 +23,7 @@ const layout = {
 	wrapperCol: { span: 20 },
 }
 
-export default function category() {
+export default function Category() {
 	const dispatch = useDispatch()
 	const [form] = Form.useForm()
 	const [open, setOpen] = useState(false)
@@ -441,9 +441,11 @@ export default function category() {
 							{
 								<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 									<label style={{ fontSize: "1.25rem" }}>{`ประเภทผลิตภัณฑ์ ${categoryTitle}`}</label>
-									<div style={{ display: "flex", alignItems: "center" }}>{/* <Button danger type="primary" shape="round" onClick={handleClose}>
+									<div style={{ display: "flex", alignItems: "center" }}>
+										{/* <Button danger type="primary" shape="round" onClick={handleClose}>
 										ปิด
-									</Button> */}</div>
+									</Button> */}
+									</div>
 								</div>
 							}
 						</DialogTitle>

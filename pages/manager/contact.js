@@ -27,7 +27,7 @@ const GreenCheckbox = withStyles({
 	checked: {},
 })(props => <Checkbox color="default" {...props} />)
 
-export default function index() {
+export default function Contact() {
 	const dispatch = useDispatch()
 	const count = useSelector(state => state.data.count)
 

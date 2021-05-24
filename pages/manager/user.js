@@ -25,7 +25,7 @@ import Swal from "sweetalert2"
 
 const { Search } = Input
 
-export default function user() {
+export default function User() {
 	const dispatch = useDispatch()
 	const router = useRouter()
 	const [LoadingTable, setLoadingTable] = useState(false)

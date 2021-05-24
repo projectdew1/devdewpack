@@ -4,7 +4,7 @@ import Maneger from "../../Layouts/Maneger"
 import { useDispatch } from "react-redux"
 import action from "../../redux/actions"
 
-export default function index() {
+export default function Article() {
 	const dispatch = useDispatch()
 
 	useEffect(() => {

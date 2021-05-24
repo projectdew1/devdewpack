@@ -25,7 +25,7 @@ const layout = {
 	wrapperCol: { span: 20 },
 }
 
-export default function group() {
+export default function Group() {
 	const [form] = Form.useForm()
 	const dispatch = useDispatch()
 
