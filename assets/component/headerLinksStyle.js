@@ -24,7 +24,7 @@ const headerLinksStyle = theme => ({
 		margin: "0",
 		padding: "0",
 		cursor: "pointer",
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("sm")]: {
 			width: "100%",
 			"&:after": {
 				width: "calc(100% - 30px)",
@@ -77,7 +77,7 @@ const headerLinksStyle = theme => ({
 			transition: "transform 300ms ease-in-out",
 			transformOrigin: "left",
 		},
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("sm")]: {
 			width: "calc(100% - 30px)",
 			marginLeft: "15px",
 			marginBottom: "8px",
@@ -89,7 +89,7 @@ const headerLinksStyle = theme => ({
 		},
 	},
 	notificationNavLink: {
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("sm")]: {
 			top: "0",
 			margin: "5px 15px",
 		},
@@ -105,7 +105,7 @@ const headerLinksStyle = theme => ({
 		top: "4px",
 	},
 	registerNavLink: {
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("sm")]: {
 			top: "0",
 			margin: "5px 15px",
 		},
@@ -138,7 +138,7 @@ const headerLinksStyle = theme => ({
 			color: whiteP,
 			backgroundColor: orangeP,
 		},
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("sm")]: {
 			width: "calc(100% - 30px)",
 			marginTop: "8px",
 			textAlign: "left",

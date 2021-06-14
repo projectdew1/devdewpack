@@ -1,10 +1,12 @@
 const master = "authorization"
 
-const hosting = "https://localhost:5004"
+// const hosting = "https://localhost:5001"
+const hosting = "http://203.154.83.34:5004"
 const host = hosting + "/api"
 const admin = host + "/admin"
 const contact = host + "/contact"
 const category = host + "/product"
+const page = host + "/page"
 
 const api = {
 	mock: category + "/get",
@@ -45,6 +47,10 @@ const api = {
 	addtechnical: category + "/addTechnical",
 	deletetechnical: category + "/deleteTechnical",
 	updatetechnical: category + "/updateTechnical",
+
+	// page
+	pageHeader: page + "/header",
+	pageIdHeader: page + "/idHeader",
 }
 
 export default {

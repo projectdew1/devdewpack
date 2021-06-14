@@ -7,8 +7,9 @@ import config from "../../setApi/Config"
 import Http from "../../setApi/http"
 import moment from "moment"
 
-import { Grid, Badge, Tooltip, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, FormControlLabel, Checkbox, InputLabel, OutlinedInput, Snackbar, Alert } from "@material-ui/core"
+import { Grid, Badge, Tooltip, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, FormControlLabel, Checkbox, InputLabel, OutlinedInput, Snackbar } from "@material-ui/core"
 import { Edit, MoreVert, Delete, TrendingUpTwoTone, Visibility } from "@material-ui/icons"
+import Alert from "@material-ui/lab/Alert"
 
 import { Table, Button, Menu, Dropdown, Popconfirm, Upload, Input, Image, Form } from "antd"
 
@@ -56,16 +57,30 @@ export default function Category() {
 				b = b.categoryName || ""
 				return a.localeCompare(b)
 			},
-			width: 100,
+			width: 150,
 			// align: "center",
 			// ellipsis: true,
 		},
+
 		{
 			title: () => <label style={{ fontWeight: "bold" }}>{"รูปภาพปก"}</label>,
 			dataIndex: "localImage",
 			key: "localImage",
 			width: 100,
 			render: (text, record) => (text ? <Image src={config.hosting + text} preview={false} /> : ""),
+		},
+		{
+			title: () => <label style={{ fontWeight: "bold" }}>{"SEO"}</label>,
+			dataIndex: "seo",
+			key: "seo",
+			sorter: (a, b) => {
+				a = a.seo || ""
+				b = b.seo || ""
+				return a.localeCompare(b)
+			},
+			width: 200,
+			// align: "center",
+			ellipsis: true,
 		},
 		{
 			title: () => <label style={{ fontWeight: "bold" }}>{"วันที่บันทึก"}</label>,
@@ -210,6 +225,7 @@ export default function Category() {
 					const items = res.data.items
 					form.setFieldsValue({
 						category: items.categoryName,
+						seo: items.seo == null ? "" : items.seo,
 					})
 					if (items.fileImage !== null) {
 						let fileData = null
@@ -285,6 +301,7 @@ export default function Category() {
 			params: {
 				user: token,
 				categoryName: value.category,
+				seo: value.seo,
 			},
 		})
 			.then(res => {
@@ -320,6 +337,7 @@ export default function Category() {
 				user: token,
 				categoryName: value.category,
 				id: categoryTitle,
+				seo: value.seo,
 			},
 		})
 			.then(res => {
@@ -463,6 +481,18 @@ export default function Category() {
 										]}
 									>
 										<Input disabled={isView} placeholder="กรุณากรอกชื่อประเภท" autoComplete={"off"} />
+									</Form.Item>
+									<Form.Item
+										name="seo"
+										label="SEO"
+										rules={[
+											{
+												required: true,
+												message: "กรุณากรอก SEO",
+											},
+										]}
+									>
+										<Input disabled={isView} placeholder="กรุณากรอก SEO" autoComplete={"off"} />
 									</Form.Item>
 									<Form.Item name="upload" label="รูปภาพปก" valuePropName="fileList" getValueFromEvent={normFile}>
 										<Upload name="logo" action={config.api.mock} maxCount={1} listType="picture" beforeUpload={beforeUpload} onRemove={false}>

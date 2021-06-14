@@ -1,6 +1,6 @@
 import React from "react"
 import dynamic from "next/dynamic"
-import { Grid } from "@material-ui/core"
+import { Grid, Paper, ButtonBase, Typography } from "@material-ui/core"
 
 import { makeStyles } from "@material-ui/styles"
 
@@ -51,6 +51,7 @@ const useStylec = makeStyles(theme => ({
 	symbolCen: {
 		display: "flex",
 		justifyContent: "center",
+		zIndex: 2000,
 	},
 	symbol: {
 		boxShadow: "0 2px 2px 0 rgba(0, 0, 0, 0.14),0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)",
@@ -130,14 +131,14 @@ const About = () => {
 		<React.Fragment>
 			<Layouts title="เกี่ยวกับเรา | ACI MACHINERY Co. Ltd" active={2} fixed={true} appColor={"transparent"}>
 				<div className={classes.root}>
-					<div className={classes.bg} />
+					<div className={classes.bg}></div>
 					<div className={classes.content}>
 						<div className={classes.container}>
 							<Grid container className={classes.row}>
-								<Grid item sm={12} className={classes.col}>
-									<div className={classes.Itemscol}>
-										<div className={classes.ItemsAbout}>
-											<p style={{ margin: 0, fontSize: "1.5em", fontWeight: "500" }}>บริษัท เอซีไอ แมชชีนเนอร์รี่ จำกัด</p>
+								<Grid item sm={12} md={12} className={classes.col1}>
+									<div className={classes.Itemscol1}>
+										<div className={classes.ItemsContactcol1}>
+											<p style={{ margin: 0, fontSize: "1.5em", fontWeight: "500" }}>บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด</p>
 											<p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>
 												{`  \xa0\xa0\xa0\xa0\xa0\xa0\xa0 ดำเนินธุรกิจเกี่ยวกับเครื่องบรรจุภัณฑ์ มีสินค้ามากมายหลายชนิด เช่น เครื่องบรรจุของเหลว , น้ำยาล้างจาน ,แชมพู,แอลกอฮอล์,ครีม เครื่องบรรจุซองแนวตั้ง เมล็ด,ผงกาแฟ,คอลลาเจน, เครื่องบรรจุแนวนอน เครื่องซีลสูญญากาศ เครื่องอบฟิล์มหด
 												เครื่องรัดกล่องและเครื่องอื่นๆ ที่เกี่ยวกับการบรรจุภัณฑ์`}
@@ -150,20 +151,23 @@ const About = () => {
 `}
 											</p>
 											<p style={{ color: "#777676", margin: 0, marginTop: "2em", fontSize: "1em", fontWeight: "400" }}>{`ติดต่อเราทุกครั้งที่ท่านต้องการเครื่องบรรจุภัณฑ์ `}</p>
-											<p style={{ color: "black", margin: 0, fontSize: "1em", fontWeight: "400" }}>{`บริษัท เอซีไอ แมชชีนเนอรี่ จำกัด  ขอขอบคุณลูกค้าทุกท่านที่ให้ความไว้วางใจ `}</p>
+											<p style={{ color: "black", margin: 0, fontSize: "1em", fontWeight: "400" }}>{`บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด  ขอขอบคุณลูกค้าทุกท่านที่ให้ความไว้วางใจ `}</p>
+										</div>
+
+										<div className={classes.ItemsContactcol1}>
+											<Grid container style={{ marginTop: "2em", justifyContent: "space-around" }}>
+												<Grid item md={4} className={classes.symbolCen}>
+													<div className={classes.symbol + " " + classes.sb1}></div>
+												</Grid>
+												<Grid item md={4} className={classes.symbolCen}>
+													<div className={classes.symbol + " " + classes.sb2}></div>
+												</Grid>
+												<Grid item md={4} className={classes.symbolCen}>
+													<div className={classes.symbol + " " + classes.sb3}></div>
+												</Grid>
+											</Grid>
 										</div>
 									</div>
-								</Grid>
-							</Grid>
-							<Grid container style={{ marginTop: "2em", justifyContent: "space-around" }}>
-								<Grid item md={4} className={classes.symbolCen}>
-									<div className={classes.symbol + " " + classes.sb1}></div>
-								</Grid>
-								<Grid item md={4} className={classes.symbolCen}>
-									<div className={classes.symbol + " " + classes.sb2}></div>
-								</Grid>
-								<Grid item md={4} className={classes.symbolCen}>
-									<div className={classes.symbol + " " + classes.sb3}></div>
 								</Grid>
 							</Grid>
 						</div>

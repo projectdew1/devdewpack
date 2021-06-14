@@ -12,6 +12,7 @@ import componentsStyle from "../assets/component/component"
 import Grid from "@material-ui/core/Grid"
 
 import Slider from "react-slick"
+import Config from "../setApi/Config"
 
 const Parallax = dynamic(() => import("../component/Parallax/Parallax"))
 const Layouts = dynamic(() => import("../Layouts/Default"))
@@ -69,10 +70,10 @@ const Home = ({ props }) => {
 		[classes.subtitle]: true,
 		[classes.animatedItemIn]: true,
 	})
-
+    console.log(Config.api.pageHeader);
 	return (
 		<React.Fragment>
-			<Layouts title="หน้าหลัก | ACI MACHINERY Co. Ltd" active={0} fixed={true} appColor={"transparent"}>
+			<Layouts title="หน้าหลัก | KMS MACHINERY Co. Ltd" active={0} fixed={true} appColor={"transparent"}>
 				{/* แบบที่ 1  Parallax */}
 				{/* <Parallax image="/bg.jpg">
 					<div className={classes.container}>
@@ -106,7 +107,7 @@ const Home = ({ props }) => {
 							</Grid>
 							<Grid item sm={6} md={6} className={classes.gridItemsTextImage}>
 								<div className={classes.gridText}>
-									<h1 className={classes.Text1}>ACI MACHINERY</h1>
+									<h1 className={classes.Text1}>KMS MACHINERY</h1>
 									<h1 className={classes.Text2}>ศูนย์รวมเครื่องแพ็คกิ้งและบรรจุภัณฑ์</h1>
 									<h1 className={classes.Text3}>สินค้าได้รับมาตรฐาน บริการจริงใจ</h1>
 									<h1 className={classes.Text3}>นำเข้าและจัดหน่าย เครื่องแพ็คกิ้งและบรรจุภัณฑ์</h1>

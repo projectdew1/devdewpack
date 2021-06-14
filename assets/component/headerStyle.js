@@ -134,6 +134,7 @@ const headerStyle = theme => ({
 	appColorwhite: {
 		backgroundColor: "white",
 		boxShadow: "none",
+		boxShadow: "0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15)",
 	},
 	appColortransparent: {
 		backgroundColor: "transparent",
@@ -142,7 +143,7 @@ const headerStyle = theme => ({
 	appColorC: {
 		backgroundColor: "#fffffff2",
 		animation: `$itemsIn 800ms ${theme.transitions.easing.easeInOut}`,
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("xs")]: {
 			animation: "none",
 		},
 	},
@@ -160,8 +161,25 @@ const headerStyle = theme => ({
 	logo: {
 		height: "80px",
 		cursor: "pointer",
-		[theme.breakpoints.down("sm")]: {
+		[theme.breakpoints.down("xs")]: {
 			height: "40px",
+		},
+	},
+
+	labelLogo: {
+		marginLeft: "5px",
+		fontSize: 30,
+		color: "#919191",
+		fontStyle: "italic",
+		[theme.breakpoints.down("md")]: {
+			fontSize: 18,
+		},
+		[theme.breakpoints.down("xs")]: {
+			visibility: "hidden",
+		},
+		"&:hover": {
+			// color: "#FFFFFF",
+			cursor: "pointer",
 		},
 	},
 })

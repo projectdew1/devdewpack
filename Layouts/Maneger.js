@@ -211,7 +211,7 @@ const PersistentDrawerLeft = props => {
 	return (
 		<div className={classes.root}>
 			<Head>
-				<title>{"การจัดการเพจ | ACI MACHINERY Co. Ltd"}</title>
+				<title>{"การจัดการเพจ | KMS MACHINERY Co. Ltd"}</title>
 			</Head>
 			<CssBaseline />
 			{LoadingPage ? null : (

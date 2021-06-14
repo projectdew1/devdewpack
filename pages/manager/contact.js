@@ -6,7 +6,8 @@ import action from "../../redux/actions"
 import config from "../../setApi/Config"
 import Http from "../../setApi/http"
 
-import { Grid, Badge, Tooltip, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, FormControlLabel, Checkbox, InputLabel, OutlinedInput, Snackbar, Alert } from "@material-ui/core"
+import { Grid, Badge, Tooltip, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, FormControlLabel, Checkbox, InputLabel, OutlinedInput, Snackbar } from "@material-ui/core"
+import Alert from "@material-ui/lab/Alert"
 import { Visibility, MoreVert, Delete } from "@material-ui/icons"
 
 import { Table, Tabs, Button, Menu, Dropdown, Popconfirm, message } from "antd"

@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
 export default function Footer() {
 	const classes = useStyles()
 	return (
-		<div>
+		<div style={{ width: "100%" }}>
 			{/* <Hidden smDown>
 				<Grid container spacing={2} className={classes.social}>
 					<Grid item xs={12} sm={6} md={3}>
@@ -145,21 +145,21 @@ export default function Footer() {
 					</Grid>
 				</Grid>
 			</Hidden> */}
-			<Grid container spacing={2} className={classes.line}>
+			<Grid container className={classes.line}>
 				<Grid item sm={12} md={4}>
 					<div className={classes.setItems}>
 						<p style={{ fontSize: "0.9em", fontWeight: "500", margin: 0, color: "#949699", marginBottom: "5px" }}>
 							<i className="fas fa-map-marker-alt" style={{ fontSize: "1em", marginRight: "5px" }} />
-							ACI MACHINERY Co. Ltd
+							KMS MACHINERY CO.,LTD
 						</p>
 						<p style={{ margin: 0 }}>
-							<label style={{ fontSize: "0.9em", fontWeight: "300", color: "#949699" }}>The Season Petkasem69, No. 79/57, </label>
+							<label style={{ fontSize: "0.9em", fontWeight: "300", color: "#949699" }}> No. 1/46 Moo 6, </label>
 						</p>
 						<p style={{ margin: 0 }}>
-							<label style={{ fontSize: "0.9em", fontWeight: "300", color: "#949699" }}>Liap Khlong Phasi Charoen-South Road,</label>
+							<label style={{ fontSize: "0.9em", fontWeight: "300", color: "#949699" }}>Petchkasem Road, Krathumbaen,</label>
 						</p>
 						<p style={{ margin: 0 }}>
-							<label style={{ fontSize: "0.9em", fontWeight: "300", color: "#949699" }}>Nong Khaem, Bangkok 10160 Thailand</label>
+							<label style={{ fontSize: "0.9em", fontWeight: "300", color: "#949699" }}> Samut Sakhon 74310 Thailand</label>
 						</p>
 
 						<div
@@ -207,7 +207,7 @@ export default function Footer() {
 					</div>
 				</Grid>
 			</Grid>
-			<div className={classes.bottom}>Copyright 2021 ACI MACHINERY | All Rights Reserved</div>
+			<div className={classes.bottom}>Copyright 2021 KMS MACHINERY | All Rights Reserved</div>
 		</div>
 	)
 }

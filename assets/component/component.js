@@ -146,7 +146,7 @@ const componentsStyle = theme => ({
 	gridBander: {
 		display: "flex",
 		height: "100%",
-		[theme.breakpoints.down("sm")]: {
+		[theme.breakpoints.down("xs")]: {
 			flexDirection: "column-reverse",
 			height: "auto",
 		},
@@ -172,7 +172,7 @@ const componentsStyle = theme => ({
 		marginBottom: 0,
 		animation: `$textIn 500ms ${theme.transitions.easing.easeInOut}`,
 
-		[theme.breakpoints.down("sm")]: {
+		[theme.breakpoints.down("xs")]: {
 			textAlign: "center",
 			fontSize: "1.8em",
 		},
@@ -189,7 +189,7 @@ const componentsStyle = theme => ({
 		margin: 0,
 		animation: `$textIn 700ms ${theme.transitions.easing.easeInOut}`,
 
-		[theme.breakpoints.down("sm")]: {
+		[theme.breakpoints.down("xs")]: {
 			textAlign: "center",
 			fontSize: "1.2em",
 		},
@@ -208,7 +208,7 @@ const componentsStyle = theme => ({
 		margin: 0,
 		animation: `$textIn 900ms ${theme.transitions.easing.easeInOut}`,
 
-		[theme.breakpoints.down("sm")]: {
+		[theme.breakpoints.down("xs")]: {
 			textAlign: "center",
 			fontSize: "0.8em",
 		},
@@ -263,7 +263,7 @@ const componentsStyle = theme => ({
 	centerBtn: {
 		animation: `$textIn 1100ms ${theme.transitions.easing.easeInOut}`,
 
-		[theme.breakpoints.down("sm")]: {
+		[theme.breakpoints.down("xs")]: {
 			display: "flex",
 			justifyContent: "center",
 			alignItems: "center",
@@ -387,7 +387,7 @@ const componentsStyle = theme => ({
 				WebkitTransform: "translateY(calc(100% - 42px))",
 			},
 		},
-		[theme.breakpoints.down("sm")]: {
+		[theme.breakpoints.down("xs")]: {
 			margin: "0 10px 40px",
 			// width: "240px",
 			height: "160px",

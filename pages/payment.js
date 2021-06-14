@@ -125,7 +125,7 @@ const Payment = () => {
 
 	return (
 		<React.Fragment>
-			<Layouts title="วิธีสั่งซื้อและชำระเงิน | ACI MACHINERY Co. Ltd" active={3} fixed={true} appColor={"transparent"}>
+			<Layouts title="วิธีสั่งซื้อและชำระเงิน | KMS MACHINERY Co. Ltd" active={3} fixed={true} appColor={"transparent"}>
 				<div className={classes.root}>
 					<div className={classes.bg}>{/* <div className={classes.container}>วิธีสั่งซื้อและชำระเงิน</div> */}</div>
 					<div className={classes.content}>
@@ -139,12 +139,12 @@ const Payment = () => {
 											<p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>1. ลูกค้าสามารถสั่งซื้อสินค้า </p>
 
 											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ทางโทรศัพท์ 095-4565550 / 086-9180060</p>
-											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ผ่านไลน์ออฟฟิเชี่ยล @acipacking และ kornaci</p>
+											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ผ่านไลน์ออฟฟิเชี่ยล @kmspacking และ kornaci</p>
 											<p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>2. รอการยันยืนสินค้า </p>
 											<p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>3. ชำระเงินผ่านธนาคาร </p>
 											<p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>4. แจ้งการชำระเงิน </p>
-											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ผ่านไลน์ออฟฟิเชี่ยล @acipacking และ kornaci</p>
-											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ทางอีเมลล์ เมล์ office@acipacking.com, sales@acipacking.com และ acipacking@gmail.com </p>
+											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ผ่านไลน์ออฟฟิเชี่ยล @kmspacking และ kornaci</p>
+											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ทางอีเมลล์ เมล์ office@kmspacking.com, sales@kmspacking.com และ kmspacking@gmail.com </p>
 											<p style={{ color: "#000000", margin: 0, marginTop: "10px", fontSize: "1em", fontWeight: "500" }}>หมายเหตุ </p>
 											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>** งดโอนเงินก่อนที่จะมีการยืนยันเรื่องสินค้า เพราะสินค้าบางรุ่นอาจหมดสต๊อกทั้งนี้เพื่อความสะดวกของตัวลูกค้าเอง </p>
 										</div>
@@ -167,7 +167,7 @@ const Payment = () => {
 																			ธนาคาร กสิกรไทย
 																		</Typography>
 																		<Typography variant="body2" gutterBottom>
-																			ชื่อบัญชี บริษัท เอซีไอ แมชชีนเนอร์รี่ จำกัด
+																			ชื่อบัญชี บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด
 																		</Typography>
 																		<Typography variant="body2" color="textSecondary">
 																			เลขที่บัญชี xxx-x-xxxxx-x

@@ -14,7 +14,7 @@ const Article = () => {
 
 	return (
 		<React.Fragment>
-			<Layouts title="บทความ | ACI MACHINERY Co. Ltd" active={6} sticky={true}>
+			<Layouts title="บทความ | KMS MACHINERY Co. Ltd" active={6} sticky={true}>
 				<div className={classes.container} style={{ height: "55vh" }}>
 					บทความ
 				</div>

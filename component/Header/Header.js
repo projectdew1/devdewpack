@@ -63,9 +63,11 @@ export default function Header(props) {
 	return (
 		<AppBar className={appBarClasses}>
 			<Toolbar className={classes.container}>
-				<img className={classes.logo} src={"/ACI885-322.png"} onClick={() => router.push("/")} />
-
-				<Hidden mdDown implementation="js">
+				<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }} onClick={() => router.push("/")}>
+					<img className={classes.logo} src={"/logokms.png"} />
+					<label className={classes.labelLogo}>บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด</label>
+				</div>
+				<Hidden smDown implementation="js">
 					{Links}
 				</Hidden>
 				<Hidden mdUp>

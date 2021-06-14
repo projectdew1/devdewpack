@@ -6,8 +6,9 @@ import action from "../../redux/actions"
 import config from "../../setApi/Config"
 import Http from "../../setApi/http"
 
-import { Grid, Badge, Tooltip, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, FormControlLabel, Checkbox, Alert, Snackbar } from "@material-ui/core"
-import { Visibility, MoreVert, Delete, Edit, RemoveCircleOutlineOutlined, AddCircleOutlineOutlined } from "@material-ui/icons"
+import { Grid, Badge, Tooltip, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, FormControlLabel, Checkbox, Snackbar } from "@material-ui/core"
+import { Visibility, MoreVert, Delete, Edit, FileCopy, AddCircleOutlineOutlined } from "@material-ui/icons"
+import Alert from "@material-ui/lab/Alert"
 
 import { Table, Button, Menu, Dropdown, Popconfirm, Select, Input, Form, Upload, Image, Radio, InputNumber } from "antd"
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons"
@@ -72,38 +73,58 @@ export default function Product() {
 	const [Alerttype, setAlerttype] = useState("error")
 	const [openAlert, setOpenAlert] = useState(false)
 
-	// เพิ่ม obj
-	// var obj = {key1: "value1", key2: "value2"};
-	// Object.assign(obj, {key3: "value3"});
-
 	const columns = [
 		{
 			title: () => <label style={{ fontWeight: "bold" }}>{"ลำดับ"}</label>,
-			dataIndex: "typeId",
-			key: "typeId",
+			dataIndex: "machineId",
+			key: "machineId",
 			width: 50,
 			align: "center",
 			render: (text, record, index) => text,
 		},
 		{
 			title: () => <label style={{ fontWeight: "bold" }}>{"ประเภทผลิตภัณฑ์"}</label>,
-			dataIndex: "category",
-			key: "category",
+			dataIndex: "categoryName",
+			key: "categoryName",
 			sorter: (a, b) => {
-				a = a.category || ""
-				b = b.category || ""
+				a = a.categoryName || ""
+				b = b.categoryName || ""
 				return a.localeCompare(b)
 			},
 			width: 100,
 			ellipsis: true,
 		},
 		{
-			title: () => <label style={{ fontWeight: "bold" }}>{"สินค้าผลิตภัณฑ์"}</label>,
+			title: () => <label style={{ fontWeight: "bold" }}>{"หมวดหมู่ผลิตภัณฑ์"}</label>,
 			dataIndex: "typeName",
 			key: "typeName",
 			sorter: (a, b) => {
 				a = a.typeName || ""
 				b = b.typeName || ""
+				return a.localeCompare(b)
+			},
+			width: 100,
+			ellipsis: true,
+		},
+		{
+			title: () => <label style={{ fontWeight: "bold" }}>{"ชื่อสินค้าผลิตภัณฑ์"}</label>,
+			dataIndex: "machineName",
+			key: "machineName",
+			sorter: (a, b) => {
+				a = a.machineName || ""
+				b = b.machineName || ""
+				return a.localeCompare(b)
+			},
+			width: 100,
+			ellipsis: true,
+		},
+		{
+			title: () => <label style={{ fontWeight: "bold" }}>{"รหัสสินค้า"}</label>,
+			dataIndex: "itemsCode",
+			key: "itemsCode",
+			sorter: (a, b) => {
+				a = a.itemsCode || ""
+				b = b.itemsCode || ""
 				return a.localeCompare(b)
 			},
 			width: 120,
@@ -112,15 +133,69 @@ export default function Product() {
 
 		{
 			title: () => <label style={{ fontWeight: "bold" }}>{"SEO"}</label>,
-			dataIndex: "typeSeo",
-			key: "typeSeo",
+			dataIndex: "machineSeo",
+			key: "machineSeo",
 			sorter: (a, b) => {
-				a = a.typeSeo || ""
-				b = b.typeSeo || ""
+				a = a.machineSeo || ""
+				b = b.machineSeo || ""
 				return a.localeCompare(b)
 			},
 			width: 100,
 			ellipsis: true,
+		},
+		{
+			title: () => <label style={{ fontWeight: "bold" }}>{"Sold out"}</label>,
+			dataIndex: "soldout",
+			key: "soldout",
+			width: 100,
+			ellipsis: true,
+			render: (text, record) => {
+				return {
+					props: {
+						style: {
+							background: text == 1 ? "#ff7a7a" : null,
+							color: text == 1 ? "#FFFFFF" : "#000000",
+						},
+					},
+					children: text === 1 ? "ของหมด" : "มีของ",
+				}
+			},
+		},
+		{
+			title: () => <label style={{ fontWeight: "bold" }}>{"ราคา"}</label>,
+			dataIndex: "price",
+			key: "price",
+			width: 100,
+			ellipsis: true,
+			render: (text, record) => {
+				return {
+					props: {
+						style: {
+							background: record.soldout == 1 ? "#ff7a7a" : null,
+							color: record.soldout == 1 ? "#FFFFFF" : "#000000",
+						},
+					},
+					children: text,
+				}
+			},
+		},
+		{
+			title: () => <label style={{ fontWeight: "bold" }}>{"ลดราคาเหลือ"}</label>,
+			dataIndex: "discount",
+			key: "discount",
+			width: 100,
+			ellipsis: true,
+			render: (text, record) => {
+				return {
+					props: {
+						style: {
+							background: record.soldout == 1 ? "#ff7a7a" : null,
+							color: record.soldout == 1 ? "#FFFFFF" : "#000000",
+						},
+					},
+					children: text,
+				}
+			},
 		},
 		{
 			title: () => <label style={{ fontWeight: "bold" }}>{"รูปภาพปก"}</label>,
@@ -175,6 +250,7 @@ export default function Product() {
 			key: "menu",
 			width: 50,
 			align: "center",
+			fixed: "right",
 			render: (text, record) => (
 				<Dropdown
 					overlay={
@@ -191,9 +267,15 @@ export default function Product() {
 									<label style={{ cursor: "pointer" }}>{` มุมมอง`}</label>
 								</div>
 							</Menu.Item>
+							<Menu.Item key="3" onClick={() => handleClickCopy(record)}>
+								<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+									<FileCopy />
+									<label style={{ cursor: "pointer" }}>{`คัดลอก`}</label>
+								</div>
+							</Menu.Item>
 							<Menu.Divider />
 							<Menu.Item key="2">
-								<Popconfirm title={`ลบข้อมูล ${record.typeId}`} okText="ตกลง" cancelText="ยกเลิก" onConfirm={() => deleteGroup(record.typeId)}>
+								<Popconfirm title={`ลบข้อมูล ${record.machineId}`} okText="ตกลง" cancelText="ยกเลิก" onConfirm={() => deleteProduct(record.machineId)}>
 									<Tooltip title="ลบข้อมูล">
 										<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 											<Delete />
@@ -253,9 +335,9 @@ export default function Product() {
 		},
 	]
 
-	const deleteGroup = async id => {
+	const deleteProduct = async id => {
 		setLoadingTable(true)
-		await Http.delete(config.api.deletetype, {
+		await Http.delete(config.api.deletemachine, {
 			params: {
 				id,
 			},
@@ -278,10 +360,73 @@ export default function Product() {
 			})
 	}
 
+	const updateProduct = async value => {
+		const cook = Cookies.get(config.master)
+		const token = cook ? jwt_decode(cook).user : null
+		const upload = value.upload ? (value.upload.length > 0 ? value.upload[0].originFileObj : null) : null
+
+		const number = value.price ? value.number : null
+		const discount = value.price ? value.discount : null
+		const video = value.video ? (value.video.length > 0 ? value.video.toString() : null) : null
+		const manual = value.manual ? (value.manual.length > 0 ? value.manual.toString() : null) : null
+		const detail = value.detail ? (value.detail.length > 0 ? value.detail.toString() : null) : null
+		const technical = value.technical ? (value.technical.length > 0 ? ConvertJSontoBackend(value.technical) : null) : null
+		let data = new FormData()
+		data.append("FormFile", upload)
+		if (value.uploadmulti) {
+			if (value.uploadmulti.length > 0) {
+				value.uploadmulti.map(row => data.append("FormFileMulti", row.originFileObj))
+			}
+		}
+
+		setLoadingTable(true)
+		setLoading(true)
+		await Http.post(config.api.updatemachine, data, {
+			params: {
+				id: Title,
+				seo: value.seo,
+				typeID: value.group,
+				machineName: value.product,
+				machineModels: value.model,
+				price: number,
+				discount: discount,
+				soldout: value.soldout,
+				user: token,
+				explain: value.explain,
+				detail: detail,
+				manual: manual,
+				videos: video,
+				technical: technical,
+			},
+			headers: {
+				"content-type": "multipart/form-data",
+			},
+		})
+			.then(res => {
+				const check = res.data.message
+				if (check === "success") {
+					setAlert("success", "แก้ไขข้อมูลเรียบร้อย !")
+				} else {
+					setAlert("error", check)
+				}
+			})
+			.catch(e => {
+				console.log(e)
+				setAlert("error", "เกิดข้อผิดพลาดจาก server !")
+			})
+			.finally(async res => {
+				await reload()
+				setLoadingTable(false)
+				setLoading(false)
+				handleClose()
+			})
+	}
+
 	const handleClickEdit = async row => {
 		await selectGroup()
-		// await find(row.typeId)
-		// setTitle(row.typeId)
+		await reloadTech()
+		await find(row.machineId, false)
+		setTitle(row.machineId)
 		setOpen(true)
 		setIsSave(false)
 		setIsView(false)
@@ -289,11 +434,21 @@ export default function Product() {
 
 	const handleClickView = async row => {
 		await selectGroup()
-		// await find(row.typeId)
-		// setTitle(row.typeId)
+		await reloadTech()
+		await find(row.machineId, false)
+		setTitle(row.machineId)
 		setOpen(true)
 		setIsSave(false)
 		setIsView(true)
+	}
+
+	const handleClickCopy = async row => {
+		await selectGroup()
+		await reloadTech()
+		await find(row.machineId, true)
+		setOpen(true)
+		setIsSave(true)
+		setIsView(false)
 	}
 
 	const dataSelector = () => {
@@ -336,7 +491,7 @@ export default function Product() {
 
 	const reload = async () => {
 		setLoadingTable(true)
-		await Http.post(config.api.type)
+		await Http.post(config.api.machine)
 			.then(res => {
 				const data = res.data.message
 				if (data === "success") {
@@ -395,7 +550,7 @@ export default function Product() {
 	}
 
 	const onSearch = value => {
-		const filter = alasql(`select * from ? where typeName like '%${value}%'`, [dataFilt])
+		const filter = alasql(`select * from ? where machineName like '%${value}%'`, [dataFilt])
 		setData(filter)
 	}
 
@@ -408,7 +563,7 @@ export default function Product() {
 		if (isSave) {
 			addProduct(values)
 		} else {
-			update(values)
+			updateProduct(values)
 		}
 	}
 
@@ -509,7 +664,7 @@ export default function Product() {
 				await reload()
 				setLoadingTable(false)
 				setLoading(false)
-				// handleClose()
+				handleClose()
 			})
 	}
 
@@ -517,6 +672,7 @@ export default function Product() {
 		form.resetFields()
 		setIsView(false)
 		setIsPrice(false)
+		setTitle("")
 	}
 
 	const addTechnical = async ({ name }) => {
@@ -602,33 +758,95 @@ export default function Product() {
 			})
 	}
 
-	const find = async id => {
-		await Http.post(config.api.idtype, null, {
+	const multi = async image => {
+		if (image.length > 0) {
+			await image.map(async (row, index) => {
+				let url = config.hosting + row.local
+				return await toDataURL(url).then(dataUrl => {
+					// console.log("Here is Base64 Url", dataUrl)
+					let fileDatamulti = dataURLtoFile(dataUrl, row.fileName)
+					// console.log("Here is JavaScript File Object", fileDatamulti)
+					if (form.getFieldValue("uploadmulti")) {
+						form.setFieldsValue({
+							uploadmulti: [...form.getFieldValue("uploadmulti"), { key: index, name: row.fileName, originFileObj: fileDatamulti }],
+						})
+					} else {
+						form.setFieldsValue({
+							uploadmulti: [{ key: index, name: row.fileName, originFileObj: fileDatamulti }],
+						})
+					}
+					// return { key: index, name: row.fileName, originFileObj: fileDatamulti }
+				})
+			})
+		}
+	}
+
+	const find = async (id, copy) => {
+		await Http.post(config.api.idmachine, null, {
 			params: {
 				id,
 			},
 		})
-			.then(res => {
+			.then(async res => {
 				const data = res.data.message
 				if (data === "success") {
 					const items = res.data.items
-					console.log(items)
-					form.setFieldsValue({
-						seo: items.typeSeo,
-						category: items.categoryId,
-						group: items.typeName,
+					// console.log(items)
+					let technical = []
+					let detail = []
+					let video = []
+					let manual = []
+
+					if (!copy) {
+						await multi(items.image)
+					}
+
+					items.detail.forEach(row => {
+						detail.push(row.detail)
 					})
-					if (items.fileImage !== null) {
-						let fileData = null
-						let url = config.hosting + items.localImage
-						toDataURL(url).then(dataUrl => {
-							// console.log("Here is Base64 Url", dataUrl)
-							fileData = dataURLtoFile(dataUrl, items.fileImage)
-							// console.log("Here is JavaScript File Object", fileData)
-							form.setFieldsValue({
-								upload: [{ name: items.fileImage, originFileObj: fileData }],
+
+					items.video.forEach(row => {
+						video.push(row.link)
+					})
+
+					items.manual.forEach(row => {
+						manual.push(row.manual)
+					})
+
+					items.detailTech.forEach(row => {
+						technical.push({ tech: row.technicallyId, name: row.detailTech })
+					})
+
+					form.setFieldsValue({
+						seo: items.machineSeo,
+						group: items.typeId,
+						product: copy ? "" : items.machineName,
+						model: items.itemsCode,
+						number: items.price,
+						price: parseInt(items.price + items.discount) > 0 ? true : false,
+						discount: items.discount,
+						soldout: items.soldout == 1 ? true : false,
+						explain: items.explain[0].explainDetail,
+						detail,
+						video,
+						manual,
+						technical,
+					})
+					setIsPrice(parseInt(items.price + items.discount) > 0 ? true : false)
+					if (!copy) {
+						if (items.fileImage !== null) {
+							let fileData = null
+							let url = config.hosting + items.localImage
+							console.log(url)
+							toDataURL(url).then(dataUrl => {
+								// console.log("Here is Base64 Url", dataUrl)
+								fileData = dataURLtoFile(dataUrl, items.fileImage)
+								// console.log("Here is JavaScript File Object", fileData)
+								form.setFieldsValue({
+									upload: [{ name: items.fileImage, originFileObj: fileData }],
+								})
 							})
-						})
+						}
 					}
 				}
 			})
@@ -678,44 +896,6 @@ export default function Product() {
 			u8arr[n] = bstr.charCodeAt(n)
 		}
 		return new File([u8arr], filename, { type: mime })
-	}
-
-	const update = async value => {
-		const cook = Cookies.get(config.master)
-		const token = cook ? jwt_decode(cook).user : null
-		const upload = value.upload ? (value.upload.length > 0 ? value.upload[0].originFileObj : null) : null
-		let data = new FormData()
-		data.append("FormFile", upload)
-
-		setLoadingTable(true)
-		setLoading(true)
-		await Http.put(config.api.updatetype, data, {
-			params: {
-				id: Title,
-				user: token,
-				seo: value.seo,
-				typeName: value.group,
-				categoryID: value.category,
-			},
-		})
-			.then(res => {
-				const check = res.data.message
-				if (check === "success") {
-					setAlert("success", "แก้ไขข้อมูลเรียบร้อย !")
-				} else {
-					setAlert("error", check)
-				}
-			})
-			.catch(e => {
-				console.log(e)
-				setAlert("error", "เกิดข้อผิดพลาดจาก server !")
-			})
-			.finally(async () => {
-				await reload()
-				setLoadingTable(false)
-				setLoading(false)
-				handleClose()
-			})
 	}
 
 	useEffect(() => {
@@ -816,7 +996,7 @@ export default function Product() {
 										]}
 										style={{ display: "inline-block" }}
 									>
-										<Radio.Group onChange={e => setIsPrice(e.target.value)}>
+										<Radio.Group onChange={e => setIsPrice(e.target.value)} disabled={isView}>
 											<Radio.Button value={false}>ไม่มี</Radio.Button>
 											<Radio.Button value={true}>มี</Radio.Button>
 										</Radio.Group>
@@ -833,7 +1013,7 @@ export default function Product() {
 											]}
 											style={{ display: "inline-block", margin: "0 8px" }}
 										>
-											<InputNumber min={0} />
+											<InputNumber min={0} disabled={isView} />
 										</Form.Item>
 									) : null}
 									{isPrice ? (
@@ -848,7 +1028,7 @@ export default function Product() {
 											]}
 											style={{ display: "inline-block", margin: "0 8px" }}
 										>
-											<InputNumber min={0} />
+											<InputNumber min={0} disabled={isView} />
 										</Form.Item>
 									) : null}
 								</Form.Item>
@@ -863,7 +1043,7 @@ export default function Product() {
 										},
 									]}
 								>
-									<Radio.Group>
+									<Radio.Group disabled={isView}>
 										<Radio.Button value={true}>ของหมด</Radio.Button>
 										<Radio.Button value={false}>มีอยู่</Radio.Button>
 									</Radio.Group>
@@ -883,7 +1063,7 @@ export default function Product() {
 										},
 									]}
 								>
-									<TextArea rows={4} autoSize={false} maxLength={400} showCount={true} autoComplete={"off"} />
+									<TextArea rows={4} autoSize={false} maxLength={400} showCount={true} disabled={isView} autoComplete={"off"} />
 								</Form.Item>
 								<Form.List name="detail">
 									{(fields, { add, remove }, { errors }) => (
@@ -902,13 +1082,24 @@ export default function Product() {
 														]}
 														noStyle
 													>
-														<Input maxLength={400} placeholder="กรุณากรอกคุณสมบัติ" style={{ width: "80%" }} autoComplete={"off"} />
+														<Input
+															maxLength={400}
+															placeholder="กรุณากรอกคุณสมบัติ"
+															style={{ width: "80%" }}
+															autoComplete={"off"}
+															disabled={isView}
+															onKeyDown={e => {
+																if (e.code === "Comma") {
+																	e.preventDefault()
+																}
+															}}
+														/>
 													</Form.Item>
 													{fields.length > 0 ? <MinusCircleOutlined className="dynamic-delete-button" onClick={() => remove(field.name)} /> : null}
 												</Form.Item>
 											))}
 											<Form.Item label={"เพิ่มคุณสมบัติ"}>
-												<Button type="dashed" onClick={() => add()} style={{ width: "60%" }} icon={<PlusOutlined />}>
+												<Button type="dashed" onClick={() => add()} style={{ width: "60%" }} disabled={isView} icon={<PlusOutlined />}>
 													เพิ่มคุณสมบัติ
 												</Button>
 												<Form.ErrorList errors={errors} />
@@ -945,6 +1136,7 @@ export default function Product() {
 															optionFilterProp="children"
 															filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 															filterSort={(optionA, optionB) => optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())}
+															disabled={isView}
 														>
 															{dataTechSelector()}
 														</Select>
@@ -962,13 +1154,24 @@ export default function Product() {
 														]}
 														noStyle
 													>
-														<Input maxLength={400} placeholder="กรุณากรอกคุณสมบัติทางเทคนิค" style={{ width: "60%" }} autoComplete={"off"} />
+														<Input
+															maxLength={400}
+															placeholder="กรุณากรอกคุณสมบัติทางเทคนิค"
+															style={{ width: "60%" }}
+															autoComplete={"off"}
+															disabled={isView}
+															onKeyDown={e => {
+																if (e.code === "Comma" || e.code === "Minus") {
+																	e.preventDefault()
+																}
+															}}
+														/>
 													</Form.Item>
 													{fields.length > 0 ? <MinusCircleOutlined className="dynamic-delete-button" onClick={() => remove(field.name)} /> : null}
 												</Form.Item>
 											))}
 											<Form.Item label={"เพิ่มคุณสมบัติทางเทคนิค"}>
-												<Button type="dashed" onClick={() => add()} style={{ width: "60%" }} icon={<PlusOutlined />}>
+												<Button type="dashed" onClick={() => add()} style={{ width: "60%" }} disabled={isView} icon={<PlusOutlined />}>
 													เพิ่มคุณสมบัติทางเทคนิค
 												</Button>
 												<Form.ErrorList errors={errors} />
@@ -993,13 +1196,23 @@ export default function Product() {
 														]}
 														noStyle
 													>
-														<Input maxLength={400} placeholder="กรุณากรอกวิธีใช้" style={{ width: "80%" }} />
+														<Input
+															maxLength={400}
+															placeholder="กรุณากรอกวิธีใช้"
+															disabled={isView}
+															style={{ width: "80%" }}
+															onKeyDown={e => {
+																if (e.code === "Comma") {
+																	e.preventDefault()
+																}
+															}}
+														/>
 													</Form.Item>
 													{fields.length > 0 ? <MinusCircleOutlined className="dynamic-delete-button" onClick={() => remove(field.name)} /> : null}
 												</Form.Item>
 											))}
 											<Form.Item label={"เพิ่มวิธีใช้"}>
-												<Button type="dashed" onClick={() => add()} style={{ width: "60%" }} icon={<PlusOutlined />}>
+												<Button type="dashed" onClick={() => add()} style={{ width: "60%" }} disabled={isView} icon={<PlusOutlined />}>
 													เพิ่มวิธีใช้
 												</Button>
 												<Form.ErrorList errors={errors} />
@@ -1025,13 +1238,23 @@ export default function Product() {
 														]}
 														noStyle
 													>
-														<Input maxLength={400} placeholder="กรุณากรอกลิ้งค์วีดีโอ" style={{ width: "80%" }} />
+														<Input
+															maxLength={400}
+															placeholder="กรุณากรอกลิ้งค์วีดีโอ"
+															disabled={isView}
+															style={{ width: "80%" }}
+															onKeyDown={e => {
+																if (e.code === "Comma") {
+																	e.preventDefault()
+																}
+															}}
+														/>
 													</Form.Item>
 													{fields.length > 0 ? <MinusCircleOutlined className="dynamic-delete-button" onClick={() => remove(field.name)} /> : null}
 												</Form.Item>
 											))}
 											<Form.Item label={"เพิ่มลิ้งค์วีดีโอ"}>
-												<Button type="dashed" onClick={() => add()} style={{ width: "60%" }} icon={<PlusOutlined />}>
+												<Button type="dashed" onClick={() => add()} style={{ width: "60%" }} disabled={isView} icon={<PlusOutlined />}>
 													เพิ่มลิ้งค์วีดีโอ
 												</Button>
 												<Form.ErrorList errors={errors} />
@@ -1203,9 +1426,9 @@ export default function Product() {
 						<Button type="primary" shape="round" onClick={handleClickOpen}>
 							เพิ่ม
 						</Button>
-						<Button type="primary" shape="round" onClick={TEST}>
+						{/* <Button type="primary" shape="round" onClick={TEST}>
 							TEST
-						</Button>
+						</Button> */}
 						<Button danger type="primary" shape="round" onClick={handleClickOpenTech}>
 							คุณสมบัติทางเทคนิค
 						</Button>
@@ -1215,7 +1438,7 @@ export default function Product() {
 					</Grid>
 					<Grid item xs={12} style={{ marginTop: "10px" }}>
 						<Table
-							rowKey={"typeId"}
+							rowKey={"machineId"}
 							loading={{
 								spinning: LoadingTable,
 								size: "large",
@@ -1223,7 +1446,7 @@ export default function Product() {
 							}}
 							dataSource={data}
 							columns={columns}
-							scroll={{ x: 400 }}
+							scroll={{ x: 1300 }}
 							size={"small"}
 							bordered={true}
 							tableLayout={"auto"}

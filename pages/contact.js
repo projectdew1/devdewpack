@@ -9,7 +9,7 @@ import { Send } from "@material-ui/icons"
 import CircularProgress from "@material-ui/core/CircularProgress"
 
 import Snackbar from "@material-ui/core/Snackbar"
-import Alert from "@material-ui/core/Alert"
+import Alert from "@material-ui/lab/Alert"
 
 import Axios from "axios"
 import config from "../setApi/Config"
@@ -154,7 +154,7 @@ const Contact = () => {
 
 	return (
 		<React.Fragment>
-			<Layouts title="ติดต่อเรา | ACI MACHINERY Co. Ltd" active={4} fixed={true} appColor={"transparent"}>
+			<Layouts title="ติดต่อเรา | KMS MACHINERY Co. Ltd" active={4} fixed={true} appColor={"transparent"}>
 				<div className={classes.root}>
 					<div className={classes.bg} />
 					<div className={classes.content}>
@@ -167,8 +167,8 @@ const Contact = () => {
 											<p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
 												<i className="fas fa-envelope" /> E-mail :
 											</p>
-											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>sale@acipacking.com</p>
-											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>acipacking@gmail.com</p>
+											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>sale@kmspacking.com</p>
+											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>kmspacking@gmail.com</p>
 											<p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
 												<i className="fas fa-phone-alt" /> Tel :
 											</p>
@@ -177,15 +177,15 @@ const Contact = () => {
 											<p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
 												<i className="fab fa-line" /> Line :
 											</p>
-											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>@acimachinery</p>
+											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>@kmsmachinery</p>
 											<p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
 												<i className="fab fa-facebook" /> Facebook :
 											</p>
-											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>@acimachinery</p>
+											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>@kmsmachinery</p>
 											<p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
 												<i className="fab fa-youtube" /> Youtube :
 											</p>
-											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>@acimachinery</p>
+											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>@kmsmachinery</p>
 										</div>
 									</div>
 									<div className={classes.Itemscol1}>
@@ -194,7 +194,7 @@ const Contact = () => {
 
 											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>
 												{" "}
-												<i className="fas fa-map-marker-alt" /> บริษัท เอซีไอ แมชชีนเนอรี่ จำกัด 79/57 ถนนเลียบคลองภาษีเจริญฝั่งใต้ แขวงหนองแขม เขตหนองแขม กรุงเทพมหานคร 10160
+												<i className="fas fa-map-marker-alt" /> บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด 1/46 ถนนเพชรเกษม ตำบลอ้อมน้อย อำเภอกระทุ่มแบน สมุทรสาคร 74130
 											</p>
 										</div>
 									</div>
@@ -299,8 +299,9 @@ const Contact = () => {
 							</Grid>
 						</div>
 					</div>
+
 					<iframe
-						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d685.282368751402!2d100.37596834935819!3d13.685551766651933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2bd7659b44721%3A0x89351cde15bd5a22!2sThe%20season!5e0!3m2!1sth!2sth!4v1617254605186!5m2!1sth!2sth"
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.2040246235374!2d100.30247311482992!3d13.706089590377038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e295e27d572fb9%3A0x46f8115383270857!2z4Lia4Lij4Li04Lip4Lix4LiXIOC5gOC4hOC5gOC4reC5h-C4oeC5gOC4reC4qiDguYHguKHguIrguIrguLXguJnguYDguJnguK3guKPguLXguYgg4LiI4Liz4LiB4Lix4LiU!5e0!3m2!1sth!2sth!4v1623558706283!5m2!1sth!2sth"
 						style={{ border: "none", width: "100%", height: "400px" }}
 						loading="lazy"
 					></iframe>

@@ -5,7 +5,7 @@ const dropdownStyle = theme => ({
 		pointerEvents: "none",
 	},
 	pooperNav: {
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("sm")]: {
 			position: "static !important",
 			left: "unset !important",
 			top: "unset !important",
@@ -41,7 +41,7 @@ const dropdownStyle = theme => ({
 		/// สร้างหลายเมนู
 		display: "flex",
 		flexDirection: "row",
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("sm")]: {
 			flexDirection: "column",
 		},
 	},
@@ -52,7 +52,7 @@ const dropdownStyle = theme => ({
 	popperResponsive: {
 		zIndex: "1200",
 		position: "absolute !important",
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("sm")]: {
 			zIndex: "1640",
 			position: "static !important",
 			float: "none",
@@ -101,7 +101,7 @@ const dropdownStyle = theme => ({
 		// 	transition: "transform 100ms ease-in-out",
 		// 	transformOrigin: "left",
 		// },
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("sm")]: {
 			width: "calc(100% - 30px) !important",
 		},
 	},
@@ -142,7 +142,7 @@ const dropdownStyle = theme => ({
 		// 	transition: "transform 100ms ease-in-out",
 		// 	transformOrigin: "left",
 		// },
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("sm")]: {
 			width: "calc(100% - 30px) !important",
 		},
 	},

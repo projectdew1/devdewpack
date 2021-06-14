@@ -15,6 +15,7 @@ import Divider from "@material-ui/core/Divider"
 import Icon from "@material-ui/core/Icon"
 import Popper from "@material-ui/core/Popper"
 import { useRouter } from "next/router"
+import Link from "next/link"
 
 // core components
 import Button from "@material-ui/core/Button"
@@ -55,9 +56,9 @@ export default function Dropdown(props) {
 	}
 	const handleClose = param => {
 		setAnchorEl(null)
-		if (props && props.onClick) {
-			props.onClick(param)
-		}
+		// if (props && props.onClick) {
+		// 	props.onClick(param)
+		// }
 	}
 	const handleCloseAway = event => {
 		if (anchorEl.contains(event.target)) {
@@ -149,9 +150,11 @@ export default function Dropdown(props) {
 											</MenuItem> */}
 											{row.list.map((value, key) => {
 												return (
-													<MenuItem key={key} onClick={() => handleClose(value.name)} className={dropdownItem}>
-														{value.name}
-													</MenuItem>
+													<Link key={key} href={`/category/${value.name}`}>
+														<MenuItem key={key} onClick={() => handleClose(value.name)} className={dropdownItem}>
+															{value.name}
+														</MenuItem>
+													</Link>
 												)
 											})}
 										</MenuList>
