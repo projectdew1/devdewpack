@@ -33,8 +33,9 @@ function MyApp(props) {
 		<CacheProvider value={cache}>
 			<Head>
 				<meta charSet="utf-8" />
+                <meta name="google-site-verification" content="YsuK3sIrMfpQY931poATkUIjgFaaxlPqJUxjUjGBP6k" />
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
-				<link rel="icon" href="/icon.ico" />
+				<link rel="icon" href="/kmsicon.ico" />
 			</Head>
 			<ThemeProvider theme={theme}>
 				{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

@@ -139,11 +139,11 @@ const Payment = () => {
 											<p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>1. ลูกค้าสามารถสั่งซื้อสินค้า </p>
 
 											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ทางโทรศัพท์ 095-4565550 / 086-9180060</p>
-											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ผ่านไลน์ออฟฟิเชี่ยล @kmspacking และ kornaci</p>
+											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ผ่านไลน์ออฟฟิเชี่ยล @kmsmachinery และ korninter</p>
 											<p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>2. รอการยันยืนสินค้า </p>
 											<p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>3. ชำระเงินผ่านธนาคาร </p>
 											<p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>4. แจ้งการชำระเงิน </p>
-											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ผ่านไลน์ออฟฟิเชี่ยล @kmspacking และ kornaci</p>
+											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ผ่านไลน์ออฟฟิเชี่ยล @kmsmachinery และ korninter</p>
 											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ทางอีเมลล์ เมล์ office@kmspacking.com, sales@kmspacking.com และ kmspacking@gmail.com </p>
 											<p style={{ color: "#000000", margin: 0, marginTop: "10px", fontSize: "1em", fontWeight: "500" }}>หมายเหตุ </p>
 											<p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>** งดโอนเงินก่อนที่จะมีการยืนยันเรื่องสินค้า เพราะสินค้าบางรุ่นอาจหมดสต๊อกทั้งนี้เพื่อความสะดวกของตัวลูกค้าเอง </p>
