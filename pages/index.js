@@ -1,6 +1,6 @@
 import React from "react"
 import dynamic from "next/dynamic"
-import Image from "next/image"
+// import Image from "next/image"
 
 import GridContainer from "../component/Grid/GridContainer"
 import GridItem from "../component/Grid/GridItem"
@@ -14,6 +14,7 @@ import Grid from "@material-ui/core/Grid"
 import Slider from "react-slick"
 import Config from "../setApi/Config"
 import Link from "next/link"
+import { Image } from 'antd'
 
 const Parallax = dynamic(() => import("../component/Parallax/Parallax"))
 const Layouts = dynamic(() => import("../Layouts/Default"))
@@ -75,7 +76,7 @@ const Home = ({ props }) => {
 
     return (
         <React.Fragment>
-            <Layouts title="หน้าหลัก | KMS MACHINERY Co. Ltd" active={0} fixed={true} appColor={"transparent"}>
+            <Layouts title="หน้าหลัก | KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด" active={0} fixed={true} appColor={"transparent"}>
                 {/* แบบที่ 1  Parallax */}
                 {/* <Parallax image="/bg.jpg">
 					<div className={classes.container}>
@@ -104,7 +105,8 @@ const Home = ({ props }) => {
                         <Grid container spacing={2} className={classes.gridBander}>
                             <Grid item sm={6} md={6} className={classes.gridItemsTextImage}>
                                 <div className={classes.gridImage}>
-                                    <img loading="lazy" src={"/QSJ-5040A.png"} className={classes.image1}></img>
+                                    {/* <img loading="lazy" src={"/QSJ-5040A.png"} className={classes.image1}></img> */}
+                                    <Image src={"/QSJ-5040A.png"} className={classes.image1} preview={false} />
                                 </div>
                             </Grid>
                             <Grid item sm={6} md={6} className={classes.gridItemsTextImage}>

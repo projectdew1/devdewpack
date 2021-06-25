@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import Image from './Image'
+// import Image from './Image'
+import { Image } from 'antd'
 import { makeStyles } from "@material-ui/core/styles"
 import numeral from 'numeral'
 
@@ -126,7 +127,7 @@ const ListItem = ({ link, title, imageSrc, price, discount, soldout }) => {
 
                         <div className={classes.divIm}>
                             <div style={{ height: 'auto', width: '10rem' }}>
-                                <Image alt={title} src={imageSrc} style={{ width: '100%', }} />
+                                <Image alt={title} src={imageSrc} style={{ width: '100%', }} preview={false} />
                             </div>
                         </div>
                     </div>
@@ -139,13 +140,14 @@ const ListItem = ({ link, title, imageSrc, price, discount, soldout }) => {
                     <label style={{ color: '#FF6600', fontWeight: 'bold', fontSize: '1.5rem' }}>{`฿${numeral(discount).format("0,0")}`}</label>
                 </p>
             </div> :
-                <div>
-                    <p className={classes.txtp1}>{title}</p>
-                    <p className={classes.txtp2}>
-                        <label style={{ marginRight: '1rem', fontSize: '1.5rem', fontWeight: 'bold' }}>{`฿${numeral(price).format("0,0")}`}</label>
+                price == 0 ? <div><p className={classes.txtp1}>{title}</p></div> :
+                    <div>
+                        <p className={classes.txtp1}>{title}</p>
+                        <p className={classes.txtp2}>
+                            <label style={{ marginRight: '1rem', fontSize: '1.5rem', fontWeight: 'bold' }}>{`฿${numeral(price).format("0,0")}`}</label>
 
-                    </p>
-                </div>
+                        </p>
+                    </div>
             }
         </div>
     )

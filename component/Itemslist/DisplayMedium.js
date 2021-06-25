@@ -1,4 +1,5 @@
-import Image from "./Image"
+// import Image from "./Image"
+import { Image } from 'antd'
 import Link from "next/link"
 import { makeStyles } from "@material-ui/core/styles"
 
@@ -18,7 +19,7 @@ const useStyle = makeStyles(theme => ({
     },
 }))
 
-const DisplayMedium = ({ imageSrc, title, subtitle, link }) => {
+const DisplayMedium = ({ imageSrc, title, subtitle, subtitle2, link, sizeImage }) => {
     const classes = useStyle()
     return (
         <div className={classes.main}>
@@ -33,9 +34,9 @@ const DisplayMedium = ({ imageSrc, title, subtitle, link }) => {
                             height: "14rem",
                         }}
                     >
-                        <div style={{ height: 'auto', width: '10rem' }}>
-                            <Image src={imageSrc} alt={title} style={{ width: "100%" }} />
-                        </div>
+                        {/* <div style={{ height: 'auto', width: '10rem' }}> */}
+                        <Image src={imageSrc} alt={title} style={{ width: sizeImage }} preview={false} />
+                        {/* </div> */}
                     </div>
                     <div
                         style={{
@@ -58,10 +59,18 @@ const DisplayMedium = ({ imageSrc, title, subtitle, link }) => {
                                 color: "rgba(55, 65, 81, 1)",
                                 fontSize: "0.75rem",
                                 lineHeight: "1rem",
+                                display: 'flex',
+                                justifyContent: "space-between"
                             }}
                         >
-                            {subtitle}
+                            <label>
+                                {subtitle}
+                            </label>
+                            <label>
+                                {subtitle2}
+                            </label>
                         </p>
+
                     </div>
                 </a>
             </Link>

@@ -47,7 +47,7 @@ const Portfolio = () => {
 
     return (
         <React.Fragment>
-            <Layouts title="ผลงาน | KMS MACHINERY Co. Ltd" active={5} sticky={true}>
+            <Layouts title="ผลงาน | KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด" active={5} sticky={true}>
                 <div className={classes.rootTop}>
 
                     <div className={classes.root}>

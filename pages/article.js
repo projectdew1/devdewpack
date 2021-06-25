@@ -46,7 +46,7 @@ const Article = () => {
 
     return (
         <React.Fragment>
-            <Layouts title="บทความ | KMS MACHINERY Co. Ltd" active={6} sticky={true}>
+            <Layouts title="บทความ | KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด" active={6} sticky={true}>
                 <div className={classes.rootTop}>
 
                     <div className={classes.root}>

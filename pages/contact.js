@@ -154,7 +154,7 @@ const Contact = () => {
 
     return (
         <React.Fragment>
-            <Layouts title="ติดต่อเรา | KMS MACHINERY Co. Ltd" active={4} fixed={true} appColor={"transparent"}>
+            <Layouts title="ติดต่อเรา | KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด" active={4} fixed={true} appColor={"transparent"}>
                 <div className={classes.root}>
                     <div className={classes.bg} />
                     <div className={classes.content}>

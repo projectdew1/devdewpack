@@ -7,6 +7,7 @@ import axios from "axios"
 
 import { makeStyles } from "@material-ui/core/styles"
 import ListItem from "../../component/Itemslist/ListItem"
+import { Breadcrumb } from 'antd';
 
 const Layouts = dynamic(() => import("../../Layouts/Default"))
 
@@ -26,6 +27,8 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        maxWidth: "100%",
+        width: "100%",
     },
     wroot: {
         display: "flex",
@@ -60,16 +63,27 @@ const useStyles = makeStyles(theme => ({
 
 
 
-const Category = ({ items, seo }) => {
+const Category = ({ items, seo, name }) => {
     const classes = useStyles()
-    console.log(items)
-    console.log(seo)
-
     const ListData = () => {
+
         const data = items.map((value, index) => {
             return (
                 <div key={index}>
                     <div className={classes.rootShop}>
+                        {index == 0 ? <Breadcrumb style={{ paddingBottom: '0.5rem' }}>
+                            <Breadcrumb.Item>
+                                <Link href={`/`}>
+                                    หน้าหลัก
+                                </Link>
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                <Link href={`/shop`}>
+                                    หมวดหมู่
+                                </Link>
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>{name}</Breadcrumb.Item>
+                        </Breadcrumb> : null}
                         <h1 style={{ fontSize: "2rem", lineHeight: 1, fontWeight: "200", marginBottom: 0 }}>{value.typeName}</h1>
                         <hr />
                     </div>
@@ -79,7 +93,7 @@ const Category = ({ items, seo }) => {
                             return (
                                 <ListItem
                                     key={list}
-                                    link={`/product/${item.machineName}`}
+                                    link={`/product/${item.id}`}
                                     title={item.machineName}
                                     price={parseInt(item.price)}
                                     discount={parseInt(item.discount)}
@@ -97,7 +111,7 @@ const Category = ({ items, seo }) => {
 
     const noitem = () => {
         return (<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <img src={'/noitem.png'} style={{ width: '100%' }} />
+            <img src={'/noitem.png'} />
             <p style={{ fontSize: '2rem', fontWeight: '500', marginBottom: 0 }}>ขอภัย กำลังเพิ่มข้อมูลสินค้า</p>
             <Link href={`/shop`}>
                 <p className={classes.back}>กลับหน้าหมวดหมู่</p>
@@ -107,13 +121,12 @@ const Category = ({ items, seo }) => {
 
     return (
         <React.Fragment>
-            <Layouts title={`${seo} | KMS MACHINERY Co. Ltd`} active={1} sticky={true}>
+            <Layouts title={`${seo} | KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด`} active={1} sticky={true}>
                 <div className={classes.rootTop}>
 
                     <div className={classes.root}>
                         <div className={classes.wroot}>
                             <div>
-
                                 {items.length > 0 ? ListData() : noitem()}
 
                             </div>
@@ -130,11 +143,11 @@ export const getStaticPaths = async () => {
     const agent = new https.Agent({
         rejectUnauthorized: false,
     })
-    // const res = await fetch(Config.api.pageHeader, { agent })
-    const res = await fetch(Config.api.pageHeader)
-    const categories = await res.json()
-    const paths = categories["items"].map(category => {
-        return { params: { name: category.name } }
+    const { data } = await axios.get(Config.api.pageHeader, {
+        httpsAgent: agent,
+    })
+    const paths = data["items"].map(category => {
+        return { params: { name: category.enID } }
     })
     return {
         paths,
@@ -153,11 +166,11 @@ export const getStaticProps = async ({ params }) => {
             name: params.name,
         },
     })
-    // console.log(data);
     return {
         props: {
             items: data["items"],
             seo: data["seo"],
+            name: data['name'],
         },
     }
 }
