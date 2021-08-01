@@ -32,10 +32,15 @@ const DisplayMedium = ({ imageSrc, title, subtitle, subtitle2, link, sizeImage }
                             justifyContent: "center",
                             alignItems: "center",
                             height: "14rem",
+                            backgroundImage: `url(${imageSrc})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center center',
+                            backgroundRepeat: ' no-repeat'
                         }}
+
                     >
                         {/* <div style={{ height: 'auto', width: '10rem' }}> */}
-                        <Image src={imageSrc} alt={title} style={{ width: sizeImage }} preview={false} />
+                        {/* <Image src={imageSrc} alt={title} style={{ width: sizeImage }} preview={false} /> */}
                         {/* </div> */}
                     </div>
                     <div

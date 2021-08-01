@@ -1,7 +1,7 @@
 const master = "authorization"
 
 // const hosting = "https://localhost:5001"
-const hosting = "http://203.154.83.34:5004"
+const hosting = "https://kmspacking.com:5003"
 const host = hosting + "/api"
 const admin = host + "/admin"
 const contact = host + "/contact"

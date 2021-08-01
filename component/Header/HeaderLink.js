@@ -26,56 +26,56 @@ import { useSelector } from "react-redux"
 const useStyles = makeStyles(styles)
 
 function HeaderLinks(props) {
-	const { active } = props
-	const classes = useStyles()
-	const router = useRouter()
+    const { active } = props
+    const classes = useStyles()
+    const router = useRouter()
 
-	const value = useSelector(state => state.data.headerLink)
+    const value = useSelector(state => state.data.headerLink)
 
-	return (
-		<List className={classes.list}>
-			<ListItem className={classes.listItem}>
-				<Dropdown
-					noLiPadding
-					navDropdown
-					buttonText="หมวดหมู่"
-					buttonProps={
-						active === 1
-							? {
-									className: classes.navLinkActive,
-							  }
-							: { className: classes.navLink }
-					}
-					// buttonIcon={Apps}
-					dropdownHeader="หัวข้อ"
-					// dropdownList={[
-					// 	<Link href="/about">
-					// 		<a className={classes.dropdownLink}>ทั้งหมด</a>
-					// 	</Link>,
-					// 	{ divider: true },
-					// 	<a href="https://creativetimofficial.github.io/nextjs-material-kit/#/documentation?ref=njsmk-navbar" target="_blank" className={classes.dropdownLink}>
-					// 		ห้องสมุด
-					// 	</a>,
-					// ]}
-				/>
-			</ListItem>
-			<ListItem className={classes.listItem}>
-				<div className={active === 2 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/about")}>
-					เกี่ยวกับเรา
-				</div>
-			</ListItem>
-			<ListItem className={classes.listItem}>
-				<div className={active === 3 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/payment")}>
-					วิธีสั่งซื้อและชำระเงิน
-				</div>
-			</ListItem>
-			<ListItem className={classes.listItem}>
-				<div className={active === 4 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/contact")}>
-					{" "}
-					ติดต่อเรา
-				</div>
-			</ListItem>
-			<ListItem className={classes.listItem}>
+    return (
+        <List className={classes.list}>
+            <ListItem className={classes.listItem}>
+                <Dropdown
+                    noLiPadding
+                    navDropdown
+                    buttonText="หมวดหมู่"
+                    buttonProps={
+                        active === 1
+                            ? {
+                                className: classes.navLinkActive,
+                            }
+                            : { className: classes.navLink }
+                    }
+                    // buttonIcon={Apps}
+                    dropdownHeader="หัวข้อ"
+                // dropdownList={[
+                // 	<Link href="/about">
+                // 		<a className={classes.dropdownLink}>ทั้งหมด</a>
+                // 	</Link>,
+                // 	{ divider: true },
+                // 	<a href="https://creativetimofficial.github.io/nextjs-material-kit/#/documentation?ref=njsmk-navbar" target="_blank" className={classes.dropdownLink}>
+                // 		ห้องสมุด
+                // 	</a>,
+                // ]}
+                />
+            </ListItem>
+            <ListItem className={classes.listItem}>
+                <div className={active === 2 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/about")}>
+                    เกี่ยวกับเรา
+                </div>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+                <div className={active === 3 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/payment")}>
+                    วิธีสั่งซื้อและชำระเงิน
+                </div>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+                <div className={active === 4 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/contact")}>
+                    {" "}
+                    ติดต่อเรา
+                </div>
+            </ListItem>
+            {/* <ListItem className={classes.listItem}>
 				<div className={active === 5 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/portfolio")}>
 					ผลงาน
 				</div>
@@ -84,9 +84,9 @@ function HeaderLinks(props) {
 				<div className={active === 6 ? classes.navLinkActive : classes.navLink} onClick={() => router.push("/article")}>
 					บทความ
 				</div>
-			</ListItem>
-		</List>
-	)
+			</ListItem> */}
+        </List>
+    )
 }
 
 export default HeaderLinks

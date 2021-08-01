@@ -14,6 +14,7 @@ import Grid from "@material-ui/core/Grid"
 import Slider from "react-slick"
 import Config from "../setApi/Config"
 import Link from "next/link"
+import Head from "next/head"
 import { Image } from 'antd'
 
 const Parallax = dynamic(() => import("../component/Parallax/Parallax"))
@@ -76,7 +77,30 @@ const Home = ({ props }) => {
 
     return (
         <React.Fragment>
-            <Layouts title="หน้าหลัก | KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด" active={0} fixed={true} appColor={"transparent"}>
+            <Layouts
+                meta={
+                    <Head>
+                        <title>{"ศูนย์รวมเครื่องบรรจุภัณฑ์ สินค้าได้รับมาตรฐาน บริการจริงใจ พร้อมส่งทั่วประเทศไทย"}</title>
+                        {/* --- cache ---  */}
+                        {/* <meta http-equiv="cache-control" content="max-age=0" />
+                        <meta http-equiv="cache-control" content="no-cache" />
+                        <meta http-equiv="expires" content="0" />
+                        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+                        <meta http-equiv="pragma" content="no-cache" /> */}
+                        {/* --- google ---  */}
+                        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+                        < meta name="description" content="KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด  สินค้าได้รับมาตรฐาน บริการจริงใจ นำเข้าและจัดจำหน่าย เครื่องบรรจุภัณฑ์" />
+                        {/* --- facebook ---  */}
+                        <meta property="og:locale" content="th_TH" />
+                        < meta property="og:url" content="https://www.kmspacking.com/" />
+                        < meta property="og:type" content="website" />
+                        < meta property="og:title" content="ศูนย์รวมเครื่องบรรจุภัณฑ์ สินค้าได้รับมาตรฐาน บริการจริงใจ พร้อมส่งทั่วประเทศไทย" />
+                        < meta property="og:description" content="KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด  สินค้าได้รับมาตรฐาน บริการจริงใจ นำเข้าและจัดจำหน่าย เครื่องบรรจุภัณฑ์" />
+                        < meta property="og:image" content="https://www.kmspacking.com/page.jpg" />
+                        <meta property="article:publisher" content="https://www.facebook.com/kmsmachinerythailand" />
+                    </Head>
+                }
+                active={0} fixed={true} appColor={"transparent"}>
                 {/* แบบที่ 1  Parallax */}
                 {/* <Parallax image="/bg.jpg">
 					<div className={classes.container}>
@@ -112,9 +136,9 @@ const Home = ({ props }) => {
                             <Grid item sm={6} md={6} className={classes.gridItemsTextImage}>
                                 <div className={classes.gridText}>
                                     <h1 className={classes.Text1}>KMS MACHINERY</h1>
-                                    <h1 className={classes.Text2}>ศูนย์รวมเครื่องแพ็คกิ้งและบรรจุภัณฑ์</h1>
+                                    <h1 className={classes.Text2}>ศูนย์รวมเครื่องบรรจุภัณฑ์</h1>
                                     <h1 className={classes.Text3}>สินค้าได้รับมาตรฐาน บริการจริงใจ</h1>
-                                    <h1 className={classes.Text3}>นำเข้าและจัดหน่าย เครื่องแพ็คกิ้งและบรรจุภัณฑ์</h1>
+                                    <h1 className={classes.Text3}>นำเข้าและจัดจำหน่าย เครื่องบรรจุภัณฑ์</h1>
                                     <div className={classes.centerBtn}>
                                         <Link href={`/shop`}>
                                             <a className={classes.buttonShow} onClick={null}>สินค้า</a>

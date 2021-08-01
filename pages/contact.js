@@ -167,25 +167,25 @@ const Contact = () => {
                                             <p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
                                                 <i className="fas fa-envelope" /> E-mail :
                                             </p>
-                                            <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>sale@kmspacking.com</p>
+                                            {/* <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>sale@kmspacking.com</p> */}
                                             <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>kmspacking@gmail.com</p>
                                             <p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
                                                 <i className="fas fa-phone-alt" /> Tel :
                                             </p>
-                                            <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>095-456-5550</p>
-                                            <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>086-918-0060</p>
+                                            <p onClick={() => window.open("tel:0954565550")} style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300", cursor: 'pointer', textDecoration: 'underline' }}>095-456-5550</p>
+                                            <p onClick={() => window.open("tel:0869180060")} style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300", cursor: 'pointer', textDecoration: 'underline' }}>086-918-0060</p>
                                             <p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
                                                 <i className="fab fa-line" /> Line :
                                             </p>
-                                            <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>@kmsmachinery</p>
+                                            <p onClick={() => window.open("https://page.line.me/?accountId=kmsmachinery")} style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300", cursor: 'pointer', textDecoration: 'underline' }}>@kmsmachinery</p>
                                             <p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
                                                 <i className="fab fa-facebook" /> Facebook :
                                             </p>
-                                            <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>@kmsmachinery</p>
+                                            <p onClick={() => window.open("https://www.facebook.com/kmsmachinerythailand")} style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300", cursor: 'pointer', textDecoration: 'underline' }}>@kmsmachinerythailand</p>
                                             <p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
                                                 <i className="fab fa-youtube" /> Youtube :
                                             </p>
-                                            <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>@kmsmachinery</p>
+                                            <p onClick={() => window.open("https://www.youtube.com/channel/UCRS6TDbjKR5H-L7z8KJmGFQ")} style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300", cursor: 'pointer', textDecoration: 'underline' }}>KMS MACHINERY</p>
                                         </div>
                                     </div>
                                     <div className={classes.Itemscol1}>
@@ -195,6 +195,20 @@ const Contact = () => {
                                             <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>
                                                 {" "}
                                                 <i className="fas fa-map-marker-alt" /> บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด 1/46 ถนนเพชรเกษม ตำบลอ้อมน้อย อำเภอกระทุ่มแบน สมุทรสาคร 74130
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className={classes.Itemscol1}>
+                                        <div className={classes.ItemsContactcol1}>
+                                            <p style={{ margin: 0, fontSize: "1em", fontWeight: "500" }}>วันและเวลาเปิดทำการ</p>
+
+                                            <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>
+                                                {" "}
+                                                <i className="fas fa-calendar-day" /> วัน: จันทร์ - เสาร์
+                                            </p>
+                                            <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300" }}>
+                                                {" "}
+                                                <i className="fas fa-clock" /> เวลา: 8.30 - 17.30
                                             </p>
                                         </div>
                                     </div>

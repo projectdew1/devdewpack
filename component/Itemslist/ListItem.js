@@ -60,6 +60,7 @@ const useStyle = makeStyles(theme => ({
         fontSize: '1rem',
     },
     ribbon: {
+        zIndex: 1,
         width: '150px',
         height: '150px',
         overflow: 'hidden',
@@ -113,7 +114,7 @@ const ListItem = ({ link, title, imageSrc, price, discount, soldout }) => {
         <div className={classes.main}>
             <Link href={`${link}`}>
                 <a aria-label={title}>
-                    <div className={classes.divh}>
+                    <div className={classes.divh} style={{ backgroundImage: `url(${imageSrc})`, backgroundSize: 'contain', backgroundPosition: 'center center', backgroundRepeat: ' no-repeat' }}>
 
                         {soldout == 1
                             ? <div className={classes.ribbon}>
@@ -125,11 +126,13 @@ const ListItem = ({ link, title, imageSrc, price, discount, soldout }) => {
                                 </div>
                                 : null}
 
-                        <div className={classes.divIm}>
-                            <div style={{ height: 'auto', width: '10rem' }}>
-                                <Image alt={title} src={imageSrc} style={{ width: '100%', }} preview={false} />
-                            </div>
-                        </div>
+                        {/* <div className={classes.divIm}> */}
+                        {/* <div style={{ maxWidth: '100%', maxHeight: '100%', display: 'block' }}> */}
+                        {/* <Image alt={title} src={imageSrc}
+                            // style={{ maxHeight: '100%', maxWidth: '100%', }} 
+                            preview={false} /> */}
+                        {/* </div> */}
+                        {/* </div> */}
                     </div>
                 </a>
             </Link>

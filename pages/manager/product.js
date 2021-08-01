@@ -17,6 +17,7 @@ import jwt_decode from "jwt-decode"
 import Cookies from "js-cookie"
 import alasql from "alasql"
 import moment from "moment"
+import axios from "axios"
 
 const { Search, TextArea } = Input
 
@@ -78,7 +79,7 @@ export default function Product() {
             title: () => <label style={{ fontWeight: "bold" }}>{"ลำดับ"}</label>,
             dataIndex: "machineId",
             key: "machineId",
-            width: 50,
+            width: 90,
             align: "center",
             render: (text, record, index) => text,
         },
@@ -91,7 +92,7 @@ export default function Product() {
                 b = b.categoryName || ""
                 return a.localeCompare(b)
             },
-            width: 100,
+            width: 150,
             ellipsis: true,
         },
         {
@@ -103,7 +104,7 @@ export default function Product() {
                 b = b.typeName || ""
                 return a.localeCompare(b)
             },
-            width: 100,
+            width: 200,
             ellipsis: true,
         },
         {
@@ -115,7 +116,8 @@ export default function Product() {
                 b = b.machineName || ""
                 return a.localeCompare(b)
             },
-            width: 100,
+
+            width: 200,
             ellipsis: true,
         },
         {
@@ -140,7 +142,7 @@ export default function Product() {
                 b = b.machineSeo || ""
                 return a.localeCompare(b)
             },
-            width: 100,
+            width: 180,
             ellipsis: true,
         },
         {
@@ -148,7 +150,7 @@ export default function Product() {
             dataIndex: "soldout",
             key: "soldout",
             width: 100,
-            ellipsis: true,
+            // ellipsis: true,
             render: (text, record) => {
                 return {
                     props: {
@@ -166,7 +168,7 @@ export default function Product() {
             dataIndex: "price",
             key: "price",
             width: 100,
-            ellipsis: true,
+            // ellipsis: true,
             render: (text, record) => {
                 return {
                     props: {
@@ -184,7 +186,7 @@ export default function Product() {
             dataIndex: "discount",
             key: "discount",
             width: 100,
-            ellipsis: true,
+            // ellipsis: true,
             render: (text, record) => {
                 return {
                     props: {
@@ -406,6 +408,7 @@ export default function Product() {
                 const check = res.data.message
                 if (check === "success") {
                     setAlert("success", "แก้ไขข้อมูลเรียบร้อย !")
+                    handleClose()
                 } else {
                     setAlert("error", check)
                 }
@@ -413,12 +416,13 @@ export default function Product() {
             .catch(e => {
                 console.log(e)
                 setAlert("error", "เกิดข้อผิดพลาดจาก server !")
+                handleClose()
             })
             .finally(async res => {
                 await reload()
                 setLoadingTable(false)
                 setLoading(false)
-                handleClose()
+                // handleClose()
             })
     }
 
@@ -496,7 +500,7 @@ export default function Product() {
                 const data = res.data.message
                 if (data === "success") {
                     const items = res.data.items
-                    // console.log(items)
+                    console.log(items)
                     setData(items)
                     setDataFilt(items)
                 }
@@ -652,6 +656,7 @@ export default function Product() {
                 const check = res.data.message
                 if (check === "success") {
                     setAlert("success", "บันทึกข้อมูลเรียบร้อย !")
+                    handleClose()
                 } else {
                     setAlert("error", check)
                 }
@@ -659,12 +664,13 @@ export default function Product() {
             .catch(e => {
                 console.log(e)
                 setAlert("error", "เกิดข้อผิดพลาดจาก server !")
+                handleClose()
             })
             .finally(async res => {
                 await reload()
                 setLoadingTable(false)
                 setLoading(false)
-                handleClose()
+                // handleClose()
             })
     }
 
@@ -792,6 +798,7 @@ export default function Product() {
                 if (data === "success") {
                     const items = res.data.items
                     // console.log(items)
+                    // console.log(items.machineSeo)
                     let technical = []
                     let detail = []
                     let video = []
@@ -826,7 +833,7 @@ export default function Product() {
                         price: parseInt(items.price + items.discount) > 0 ? true : false,
                         discount: items.discount,
                         soldout: items.soldout == 1 ? true : false,
-                        explain: items.explain[0].explainDetail,
+                        explain: items.explain.length > 0 ? items.explain[0].explainDetail : "",
                         detail,
                         video,
                         manual,
@@ -837,7 +844,7 @@ export default function Product() {
                         if (items.fileImage !== null) {
                             let fileData = null
                             let url = config.hosting + items.localImage
-                            console.log(url)
+                            // console.log(url)
                             toDataURL(url).then(dataUrl => {
                                 // console.log("Here is Base64 Url", dataUrl)
                                 fileData = dataURLtoFile(dataUrl, items.fileImage)
@@ -873,13 +880,14 @@ export default function Product() {
         return e && e.fileList
     }
 
-    const toDataURL = url =>
-        fetch(url, {
+    const toDataURL = async url =>
+        await fetch(url, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
             }
         })
-            .then(response => response.blob())
+            .then(response => response.blob()
+            )
             .then(
                 blob =>
                     new Promise((resolve, reject) => {
@@ -889,6 +897,21 @@ export default function Product() {
                         reader.readAsDataURL(blob)
                     })
             )
+
+
+    //     const toDataURL = async url => await axios.get(url,  {
+    //         responseType: 'blob'  /* or responseType: 'arraybuffer'  */         
+    //  })
+    //                         .then(response => response.blob())
+    //             .then(
+    //                 blob =>
+    //                     new Promise((resolve, reject) => {
+    //                         const reader = new FileReader()
+    //                         reader.onloadend = () => resolve(reader.result)
+    //                         reader.onerror = reject
+    //                         reader.readAsDataURL(blob)
+    //                     })
+    //             )
 
     const dataURLtoFile = (dataurl, filename) => {
         var arr = dataurl.split(","),
@@ -1092,8 +1115,8 @@ export default function Product() {
                                                             style={{ width: "80%" }}
                                                             autoComplete={"off"}
                                                             disabled={isView}
-                                                            onKeyDown={e => {
-                                                                if (e.code === "Comma") {
+                                                            onKeyPress={e => {
+                                                                if (e.key === ",") {
                                                                     e.preventDefault()
                                                                 }
                                                             }}
@@ -1164,11 +1187,16 @@ export default function Product() {
                                                             style={{ width: "60%" }}
                                                             autoComplete={"off"}
                                                             disabled={isView}
-                                                            onKeyDown={e => {
-                                                                if (e.code === "Comma" || e.code === "Minus") {
+                                                            onKeyPress={e => {
+                                                                if (e.key === "," || e.key === "-") {
                                                                     e.preventDefault()
                                                                 }
                                                             }}
+                                                        // onKeyDown={e => {
+                                                        //     if (e.code === "Comma" || e.code === "Minus") {
+                                                        //         e.preventDefault()
+                                                        //     }
+                                                        // }}
                                                         />
                                                     </Form.Item>
                                                     {fields.length > 0 ? <MinusCircleOutlined className="dynamic-delete-button" onClick={() => remove(field.name)} /> : null}
@@ -1205,11 +1233,12 @@ export default function Product() {
                                                             placeholder="กรุณากรอกวิธีใช้"
                                                             disabled={isView}
                                                             style={{ width: "80%" }}
-                                                            onKeyDown={e => {
-                                                                if (e.code === "Comma") {
+                                                            onKeyPress={e => {
+                                                                if (e.key === ",") {
                                                                     e.preventDefault()
                                                                 }
                                                             }}
+
                                                         />
                                                     </Form.Item>
                                                     {fields.length > 0 ? <MinusCircleOutlined className="dynamic-delete-button" onClick={() => remove(field.name)} /> : null}
@@ -1247,8 +1276,8 @@ export default function Product() {
                                                             placeholder="กรุณากรอกลิ้งค์วีดีโอ"
                                                             disabled={isView}
                                                             style={{ width: "80%" }}
-                                                            onKeyDown={e => {
-                                                                if (e.code === "Comma") {
+                                                            onKeyPress={e => {
+                                                                if (e.key === ",") {
                                                                     e.preventDefault()
                                                                 }
                                                             }}
@@ -1441,27 +1470,30 @@ export default function Product() {
                         <label style={{ color: "gray" }}>{`รายการ ${data.length}`}</label>
                     </Grid>
                     <Grid item xs={12} style={{ marginTop: "10px" }}>
-                        <Table
-                            rowKey={"machineId"}
-                            loading={{
-                                spinning: LoadingTable,
-                                size: "large",
-                                tip: "กำลังโหลด...",
-                            }}
-                            dataSource={data}
-                            columns={columns}
-                            scroll={{ x: 1300 }}
-                            size={"small"}
-                            bordered={true}
-                            tableLayout={"auto"}
-                            pagination={{
-                                defaultPageSize: 50,
-                                pageSizeOptions: ["10", "25", "50", "100"],
-                                showSizeChanger: true,
-                                locale: { items_per_page: "/ หน้า" },
-                            }}
-                            locale={{ emptyText: "ไม่มีข้อมูล" }}
-                        />
+                        <div style={{ width: "90vw", display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+                            <Table
+                                rowKey={"machineId"}
+                                loading={{
+                                    spinning: LoadingTable,
+                                    size: "large",
+                                    tip: "กำลังโหลด...",
+                                }}
+                                dataSource={data}
+                                columns={columns}
+                                scroll={{ x: 1500, y: 600 }}
+                                size={"small"}
+                                bordered={true}
+                                tableLayout={"auto"}
+                                pagination={{
+                                    defaultPageSize: 50,
+                                    pageSizeOptions: ["10", "25", "50", "100"],
+                                    showSizeChanger: true,
+                                    locale: { items_per_page: "/ หน้า" },
+                                }}
+                                locale={{ emptyText: "ไม่มีข้อมูล" }}
+                            />
+                        </div>
                     </Grid>
                 </Grid>
                 {DialogMain()}

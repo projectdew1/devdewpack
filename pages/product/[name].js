@@ -139,7 +139,7 @@ const useStyles = makeStyles(theme => ({
 
 const Product = ({ items, seo }) => {
     const classes = useStyles()
-    console.log(items)
+    // console.log(items)
     const [dataImage, setDataImage] = useState([])
 
 
@@ -192,7 +192,7 @@ const Product = ({ items, seo }) => {
         return (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <hr style={{ width: '100%' }} />
-                <h1 style={{ fontSize: "1.5rem", lineHeight: 1, fontWeight: "200", marginBottom: '2rem' }}>{'วีดีโอใช้งาน'}</h1>
+                <h1 style={{ fontSize: "1.5rem", lineHeight: 1, fontWeight: "200", marginBottom: '2rem' }}>{'วีดีโอการใช้งาน'}</h1>
                 <br />
                 {data}
             </div>
@@ -237,12 +237,13 @@ const Product = ({ items, seo }) => {
                             <p style={{ marginBottom: 0, marginRight: '1rem', fontSize: '1.5rem', fontWeight: 'bold' }}>{items.machineName}</p>
                             {items.soldout == 0 ? items.discount > 0 ?
                                 <p> <label style={{ color: '#767676', marginRight: '1rem', textDecoration: 'line-through' }}>{`฿${numeral(items.price).format("0,0")}`}</label>
-                                    <label style={{ color: '#FF6600', fontWeight: 'bold', fontSize: '1.5rem' }}>{`฿${numeral(items.discount).format("0,0")}`}</label></p> : <p><label style={{ marginRight: '1rem', fontSize: '1.5rem', fontWeight: 'bold' }}>{`฿${numeral(items.price).format("0,0")}`}</label></p>
+                                    <label style={{ color: '#FF6600', fontWeight: 'bold', fontSize: '1.5rem' }}>{`฿${numeral(items.discount).format("0,0")}`}</label></p>
+                                : items.price == 0 ? null : <p><label style={{ marginRight: '1rem', fontSize: '1.5rem', fontWeight: 'bold' }}>{`฿${numeral(items.price).format("0,0")}`}</label></p>
                                 : <p><label style={{ color: 'red', marginRight: '1rem', fontSize: '1.5rem', fontWeight: 'bold' }}>{`สินค้าหมด !!`}</label></p>}
 
                             {detail()}
                             <p style={{ fontWeight: "bold", marginBottom: 0 }}>รายละเอียด</p>
-                            <p>&emsp;&emsp;&emsp;&emsp;&emsp;{items.explain[0].explainDetail}</p>
+                            <p>&emsp;&emsp;&emsp;&emsp;&emsp;{items.explain.length > 0 ? items.explain[0].explainDetail : ""}</p>
                             <div className={classes.connectColumn}>
                                 <div className={classes.connectRow}>
                                     <div className={classes.divRow}>

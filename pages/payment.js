@@ -144,7 +144,7 @@ const Payment = () => {
                                             <p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>3. ชำระเงินผ่านธนาคาร </p>
                                             <p style={{ color: "#777676", margin: 0, fontSize: "1em", fontWeight: "300" }}>4. แจ้งการชำระเงิน </p>
                                             <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ผ่านไลน์ออฟฟิเชี่ยล @kmsmachinery และ korninter</p>
-                                            <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ทางอีเมลล์ เมล์ office@kmspacking.com, sales@kmspacking.com และ kmspacking@gmail.com </p>
+                                            <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>- ทางอีเมลล์ เมล์ kmspacking@gmail.com </p>
                                             <p style={{ color: "#000000", margin: 0, marginTop: "10px", fontSize: "1em", fontWeight: "500" }}>หมายเหตุ </p>
                                             <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>** งดโอนเงินก่อนที่จะมีการยืนยันเรื่องสินค้า เพราะสินค้าบางรุ่นอาจหมดสต๊อกทั้งนี้เพื่อความสะดวกของตัวลูกค้าเอง </p>
                                         </div>
@@ -167,10 +167,10 @@ const Payment = () => {
                                                                             ธนาคาร กสิกรไทย
                                                                         </Typography>
                                                                         <Typography variant="body2" gutterBottom>
-                                                                            ชื่อบัญชี บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด
+                                                                            ชื่อบัญชี บจก. เคเอ็มเอส แมชชีนเนอรี่
                                                                         </Typography>
                                                                         <Typography variant="body2" color="textSecondary">
-                                                                            เลขที่บัญชี xxx-x-xxxxx-x
+                                                                            เลขที่บัญชี 101-3-73048-9
                                                                         </Typography>
                                                                     </Grid>
                                                                 </Grid>
@@ -178,7 +178,7 @@ const Payment = () => {
                                                         </Grid>
                                                     </Paper>
                                                 </Grid>
-                                                <Grid item sm={12}>
+                                                {/* <Grid item sm={12}>
                                                     <Paper className={classStyle.paper}>
                                                         <Grid container spacing={2}>
                                                             <Grid item>
@@ -203,8 +203,8 @@ const Payment = () => {
                                                             </Grid>
                                                         </Grid>
                                                     </Paper>
-                                                </Grid>
-                                                <Grid item sm={12}>
+                                                </Grid> */}
+                                                {/* <Grid item sm={12}>
                                                     <Paper className={classStyle.paper}>
                                                         <Grid container spacing={2}>
                                                             <Grid item>
@@ -229,7 +229,7 @@ const Payment = () => {
                                                             </Grid>
                                                         </Grid>
                                                     </Paper>
-                                                </Grid>
+                                                </Grid> */}
                                             </Grid>
                                         </div>
                                     </div>
