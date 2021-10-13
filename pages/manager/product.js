@@ -500,7 +500,7 @@ export default function Product() {
                 const data = res.data.message
                 if (data === "success") {
                     const items = res.data.items
-                    console.log(items)
+                    // console.log(items)
                     setData(items)
                     setDataFilt(items)
                 }

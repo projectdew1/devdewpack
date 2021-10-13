@@ -9,6 +9,7 @@ import axios from "axios"
 import { slugify, titleIfy } from "../utils/helpers"
 import DisplayMedium from "../component/Itemslist/DisplayMedium"
 import Config from "../setApi/Config"
+import Head from "next/head"
 
 import { Breadcrumb } from 'antd';
 
@@ -81,7 +82,31 @@ const Shop = ({ posts, seo }) => {
 
     return (
         <React.Fragment>
-            <Layouts title={`${seo} | KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด`} active={1} sticky={true}>
+            <Layouts
+                // title={`${seo} | KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด`} 
+                meta={
+                    <Head>
+                        <title>{" "}</title>
+                        {/* --- cache ---  */}
+                        {/* <meta http-equiv="cache-control" content="max-age=0" />
+                    <meta http-equiv="cache-control" content="no-cache" />
+                    <meta http-equiv="expires" content="0" />
+                    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+                    <meta http-equiv="pragma" content="no-cache" /> */}
+                        {/* --- google ---  */}
+                        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+                        < meta name="description" content={`${seo}`} />
+                        {/* --- facebook ---  */}
+                        <meta property="og:locale" content="th_TH" />
+                        < meta property="og:url" content="https://www.kmspacking.com/shop" />
+                        < meta property="og:type" content="website" />
+                        < meta property="og:title" content=" " />
+                        < meta property="og:description" content={`${seo}`} />
+                        < meta property="og:image" content="https://www.kmspacking.com/logokms.png" />
+                        <meta property="article:publisher" content="https://www.facebook.com/kmsmachinerythailand" />
+                    </Head>
+                }
+                active={1} sticky={true}>
                 <div className={classes.rootTop}>
                     <div style={{ width: "100%" }}>
                         <div className={classes.rootShop}>
