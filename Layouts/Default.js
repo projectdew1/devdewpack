@@ -13,7 +13,6 @@ import action from "../redux/actions"
 import axios from "axios"
 import Config from "../setApi/Config"
 import alasql from "alasql"
-import MessengerCustomerChat from 'react-messenger-customer-chat';
 import { MessengerChat } from 'react-messenger-chat-plugin';
 
 
@@ -85,10 +84,8 @@ export default function Default(props) {
 
         gen()
         // initMessenger()
-        return () => {
-            initMessenger()
-        };
 
+        // *************** ดาต้าเทส *****************
         // dispatch(
         // 	action.setData({
         // 		Link: [
@@ -128,10 +125,23 @@ export default function Default(props) {
                     <KeyboardArrowUpIcon />
                 </div>
             </ScrollTop>
-            <div>
+            {/* <div>
                 <div id="fb-root"></div>
                 <div id="fb-customer-chat" className="fb-customerchat"></div>
+                </div> */}
+            <div style={{ backgroundColor: '#001c38' }}>
+
+                <MessengerChat
+                    pageId='725364650867827'
+                    language='en_US'
+                    debugMode={false}
+                    onMessengerShow={() => { console.log('onMessengerShow') }}
+                    onMessengerHide={() => { console.log('onMessengerHide') }}
+                    onMessengerDialogShow={() => { console.log('onMessengerDialogShow') }}
+                    onMessengerDialogHide={() => { console.log('onMessengerDialogHide') }}
+                />;
             </div>
+
             <Footer />
         </div>
     )
