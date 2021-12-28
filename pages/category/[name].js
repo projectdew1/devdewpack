@@ -72,17 +72,17 @@ const Category = ({ items, seo, name }) => {
                 <div key={index}>
                     <div className={classes.rootShop}>
                         {index == 0 ? <Breadcrumb style={{ paddingBottom: '0.5rem' }}>
-                            <Breadcrumb.Item>
+                            <Breadcrumb.Item style={{ fontSize: '18px' }}>
                                 <Link href={`/`}>
                                     หน้าหลัก
                                 </Link>
                             </Breadcrumb.Item>
-                            <Breadcrumb.Item>
+                            <Breadcrumb.Item style={{ fontSize: '18px' }}>
                                 <Link href={`/shop`}>
                                     หมวดหมู่
                                 </Link>
                             </Breadcrumb.Item>
-                            <Breadcrumb.Item>{name}</Breadcrumb.Item>
+                            <Breadcrumb.Item style={{ fontSize: '18px' }}>{name}</Breadcrumb.Item>
                         </Breadcrumb> : null}
                         <h1 style={{ fontSize: "2rem", lineHeight: 1, fontWeight: "200", marginBottom: 0 }}>{value.typeName}</h1>
                         <hr />

@@ -159,7 +159,7 @@ const Product = ({ items, seo }) => {
     const detail = () => {
         const data = items.detail.map((r, i) => {
             return (
-                <ul key={i}>
+                <ul key={i} style={{ fontSize: '1.2rem' }}>
                     <li>
                         {r.detail}
                     </li>
@@ -209,22 +209,22 @@ const Product = ({ items, seo }) => {
             <Layouts title={`${seo} | KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด`} active={1} sticky={true}>
                 <div className={classes.root}>
                     <Breadcrumb className={classes.crumb}>
-                        <Breadcrumb.Item>
+                        <Breadcrumb.Item style={{ fontSize: '18px' }}>
                             <Link href={`/`}>
                                 หน้าหลัก
                             </Link>
                         </Breadcrumb.Item>
-                        <Breadcrumb.Item>
+                        <Breadcrumb.Item style={{ fontSize: '18px' }}>
                             <Link href={`/shop`}>
                                 หมวดหมู่
                             </Link>
                         </Breadcrumb.Item>
-                        <Breadcrumb.Item>
+                        <Breadcrumb.Item style={{ fontSize: '18px' }}>
                             <Link href={`/category/${items.type.idCategory}`}>
                                 {items.type.categoryName}
                             </Link>
                         </Breadcrumb.Item>
-                        <Breadcrumb.Item>{items.machineName}</Breadcrumb.Item>
+                        <Breadcrumb.Item style={{ fontSize: '18px' }}>{items.machineName}</Breadcrumb.Item>
                     </Breadcrumb>
                     <div className={classes.rootTop}>
                         <div className={classes.rootImage}>
@@ -242,8 +242,8 @@ const Product = ({ items, seo }) => {
                                 : <p><label style={{ color: 'red', marginRight: '1rem', fontSize: '1.5rem', fontWeight: 'bold' }}>{`สินค้าหมด !!`}</label></p>}
 
                             {detail()}
-                            <p style={{ fontWeight: "bold", marginBottom: 0 }}>รายละเอียด</p>
-                            <p>&emsp;&emsp;&emsp;&emsp;&emsp;{items.explain.length > 0 ? items.explain[0].explainDetail : ""}</p>
+                            <p style={{ fontWeight: "bold", marginBottom: 0, fontSize: '1.2rem' }}>รายละเอียด</p>
+                            <p style={{ fontSize: '1.2rem' }}>&emsp;&emsp;&emsp;&emsp;&emsp;{items.explain.length > 0 ? items.explain[0].explainDetail : ""}</p>
                             <div className={classes.connectColumn}>
                                 <div className={classes.connectRow}>
                                     <div className={classes.divRow}>

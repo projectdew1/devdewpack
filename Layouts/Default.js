@@ -84,10 +84,10 @@ export default function Default(props) {
         }
 
         gen()
-        initMessenger()
-        // return () => {
-        //     initMessenger()
-        // };
+        // initMessenger()
+        return () => {
+            initMessenger()
+        };
 
         // dispatch(
         // 	action.setData({

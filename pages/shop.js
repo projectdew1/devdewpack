@@ -111,12 +111,12 @@ const Shop = ({ posts, seo }) => {
                     <div style={{ width: "100%" }}>
                         <div className={classes.rootShop}>
                             <Breadcrumb style={{ paddingBottom: '0.5rem' }}>
-                                <Breadcrumb.Item>
-                                    <Link href={`/`}>
+                                <Breadcrumb.Item style={{ fontSize: '18px' }}>
+                                    <Link href={`/`} >
                                         หน้าหลัก
                                     </Link>
                                 </Breadcrumb.Item>
-                                <Breadcrumb.Item>หมวดหมู่</Breadcrumb.Item>
+                                <Breadcrumb.Item style={{ fontSize: '18px' }}>หมวดหมู่</Breadcrumb.Item>
                             </Breadcrumb>
                             <h1 style={{ fontSize: "3rem", lineHeight: 1, fontWeight: "lighter", marginBottom: 0 }}>หมวดหมู่</h1>
                         </div>
