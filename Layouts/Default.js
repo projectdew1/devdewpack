@@ -13,6 +13,9 @@ import action from "../redux/actions"
 import axios from "axios"
 import Config from "../setApi/Config"
 import alasql from "alasql"
+import MessengerCustomerChat from 'react-messenger-customer-chat';
+import { MessengerChat } from 'react-messenger-chat-plugin';
+
 
 const Header = dynamic(() => import("../component/Header/Header.js"))
 const Link = dynamic(() => import("../component/Header/HeaderLink"))
@@ -32,6 +35,33 @@ export default function Default(props) {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        const initMessenger = () => {
+            console.log('Messenger')
+            try {
+                const chatbox = document.getElementById('fb-customer-chat');
+                chatbox.setAttribute("page_id", "725364650867827");
+                chatbox.setAttribute("attribution", "biz_inbox");
+
+                window.fbAsyncInit = function () {
+                    FB.init({
+                        xfbml: true,
+                        version: 'v12.0'
+                    });
+                };
+
+                (function (d, s, id) {
+                    let js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+
+            } catch (err) {
+                throw err;
+            }
+        };
+
         const gen = async () => {
             await axios
                 .get(Config.api.pageHeader, null)
@@ -54,6 +84,11 @@ export default function Default(props) {
         }
 
         gen()
+        initMessenger()
+        // return () => {
+        //     initMessenger()
+        // };
+
         // dispatch(
         // 	action.setData({
         // 		Link: [
@@ -87,11 +122,16 @@ export default function Default(props) {
             <Header height={100} Links={<Link active={active} />} fixed={fixed} sticky={sticky} appColor={appColor} />
             {children}
             <Social {...props} />
+
             <ScrollTop {...props} click={() => window.scroll({ top: 0, left: 0, behavior: "smooth" })}>
                 <div className={scrollClasses}>
                     <KeyboardArrowUpIcon />
                 </div>
             </ScrollTop>
+            <div>
+                <div id="fb-root"></div>
+                <div id="fb-customer-chat" className="fb-customerchat"></div>
+            </div>
             <Footer />
         </div>
     )

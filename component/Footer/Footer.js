@@ -184,7 +184,12 @@ export default function Footer() {
                     <div className={classes.setItems}>
                         <p style={{ fontWeight: "500", marginTop: 0, color: "#949699", marginBottom: "5px" }}>Call Center</p>
 
-                        <div className={classes.call} onClick={() => window.open("tel:0954565550")}>
+
+                        <div className={classes.call} onClick={() => window.open("tel:034116655")}>
+                            <i className="fas fa-phone-alt" style={{ fontSize: "1rem", marginRight: "10px" }} />
+                            034-116655
+                        </div>
+                        <div className={classes.call} style={{ marginTop: "10px" }} onClick={() => window.open("tel:0954565550")}>
                             <i className="fas fa-phone-alt" style={{ fontSize: "1rem", marginRight: "10px" }} />
                             095-456-5550
                         </div>

@@ -172,8 +172,10 @@ const Contact = () => {
                                             <p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
                                                 <i className="fas fa-phone-alt" /> Tel :
                                             </p>
+                                            <p onClick={() => window.open("tel:034116655")} style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300", cursor: 'pointer', textDecoration: 'underline' }}>034-116655</p>
                                             <p onClick={() => window.open("tel:0954565550")} style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300", cursor: 'pointer', textDecoration: 'underline' }}>095-456-5550</p>
                                             <p onClick={() => window.open("tel:0869180060")} style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "0.8em", fontWeight: "300", cursor: 'pointer', textDecoration: 'underline' }}>086-918-0060</p>
+
                                             <p style={{ color: "#777676", margin: 0, fontSize: "0.8em", fontWeight: "300" }}>
                                                 <i className="fab fa-line" /> Line :
                                             </p>
