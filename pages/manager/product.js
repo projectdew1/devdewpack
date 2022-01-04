@@ -768,9 +768,13 @@ export default function Product() {
         if (image.length > 0) {
             await image.map(async (row, index) => {
                 let url = config.hosting + row.local
-                return await toDataURL(url).then(dataUrl => {
-                    // console.log("Here is Base64 Url", dataUrl)
-                    let fileDatamulti = dataURLtoFile(dataUrl, row.fileName)
+
+                await Http.get(config.api.base64, {
+                    params: {
+                        url
+                    }
+                }).then(res => {
+                    let fileDatamulti = dataURLtoFile(res.data.base64, row.fileName)
                     // console.log("Here is JavaScript File Object", fileDatamulti)
                     if (form.getFieldValue("uploadmulti")) {
                         form.setFieldsValue({
@@ -781,8 +785,23 @@ export default function Product() {
                             uploadmulti: [{ key: index, name: row.fileName, originFileObj: fileDatamulti }],
                         })
                     }
-                    // return { key: index, name: row.fileName, originFileObj: fileDatamulti }
                 })
+
+                //  await toDataURL(url).then(dataUrl => {
+                //     // console.log("Here is Base64 Url", dataUrl)
+                //     let fileDatamulti = dataURLtoFile(dataUrl, row.fileName)
+                //     // console.log("Here is JavaScript File Object", fileDatamulti)
+                //     if (form.getFieldValue("uploadmulti")) {
+                //         form.setFieldsValue({
+                //             uploadmulti: [...form.getFieldValue("uploadmulti"), { key: index, name: row.fileName, originFileObj: fileDatamulti }],
+                //         })
+                //     } else {
+                //         form.setFieldsValue({
+                //             uploadmulti: [{ key: index, name: row.fileName, originFileObj: fileDatamulti }],
+                //         })
+                //     }
+
+                // })
             })
         }
     }
@@ -844,15 +863,27 @@ export default function Product() {
                         if (items.fileImage !== null) {
                             let fileData = null
                             let url = config.hosting + items.localImage
-                            // console.log(url)
-                            toDataURL(url).then(dataUrl => {
-                                // console.log("Here is Base64 Url", dataUrl)
-                                fileData = dataURLtoFile(dataUrl, items.fileImage)
+
+                            await Http.get(config.api.base64, {
+                                params: {
+                                    url
+                                }
+                            }).then(res => {
+                                fileData = dataURLtoFile(res.data.base64, items.fileImage)
                                 // console.log("Here is JavaScript File Object", fileData)
                                 form.setFieldsValue({
                                     upload: [{ name: items.fileImage, originFileObj: fileData }],
                                 })
                             })
+
+                            // toDataURL(url).then(dataUrl => {
+                            //     // console.log("Here is Base64 Url", dataUrl)
+                            //     fileData = dataURLtoFile(dataUrl, items.fileImage)
+                            //     // console.log("Here is JavaScript File Object", fileData)
+                            //     form.setFieldsValue({
+                            //         upload: [{ name: items.fileImage, originFileObj: fileData }],
+                            //     })
+                            // })
                         }
                     }
                 }

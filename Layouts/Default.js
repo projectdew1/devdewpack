@@ -81,9 +81,11 @@ export default function Default(props) {
                 })
                 .catch(e => console.log(e))
         }
-
+        //  else {
+        // do componentDidUpdate logic
+        // }
         gen()
-        // initMessenger()
+        initMessenger()
 
         // *************** ดาต้าเทส *****************
         // dispatch(
@@ -109,7 +111,7 @@ export default function Default(props) {
         // 	})
         // )
     }, [])
-
+    console.log('render')
     return (
         <div>
             {title ? <Head>
@@ -125,11 +127,11 @@ export default function Default(props) {
                     <KeyboardArrowUpIcon />
                 </div>
             </ScrollTop>
-            {/* <div>
+            <div>
                 <div id="fb-root"></div>
                 <div id="fb-customer-chat" className="fb-customerchat"></div>
-                </div> */}
-            <div style={{ backgroundColor: '#001c38' }}>
+            </div>
+            {/* <div style={{ backgroundColor: '#001c38' }}>
 
                 <MessengerChat
                     pageId='725364650867827'
@@ -140,7 +142,7 @@ export default function Default(props) {
                     onMessengerDialogShow={() => { console.log('onMessengerDialogShow') }}
                     onMessengerDialogHide={() => { console.log('onMessengerDialogHide') }}
                 />;
-            </div>
+            </div> */}
 
             <Footer />
         </div>

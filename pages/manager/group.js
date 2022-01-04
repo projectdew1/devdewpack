@@ -348,11 +348,11 @@ export default function Group() {
                 id,
             },
         })
-            .then(res => {
+            .then(async res => {
                 const data = res.data.message
                 if (data === "success") {
                     const items = res.data.items
-                    console.log(items)
+                    // console.log(items)
                     form.setFieldsValue({
                         seo: items.typeSeo,
                         category: items.categoryId,
@@ -361,14 +361,25 @@ export default function Group() {
                     if (items.fileImage !== null) {
                         let fileData = null
                         let url = config.hosting + items.localImage
-                        toDataURL(url).then(dataUrl => {
-                            // console.log("Here is Base64 Url", dataUrl)
-                            fileData = dataURLtoFile(dataUrl, items.fileImage)
+                        await Http.get(config.api.base64, {
+                            params: {
+                                url
+                            }
+                        }).then(res => {
+                            fileData = dataURLtoFile(res.data.base64, items.fileImage)
                             // console.log("Here is JavaScript File Object", fileData)
                             form.setFieldsValue({
                                 upload: [{ name: items.fileImage, originFileObj: fileData }],
                             })
                         })
+                        // toDataURL(url).then(dataUrl => {
+                        //     // console.log("Here is Base64 Url", dataUrl)
+                        //     fileData = dataURLtoFile(dataUrl, items.fileImage)
+                        //     // console.log("Here is JavaScript File Object", fileData)
+                        //     form.setFieldsValue({
+                        //         upload: [{ name: items.fileImage, originFileObj: fileData }],
+                        //     })
+                        // })
                     }
                 }
             })

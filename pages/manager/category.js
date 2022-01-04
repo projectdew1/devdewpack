@@ -16,6 +16,7 @@ import { Table, Button, Menu, Dropdown, Popconfirm, Upload, Input, Image, Form }
 import jwt_decode from "jwt-decode"
 import Cookies from "js-cookie"
 import alasql from "alasql"
+import axios from "axios"
 
 const { Search } = Input
 
@@ -219,7 +220,7 @@ export default function Category() {
                 id,
             },
         })
-            .then(res => {
+            .then(async res => {
                 const data = res.data.message
                 if (data === "success") {
                     const items = res.data.items
@@ -230,14 +231,27 @@ export default function Category() {
                     if (items.fileImage !== null) {
                         let fileData = null
                         let url = config.hosting + items.localImage
-                        toDataURL(url).then(dataUrl => {
-                            // console.log("Here is Base64 Url", dataUrl)
-                            fileData = dataURLtoFile(dataUrl, items.fileImage)
+
+                        await Http.get(config.api.base64, {
+                            params: {
+                                url
+                            }
+                        }).then(res => {
+                            fileData = dataURLtoFile(res.data.base64, items.fileImage)
                             // console.log("Here is JavaScript File Object", fileData)
                             form.setFieldsValue({
                                 upload: [{ name: items.fileImage, originFileObj: fileData }],
                             })
                         })
+
+                        // toDataURL(url).then(dataUrl => {
+                        //     console.log("Here is Base64 Url", dataUrl)
+                        //     fileData = dataURLtoFile(dataUrl, items.fileImage)
+                        //     // console.log("Here is JavaScript File Object", fileData)
+                        //     form.setFieldsValue({
+                        //         upload: [{ name: items.fileImage, originFileObj: fileData }],
+                        //     })
+                        // })
                     }
                 }
             })
@@ -365,8 +379,8 @@ export default function Category() {
         setData(filter)
     }
 
-    const toDataURL = url =>
-        fetch(url, {
+    const toDataURL = async url =>
+        await fetch(url, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
             }
@@ -382,6 +396,7 @@ export default function Category() {
                     })
             )
 
+
     const dataURLtoFile = (dataurl, filename) => {
         var arr = dataurl.split(","),
             mime = arr[0].match(/:(.*?);/)[1],
@@ -394,13 +409,15 @@ export default function Category() {
         return new File([u8arr], filename, { type: mime })
     }
 
-    const onFinish = values => {
-        // console.log(values)
-        if (isSave) {
-            addCategory(values)
-        } else {
-            update(values)
-        }
+    const onFinish = async values => {
+        console.log(values)
+
+
+        // if (isSave) {
+        //     addCategory(values)
+        // } else {
+        //     update(values)
+        // }
     }
 
     const normFile = e => {

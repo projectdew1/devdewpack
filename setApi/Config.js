@@ -10,6 +10,7 @@ const page = host + "/page"
 
 const api = {
     mock: category + "/get",
+    base64: category + "/get64base",
     admin,
     login: admin + "/login",
     user: admin + "/user",
