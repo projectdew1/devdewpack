@@ -14,6 +14,14 @@ import "../node_modules/slick-carousel/slick/slick-theme.css"
 import "../node_modules/react-image-gallery/styles/css/image-gallery.css";
 import "../styles/globals.css"
 import "antd/dist/antd.css"
+import '@react-page/editor/lib/index.css';
+import '@react-page/plugins-background/lib/index.css';
+import '@react-page/plugins-html5-video/lib/index.css'
+import '@react-page/plugins-image/lib/index.css'
+import '@react-page/plugins-spacer/lib/index.css'
+import '@react-page/plugins-video/lib/index.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import { wrapper } from "../redux"
 
@@ -25,6 +33,7 @@ function MyApp(props) {
     React.useEffect(() => {
         // Remove the server-side injected CSS.
         const jssStyles = document.querySelector("#jss-server-side")
+        AOS.init();
         if (jssStyles) {
             jssStyles.parentElement.removeChild(jssStyles)
         }

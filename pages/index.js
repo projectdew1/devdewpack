@@ -2,77 +2,114 @@ import React from "react"
 import dynamic from "next/dynamic"
 // import Image from "next/image"
 
-import GridContainer from "../component/Grid/GridContainer"
-import GridItem from "../component/Grid/GridItem"
-
 import classNames from "classnames"
 import { makeStyles } from "@material-ui/core/styles"
 
 import componentsStyle from "../assets/component/component"
-import Grid from "@material-ui/core/Grid"
 
-import Slider from "react-slick"
 import Config from "../setApi/Config"
 import Link from "next/link"
 import Head from "next/head"
 import { Image } from 'antd'
 
-const Parallax = dynamic(() => import("../component/Parallax/Parallax"))
+import Grid from "@material-ui/core/Grid"
+import Slider from "react-slick";
+
+import DisplayMain from "../component/Itemslist/DisplayMain"
+import axios from "axios"
+
+
 const Layouts = dynamic(() => import("../Layouts/Default"))
 
 const useStylec = makeStyles(componentsStyle)
 
-const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    // autoplay: true,
-    speed: 500,
-    // autoplaySpeed: 5000,
-    cssEase: "linear",
-    nextArrow: <Next />,
-    prevArrow: <Prev />,
-    responsive: [
-        {
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true,
-            },
+const useStyles = makeStyles(theme => ({
+    gridMain: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+    },
+    gridContainer: {
+        display: "grid",
+        gridTemplateColumns: "repeat(1, minmax(0, 1fr))",
+        gap: "1rem",
+        [theme.breakpoints.up("sm")]: {
+            gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
         },
-        // {
-        // 	breakpoint: 600,
-        // 	settings: {
-        // 		slidesToShow: 2,
-        // 		slidesToScroll: 2,
-        // 		initialSlide: 2,
-        // 	},
-        // },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-            },
+        [theme.breakpoints.up("md")]: {
+            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
         },
-    ],
-}
 
-const Home = ({ props }) => {
+        // backgroundColor: "#2196F3",
+    },
+}))
+
+const Home = ({ posts, seo }) => {
     const classes = useStylec()
+    const classess = useStyles()
 
-    const fadeInClasses = classNames({
-        [classes.title]: true,
-        [classes.animatedItemIn]: true,
+    const section1 = classNames({
+        [classes.section]: true,
+        [classes.bg2]: true,
     })
 
-    const subfadeInClasses = classNames({
-        [classes.subtitle]: true,
-        [classes.animatedItemIn]: true,
-    })
+    // const subfadeInClasses = classNames({
+    //     [classes.subtitle]: true,
+    //     [classes.animatedItemIn]: true,
+    // })
+
+    function SampleNextArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+            <div
+                className={className}
+                style={{ ...style, display: "block" }}
+                onClick={onClick}
+            />
+        );
+    }
+
+    function SamplePrevArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+            <div
+                className={className}
+                style={{ ...style, display: "block", }}
+                onClick={onClick}
+            />
+        );
+    }
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 2000,
+        autoplaySpeed: 1500,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
+        cssEase: "linear",
+        responsive: [
+            {
+                breakpoint: 885,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+
+                }
+            },
+            {
+                breakpoint: 645,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+
+                }
+            },
+        ]
+    };
 
 
     return (
@@ -101,35 +138,12 @@ const Home = ({ props }) => {
                     </Head>
                 }
                 active={0} fixed={true} appColor={"transparent"}>
-                {/* แบบที่ 1  Parallax */}
-                {/* <Parallax image="/bg.jpg">
-					<div className={classes.container}>
-						<GridContainer>
-							<GridItem>
-								<div className={classes.brand}>
-									<p className={fadeInClasses}>ACI MACHINERY</p>
-									<p className={subfadeInClasses}>ศูนย์รวมเครื่องแพ็คกิ้งและบรรจุภัณฑ์</p>
-									<p className={classes.animatedItemIn} style={{ fontWeight: "bold" }}>
-										สินค้าคุณภาพมาตรฐาน บริการฉับไว
-									</p>
-								</div>
-							</GridItem>
-						</GridContainer>
-					</div>
-				</Parallax> */}
-                <div className={classes.bg}>
-                    {/* <svg className={classes.wave} viewBox="0 0 1440 320">
-						<path
-							fill="#ffffffea"
-							fill-opacity="1"
-							d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-						></path>
-					</svg> */}
+                {/* ******************* แบบที่ 1 old web ******************* */}
+                {/* <div className={classes.bg}>                    
                     <div className={classes.bordBander}>
                         <Grid container spacing={2} className={classes.gridBander}>
                             <Grid item sm={6} md={6} className={classes.gridItemsTextImage}>
-                                <div className={classes.gridImage}>
-                                    {/* <img loading="lazy" src={"/QSJ-5040A.png"} className={classes.image1}></img> */}
+                                <div className={classes.gridImage}>                                   
                                     <Image src={"/QSJ-5040A.png"} className={classes.image1} preview={false} />
                                 </div>
                             </Grid>
@@ -148,119 +162,151 @@ const Home = ({ props }) => {
                             </Grid>
                         </Grid>
                     </div>
+                </div> */}
+                {/* ********************************************************************** */}
+
+                <div className={classes.container2}>
+                    <div className={section1}>
+                        <Grid container className={classes.rowSection1}>
+                            <Grid item sm={6} md={6} >
+                                <div >
+                                    <h1 className={classes.text1Section1}>KMS MACHINERY</h1>
+                                    <h1 className={classes.Text2}>ศูนย์รวมเครื่องบรรจุภัณฑ์</h1>
+                                    <h1 className={classes.Text3}>สินค้าได้รับมาตรฐาน บริการจริงใจ</h1>
+                                    <h1 className={classes.Text3}>นำเข้าและจัดจำหน่าย เครื่องบรรจุภัณฑ์</h1>
+                                    <div style={{ display: 'flex' }}>
+                                        <div className={classes.centerBtn} style={{ marginRight: '10px' }} onClick={() => window.open("https://www.m.me/kmsmachinerythailand")}>
+
+                                            <a className={classes.buttonContact} onClick={null}>ติดต่อ</a>
+
+                                        </div>
+                                        <div className={classes.centerBtn}>
+                                            <Link href={`/shop`}>
+                                                <a className={classes.buttonShow} onClick={null}>สินค้า</a>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </Grid>
+                            <Grid item sm={6} md={6}>
+                                <div className={classes.gridImage}>
+                                    <Image src={"/svg/machine.svg"} className={classes.imageSection1} preview={false} />
+                                </div>
+                            </Grid>
+                        </Grid>
+                    </div>
+                    <div style={{ position: "relative", minHeight: '65vh', marginBottom: '20px' }} >
+                        <div className={classes.containerSection2}>
+                            <div data-aos="zoom-in"
+                                data-aos-anchor-placement="top-bottom" style={{ marginBottom: '50px' }}>
+                                <h2 style={{ fontSize: '2.5em' }}>ทำไมต้องเลือกเรา ?</h2>
+                            </div>
+                            <Grid container spacing={4} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }} >
+                                <Grid item md={4} >
+                                    <div data-aos="fade-right"
+                                        data-aos-anchor-placement="top-center" className={classes.cardSection2}>
+                                        <Image src={"/svg/order.svg"} preview={false} width={200} />
+                                        <h2 style={{ marginTop: '10px' }}>สินค้าคุณภาพราคาย่อมเยาว์</h2>
+                                    </div>
+                                </Grid>
+                                <Grid item md={4}  >
+                                    <div data-aos="fade-up"
+                                        data-aos-anchor-placement="top-center" className={classes.cardSection2}>
+                                        <Image src={"/svg/delive.svg"} preview={false} width={200} />
+                                        <h2 style={{ marginTop: '10px' }}>บริการจัดส่งสินค้าทั่วไทย</h2>
+                                    </div>
+                                </Grid>
+                                <Grid item md={4}  >
+                                    <div data-aos="fade-left"
+                                        data-aos-anchor-placement="top-center" className={classes.cardSection2}>
+                                        <Image src={"/svg/support.svg"} preview={false} width={200} />
+                                        <h2 style={{ marginTop: '10px' }}>บริการลูกค้า</h2>
+                                    </div>
+                                </Grid>
+                            </Grid>
+                        </div>
+                    </div>
+                    <div style={{ position: "relative", minHeight: '65vh', backgroundColor: '#fbf9ff' }} >
+                        <div className={classes.containerSection3}>
+                            <div data-aos="zoom-in"
+                                data-aos-anchor-placement="top-bottom" style={{ marginBottom: '50px' }}>
+                                <h2 style={{ fontSize: '2.5em' }}>ผลงานจัดส่งและติดตั้ง</h2>
+                            </div>
+                            <div data-aos="fade-left" data-aos-anchor-placement="top-center">
+                                <Slider {...settings}>
+                                    <div className={classes.cardSection3}>
+                                        <Image className={classes.imageSection3} src={"/version2/1.jpg"} preview={false} width={250} height={200} />
+                                        <h4 style={{ marginTop: '10px' }}>งานติดตั้งและสอนการใช้งานชุดแอลซีล เครื่องห่อแนวนอน จ.สระแก้ว</h4>
+                                    </div>
+                                    <div className={classes.cardSection3}>
+                                        <Image className={classes.imageSection3} src={"/version2/2.jpg"} preview={false} width={250} height={200} />
+                                        <h4 style={{ marginTop: '10px' }}>งานติดตั้งและสอนการใช้งานเครื่องขัดเม็ดยา</h4>
+                                    </div>
+                                    <div className={classes.cardSection3}>
+                                        <Image className={classes.imageSection3} src={"/version2/3.jpg"} preview={false} width={250} height={200} />
+                                        <h4 style={{ marginTop: '10px' }}>งานติดตั้งและสอนการใช้งานชุดแอลซีล จ.นครปฐม</h4>
+                                    </div>
+                                    <div className={classes.cardSection3}>
+                                        <Image className={classes.imageSection3} src={"/version2/4.jpg"} preview={false} width={250} height={200} />
+                                        <h4 style={{ marginTop: '10px' }}>งานติดตั้งและสอนการใช้งานชุดแอลซีล กทม. มีนบุรี</h4>
+                                    </div>
+                                    <div className={classes.cardSection3}>
+                                        <Image className={classes.imageSection3} src={"/version2/5.jpg"} preview={false} width={250} height={200} />
+                                        <h4 style={{ marginTop: '10px' }}>งานติดตั้งและสอนเครื่องบรรจุแคปซูลกึ่งอัตโนมัติ จ.สระแก้ว</h4>
+                                    </div>
+
+                                </Slider>
+                            </div>
+                        </div>
+                    </div>
+                    <div style={{ position: "relative", marginBottom: '50px' }}>
+                        <div className={classes.containerSection4}>
+                            <div data-aos="zoom-in"
+                                data-aos-anchor-placement="top-bottom" style={{ marginBottom: '50px', marginTop: '20px' }}>
+                                <h2 style={{ fontSize: '2.5em' }}>สินค้าของเรา</h2>
+                            </div>
+                            <div style={{ width: "100%" }}>
+                                <div className={classess.gridMain}>
+                                    <div className={classess.gridContainer}>
+                                        {posts.map((row, index) => (
+                                            <DisplayMain key={index} imageSrc={row.localImage !== null ? Config.hosting + row.localImage : "/no-image.png"} sizeImage={row.localImage !== null ? "90%" : "60%"} subtitle={`${row.items} ประเภท`} subtitle2={`${row.product} สินค้า`} title={row.name} link={`/category/${row.enID}`} />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-
-                {/* ////////////////////////////////////////////////////////////// */}
-                {/* <div style={{ padding: "2em 5em" }}>
-					<div style={{ height: "auto" }}>
-						<Grid container spacing={2}>
-							<Grid item sm={12} md={4} className={classes.Gridy} style={{ width: "100%" }}>
-								<div className={classes.Gridy} style={{ padding: "1em", backgroundColor: "#FFEED0", borderRadius: "10px" }}>
-									<i className="fas fa-shipping-fast" style={{ fontSize: "2em", color: "#ff6600" }} />
-								</div>
-								<label style={{ fontWeight: "bold" }}>Free Shipping</label>
-								<p>All purchases over $199 are eligible for free shipping via USPS First Class Mail</p>
-							</Grid>
-							<Grid item sm={12} md={4} className={classes.Gridy} style={{ width: "100%" }}>
-								<div className={classes.Gridy} style={{ padding: "1em", backgroundColor: "#FFEED0", borderRadius: "10px" }}>
-									<i className="fas fa-boxes" style={{ fontSize: "2em", color: "#ff6600" }} />
-								</div>
-								<label style={{ fontWeight: "bold" }}>Finest Quality</label>
-								<p>Designed to last, each of our products has been crafted with the finest materials.</p>
-							</Grid>
-							<Grid item sm={12} md={4} className={classes.Gridy} style={{ width: "100%" }}>
-								<div className={classes.Gridy} style={{ padding: "1em", backgroundColor: "#FFEED0", borderRadius: "10px" }}>
-									<i className="fas fa-headset" style={{ fontSize: "2em", color: "#ff6600" }} />
-								</div>
-								<label style={{ fontWeight: "bold" }}>Free Shipping</label>
-								<p>All purchases over $199 are eligible </p>
-							</Grid>
-						</Grid>
-					</div>
-				</div> */}
-                {/* ////////////////////////////////////////////////////////////// */}
-                {/* <div className={classes.bgZone2}>
-					<svg className={classes.expain} viewBox="0 0 1440 320">
-						<path
-							fill="#001c38"
-							fillOpacity="1"
-							d="M0,256L48,245.3C96,235,192,213,288,224C384,235,480,277,576,256C672,235,768,149,864,128C960,107,1056,149,1152,176C1248,203,1344,213,1392,218.7L1440,224L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
-						></path>
-					</svg> */}
-                {/* <div style={{ padding: "0em 5em" }}>
-						<h2 className={classes.line_title}>เครื่องแพ็คกิ้งและบรรจุภัณฑ์</h2>
-						<div>
-							<h3 className={classes.line_title}>เครื่องแพ็คกิ้งและบรรจุภัณฑ์</h3>
-							<Slider {...settings}>
-								<div>
-									<div className={classes.itemImage} style={{ backgroundImage: "url(https://ucarecdn.com/2a5f69bc-befa-49f4-acc6-ab1dcae514c7/winter3.jpg)" }}>
-										<div>
-											<h3>The Witcher 3</h3>
-											<p>The Witcher 3 is a multiplayer online battle arena by Valve.</p>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div className={classes.itemImage} style={{ backgroundImage: "url(https://ucarecdn.com/2a5f69bc-befa-49f4-acc6-ab1dcae514c7/winter3.jpg)" }}>
-										<div>
-											<h3>The Witcher 3</h3>
-											<p>The Witcher 3 is a multiplayer online battle arena by Valve.</p>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div className={classes.itemImage} style={{ backgroundImage: "url(https://ucarecdn.com/2a5f69bc-befa-49f4-acc6-ab1dcae514c7/winter3.jpg)" }}>
-										<div>
-											<h3>The Witcher 3</h3>
-											<p>The Witcher 3 is a multiplayer online battle arena by Valve.</p>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div className={classes.itemImage} style={{ backgroundImage: "url(https://ucarecdn.com/2a5f69bc-befa-49f4-acc6-ab1dcae514c7/winter3.jpg)" }}>
-										<div>
-											<h3>The Witcher 3</h3>
-											<p>The Witcher 3 is a multiplayer online battle arena by Valve.</p>
-										</div>
-									</div>
-								</div>
-							</Slider>
-						</div>
-					</div> */}
-                {/* </div> */}
             </Layouts>
         </React.Fragment>
     )
 }
 
-// Home.getInitialProps = async () => {
-// 	const res = await fetch("https://api.github.com/repos/vercel/next.js")
-// 	const json = await res.json()
+export const getStaticProps = async () => {
+    const https = require("https")
+    const agent = new https.Agent({
+        rejectUnauthorized: false,
+    })
 
-// 	return {
-// 		props: {
-// 			stars2: json.stargazers_count,
-// 		},
-// 	}
-// }
+    const { data } = await axios.get(Config.api.pageHeader, {
+        httpsAgent: agent,
+    })
 
-function Next(props) {
-    const { className, style, onClick } = props
-    return (
-        <div className={className} onClick={onClick} style={{ ...style, display: "block" }}>
-            <i class="fas fa-chevron-right" />
-        </div>
-    )
+
+    const row = data["items"].map((row, index) => {
+        return row.name
+    })
+
+    return {
+        props: {
+            posts: data["items"].filter(row => row.product !== 0),
+            seo: row.join(),
+        },
+    }
 }
 
-function Prev(props) {
-    const { className, style, onClick } = props
-    return (
-        <div className={className} onClick={onClick} style={{ ...style, display: "block" }}>
-            <i class="fas fa-chevron-left" />
-        </div>
-    )
-}
 
 export default Home

@@ -3,9 +3,7 @@ import dynamic from "next/dynamic"
 
 import { Grid } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles"
-import TextField from "@material-ui/core/TextField"
-import Button from "@material-ui/core/Button"
-import SendIcon from "@material-ui/icons/Send"
+import { Image } from 'antd'
 
 import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
@@ -16,44 +14,34 @@ const Layouts = dynamic(() => import("../Layouts/Default"))
 const useStylec = makeStyles(theme => ({
     root: {
         minHeight: "100vh",
-    },
-    bg: {
-        background: "url(/payment.jpg)",
-        minHeight: "40vh",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: "2em",
-        fontWeight: "500",
-        color: "white",
-    },
-    content: {
-        padding: "24px 0px 48px 0px",
-        backgroundColor: "white",
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundImage: "url(/svg/bg-2.svg)",
+        backgroundRepeat: ' no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center top',
+        backgroundColor: '#fbf9ff',
+        padding: '80px 120px 0px 120px',
+        [theme.breakpoints.down("sm")]: {
+            // backgroundImage: 'none',
+            padding: '80px 60px 0px 60px',
+        },
+        [theme.breakpoints.down("xs")]: {
+            padding: '80px 30px 0px 30px',
+        }
     },
 
-    container: {
-        paddingLeft: "12px",
-        paddingRight: "12px",
-        margin: "0 auto",
-        width: "100%",
-        [theme.breakpoints.up("md")]: {
-            maxWidth: "960px",
-            width: "960px",
-        },
-    },
     row: {
         width: "100%",
         position: "relative",
         marginTop: "5px",
-        margin: "-8px",
+        // margin: "-8px",
+        marginBottom: '50px'
     },
     col1: {
         padding: "8px",
-        animation: `$itemsLeft 800ms ${theme.transitions.easing.easeInOut}`,
+        animation: `$itemsRight 800ms ${theme.transitions.easing.easeInOut}`,
     },
     col2: {
         padding: "8px",
@@ -92,12 +80,23 @@ const useStylec = makeStyles(theme => ({
             transform: "translateX(0)",
         },
     },
+    gridImage: {
+        display: "flex",
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontFamily: "Kanit, sans-serif",
+        width: "100%",
+    },
+    imageSection1: {
+        maxWidth: "100%",
+        position: "relative",
+        zIndex: 100,
+        height: '50vh',
+
+    },
 }))
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-    },
     paper: {
         padding: theme.spacing(2),
         // margin: "auto",
@@ -127,9 +126,15 @@ const Payment = () => {
         <React.Fragment>
             <Layouts title="วิธีสั่งซื้อและชำระเงิน | KMS MACHINERY Co. Ltd | บริษัท เคเอ็มเอส แมชชีนเนอรี่ จำกัด" active={3} fixed={true} appColor={"transparent"}>
                 <div className={classes.root}>
-                    <div className={classes.bg}>{/* <div className={classes.container}>วิธีสั่งซื้อและชำระเงิน</div> */}</div>
-                    <div className={classes.content}>
-                        <div className={classes.container}>
+                    <Grid container spacing={4}>
+                        <Grid item sm={12} md={6} >
+                            <div data-aos="zoom-in"
+                                data-aos-anchor-placement="top-bottom" className={classes.gridImage}>
+                                <Image src={"/svg/payment.svg"} className={classes.imageSection1} preview={false} />
+                            </div>
+
+                        </Grid>
+                        <Grid item sm={12} md={6} >
                             <Grid container className={classes.row}>
                                 <Grid item sm={12} md={12} className={classes.col1}>
                                     <div className={classes.Itemscol1}>
@@ -149,7 +154,7 @@ const Payment = () => {
                                             <p style={{ color: "#777676", margin: 0, paddingLeft: "1.6em", fontSize: "1em", fontWeight: "300" }}>** งดโอนเงินก่อนที่จะมีการยืนยันเรื่องสินค้า เพราะสินค้าบางรุ่นอาจหมดสต๊อกทั้งนี้เพื่อความสะดวกของตัวลูกค้าเอง </p>
                                         </div>
 
-                                        <div className={classes.ItemsContactcol1}>
+                                        <div >
                                             <p style={{ margin: 0, fontSize: "1.5em", fontWeight: "500" }}>ช่องทางการชำระเงิน</p>
                                             <Grid container spacing={4}>
                                                 <Grid item sm={12}>
@@ -235,8 +240,9 @@ const Payment = () => {
                                     </div>
                                 </Grid>
                             </Grid>
-                        </div>
-                    </div>
+
+                        </Grid>
+                    </Grid>
                 </div>
             </Layouts>
         </React.Fragment>

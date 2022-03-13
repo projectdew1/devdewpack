@@ -15,6 +15,7 @@ import jwt_decode from "jwt-decode"
 import Cookies from "js-cookie"
 import alasql from "alasql"
 import moment from "moment"
+import momentz from "moment-timezone"
 
 const { Search, TextArea } = Input
 
@@ -104,7 +105,7 @@ export default function Group() {
             width: 120,
             align: "center",
             sorter: (a, b) => moment(a.createDate).unix() - moment(b.createDate).unix(),
-            render: (text, record) => (text ? moment(text).format("DD/MM/YY HH:mm") : ""),
+            render: (text, record) => (text ? momentz.utc(text).tz("Asia/Bangkok").format("DD/MM/YY HH:mm") : ""),
         },
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"ผู้บันทึก"}</label>,
@@ -124,7 +125,7 @@ export default function Group() {
             width: 120,
             align: "center",
             sorter: (a, b) => moment(a.editDate).unix() - moment(b.editDate).unix(),
-            render: (text, record) => (text ? moment(text).format("DD/MM/YY HH:mm") : ""),
+            render: (text, record) => (text ? momentz.utc(text).tz("Asia/Bangkok").format("DD/MM/YY HH:mm") : ""),
         },
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"ผู้แก้ไข"}</label>,

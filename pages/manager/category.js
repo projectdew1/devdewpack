@@ -6,6 +6,7 @@ import action from "../../redux/actions"
 import config from "../../setApi/Config"
 import Http from "../../setApi/http"
 import moment from "moment"
+import momentz from "moment-timezone"
 
 import { Grid, Badge, Tooltip, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, FormControlLabel, Checkbox, InputLabel, OutlinedInput, Snackbar } from "@material-ui/core"
 import { Edit, MoreVert, Delete, TrendingUpTwoTone, Visibility } from "@material-ui/icons"
@@ -90,7 +91,7 @@ export default function Category() {
             width: 120,
             align: "center",
             sorter: (a, b) => moment(a.createDate).unix() - moment(b.createDate).unix(),
-            render: (text, record) => (text ? moment(text).format("DD/MM/YY HH:mm") : ""),
+            render: (text, record) => (text ? momentz.utc(text).tz("Asia/Bangkok").format("DD/MM/YY HH:mm") : ""),
         },
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"ผู้บันทึก"}</label>,
@@ -110,7 +111,7 @@ export default function Category() {
             width: 120,
             align: "center",
             sorter: (a, b) => moment(a.editDate).unix() - moment(b.editDate).unix(),
-            render: (text, record) => (text ? moment(text).format("DD/MM/YY HH:mm") : ""),
+            render: (text, record) => (text ? momentz.utc(text).tz("Asia/Bangkok").format("DD/MM/YY HH:mm") : ""),
         },
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"ผู้แก้ไข"}</label>,
