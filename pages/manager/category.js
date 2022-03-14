@@ -411,14 +411,14 @@ export default function Category() {
     }
 
     const onFinish = async values => {
-        console.log(values)
+        // console.log(values)
 
 
-        // if (isSave) {
-        //     addCategory(values)
-        // } else {
-        //     update(values)
-        // }
+        if (isSave) {
+            addCategory(values)
+        } else {
+            update(values)
+        }
     }
 
     const normFile = e => {
