@@ -144,12 +144,12 @@ const Product = ({ items, seo }) => {
 
 
     useEffect(() => {
-        let arr = [{ index: 0, original: Config.hosting + items.localImage, thumbnail: Config.hosting + items.localImage }]
+        let arr = [{ index: 0, original: Config.ImageHosting + items.localImage, thumbnail: Config.ImageHosting + items.localImage }]
         items.image.map((r, i) => {
             arr.push({
                 index: i + 1,
-                original: Config.hosting + r.local,
-                thumbnail: Config.hosting + r.local
+                original: Config.ImageHosting + r.local,
+                thumbnail: Config.ImageHosting + r.local
             })
 
         })

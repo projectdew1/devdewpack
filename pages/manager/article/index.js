@@ -54,7 +54,7 @@ export default function Article() {
             dataIndex: "localImage",
             key: "localImage",
             width: 100,
-            render: (text, record) => (text ? <Image src={config.hosting + text} preview={false} /> : ""),
+            render: (text, record) => (text ? <Image src={config.ImageHosting + text} preview={false} /> : ""),
         },
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"SEO"}</label>,

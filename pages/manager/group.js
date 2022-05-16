@@ -96,7 +96,7 @@ export default function Group() {
             dataIndex: "localImage",
             key: "localImage",
             width: 100,
-            render: (text, record) => (text ? <Image src={config.hosting + text} preview={false} /> : ""),
+            render: (text, record) => (text ? <Image src={config.ImageHosting + text} preview={false} /> : ""),
         },
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"วันที่บันทึก"}</label>,
@@ -361,7 +361,7 @@ export default function Group() {
                     })
                     if (items.fileImage !== null) {
                         let fileData = null
-                        let url = config.hosting + items.localImage
+                        let url = config.ImageHosting + items.localImage
                         await Http.get(config.api.base64, {
                             params: {
                                 url

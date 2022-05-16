@@ -98,7 +98,7 @@ const Category = ({ items, seo, name }) => {
                                     price={parseInt(item.price)}
                                     discount={parseInt(item.discount)}
                                     soldout={item.soldout}
-                                    imageSrc={item.localImage !== null ? Config.hosting + item.localImage : "/no-image.png"}
+                                    imageSrc={item.localImage !== null ? Config.ImageHosting + item.localImage : "/no-image.png"}
                                 />
                             )
                         })}

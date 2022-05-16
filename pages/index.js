@@ -270,7 +270,7 @@ const Home = ({ posts, seo }) => {
                                 <div className={classess.gridMain}>
                                     <div className={classess.gridContainer}>
                                         {posts.map((row, index) => (
-                                            <DisplayMain key={index} imageSrc={row.localImage !== null ? Config.hosting + row.localImage : "/no-image.png"} sizeImage={row.localImage !== null ? "90%" : "60%"} subtitle={`${row.items} ประเภท`} subtitle2={`${row.product} สินค้า`} title={row.name} link={`/category/${row.enID}`} />
+                                            <DisplayMain key={index} imageSrc={row.localImage !== null ? Config.ImageHosting + row.localImage : "/no-image.png"} sizeImage={row.localImage !== null ? "90%" : "60%"} subtitle={`${row.items} ประเภท`} subtitle2={`${row.product} สินค้า`} title={row.name} link={`/category/${row.enID}`} />
                                         ))}
                                     </div>
                                 </div>

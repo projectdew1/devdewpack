@@ -69,7 +69,7 @@ export default function Category() {
             dataIndex: "localImage",
             key: "localImage",
             width: 100,
-            render: (text, record) => (text ? <Image src={config.hosting + text} preview={false} /> : ""),
+            render: (text, record) => (text ? <Image src={config.ImageHosting + text} preview={false} /> : ""),
         },
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"SEO"}</label>,
@@ -231,7 +231,7 @@ export default function Category() {
                     })
                     if (items.fileImage !== null) {
                         let fileData = null
-                        let url = config.hosting + items.localImage
+                        let url = config.ImageHosting + items.localImage
 
                         await Http.get(config.api.base64, {
                             params: {

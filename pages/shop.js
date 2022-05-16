@@ -124,7 +124,7 @@ const Shop = ({ posts, seo }) => {
                             <div className={classes.gridMain}>
                                 <div className={classes.gridContainer}>
                                     {posts.map((row, index) => (
-                                        <DisplayMedium key={index} imageSrc={row.localImage !== null ? Config.hosting + row.localImage : "/no-image.png"} sizeImage={row.localImage !== null ? "90%" : "60%"} subtitle={`${row.items} ประเภท`} subtitle2={`${row.product} สินค้า`} title={row.name} link={`/category/${row.enID}`} />
+                                        <DisplayMedium key={index} imageSrc={row.localImage !== null ? Config.ImageHosting + row.localImage : "/no-image.png"} sizeImage={row.localImage !== null ? "90%" : "60%"} subtitle={`${row.items} ประเภท`} subtitle2={`${row.product} สินค้า`} title={row.name} link={`/category/${row.enID}`} />
                                     ))}
                                 </div>
                             </div>
