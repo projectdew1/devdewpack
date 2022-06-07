@@ -1,6 +1,8 @@
 const master = "authorization"
 
 // const hosting = "https://localhost:5001"
+// const ImageHosting = "https://localhost:5001"
+
 const hosting = "https://kmspacking.com:5003"
 const ImageHosting = "https://kmspacking.com:5003"
 const host = hosting + "/api"
@@ -8,6 +10,7 @@ const admin = host + "/admin"
 const contact = host + "/contact"
 const category = host + "/product"
 const page = host + "/page"
+const blog = host + "/blog"
 
 const api = {
     mock: category + "/get",
@@ -55,6 +58,18 @@ const api = {
     pageIdHeader: page + "/idHeader",
     pageProduct: page + "/product",
     pageIdProduct: page + "/idproduct",
+
+    //photo
+    photo: blog + "/photoall",
+    addPhoto: blog + "/addPhoto",
+    deletePhoto: blog + "/deletePhoto",
+
+    //blog
+    contentBlog: blog + "/contentBlog",
+    addBlog: blog + "/addBlog",
+    updateBlog: blog + "/updateBlog",
+    deleteBlog: blog + "/deleteBlog",
+    idBlog: blog + "/idBlog",
 }
 
 export default {

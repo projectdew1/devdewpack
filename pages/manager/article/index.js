@@ -4,7 +4,14 @@ import Maneger from "../../../Layouts/Maneger"
 import { useDispatch } from "react-redux"
 import { useRouter } from "next/router"
 import action from "../../../redux/actions"
+import config from "../../../setApi/Config"
+import Http from "../../../setApi/http"
 
+import moment from "moment"
+import momentz from "moment-timezone"
+
+import { Visibility, MoreVert, Delete, Edit, FileCopy, AddCircleOutlineOutlined } from "@material-ui/icons"
+import Alert from "@material-ui/lab/Alert"
 import { Grid, Badge, Tooltip, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, FormControlLabel, Checkbox, InputLabel, OutlinedInput, Snackbar } from "@material-ui/core"
 import { Table, Button, Menu, Dropdown, Popconfirm, Upload, Input, Image, Form } from "antd"
 
@@ -23,46 +30,52 @@ export default function Article() {
     const dispatch = useDispatch()
 
     const [data, setData] = useState([])
+    const [dataFilt, setDataFilt] = useState([])
 
     const [LoadingTable, setLoadingTable] = useState(false)
+
+    //Alert
+    const [Alertname, setAlertname] = useState("")
+    const [Alerttype, setAlerttype] = useState("error")
+    const [openAlert, setOpenAlert] = useState(false)
 
     const columns = [
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"ลำดับ"}</label>,
-            dataIndex: "categoryId",
-            key: "categoryId",
+            dataIndex: "blogId",
+            key: "blogId",
             width: 50,
             align: "center",
             render: (text, record, index) => text,
         },
         {
-            title: () => <label style={{ fontWeight: "bold" }}>{"ประเภทผลิตภัณฑ์"}</label>,
-            dataIndex: "categoryName",
-            key: "categoryName",
+            title: () => <label style={{ fontWeight: "bold" }}>{"หัวข้อ"}</label>,
+            dataIndex: "title",
+            key: "title",
             sorter: (a, b) => {
-                a = a.categoryName || ""
-                b = b.categoryName || ""
+                a = a.title || ""
+                b = b.title || ""
                 return a.localeCompare(b)
             },
             width: 150,
             // align: "center",
-            // ellipsis: true,
+            ellipsis: true,
         },
 
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"รูปภาพปก"}</label>,
-            dataIndex: "localImage",
-            key: "localImage",
+            dataIndex: "local",
+            key: "local",
             width: 100,
             render: (text, record) => (text ? <Image src={config.ImageHosting + text} preview={false} /> : ""),
         },
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"SEO"}</label>,
-            dataIndex: "seo",
-            key: "seo",
+            dataIndex: "blogSeo",
+            key: "blogSeo",
             sorter: (a, b) => {
-                a = a.seo || ""
-                b = b.seo || ""
+                a = a.blogSeo || ""
+                b = b.blogSeo || ""
                 return a.localeCompare(b)
             },
             width: 200,
@@ -76,7 +89,7 @@ export default function Article() {
             width: 120,
             align: "center",
             sorter: (a, b) => moment(a.createDate).unix() - moment(b.createDate).unix(),
-            render: (text, record) => (text ? moment(text).format("DD/MM/YY HH:mm") : ""),
+            render: (text, record) => (text ? momentz.utc(text).tz("Asia/Bangkok").format("DD/MM/YY HH:mm") : ""),
         },
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"ผู้บันทึก"}</label>,
@@ -96,7 +109,7 @@ export default function Article() {
             width: 120,
             align: "center",
             sorter: (a, b) => moment(a.editDate).unix() - moment(b.editDate).unix(),
-            render: (text, record) => (text ? moment(text).format("DD/MM/YY HH:mm") : ""),
+            render: (text, record) => (text ? momentz.utc(text).tz("Asia/Bangkok").format("DD/MM/YY HH:mm") : ""),
         },
         {
             title: () => <label style={{ fontWeight: "bold" }}>{"ผู้แก้ไข"}</label>,
@@ -125,15 +138,15 @@ export default function Article() {
                                     <label style={{ cursor: "pointer" }}>{` แก้ไข`}</label>
                                 </div>
                             </Menu.Item>
-                            <Menu.Item key="1" onClick={() => handleClickView(record)}>
+                            {/* <Menu.Item key="1" onClick={() => handleClickView(record)}>
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                     <Visibility />
                                     <label style={{ cursor: "pointer" }}>{` มุมมอง`}</label>
                                 </div>
-                            </Menu.Item>
+                            </Menu.Item> */}
                             <Menu.Divider />
                             <Menu.Item key="2" disabled={record.status === 0}>
-                                <Popconfirm disabled={record.status === 0} title={`ลบข้อมูล ${record.categoryId}`} okText="ตกลง" cancelText="ยกเลิก" onConfirm={() => deleteCategory(record.categoryId)}>
+                                <Popconfirm disabled={record.status === 0} title={`ลบข้อมูล ${record.blogId}`} okText="ตกลง" cancelText="ยกเลิก" onConfirm={() => deleteBlog(record.blogId)}>
                                     <Tooltip title="ลบข้อมูล">
                                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                             <Delete />
@@ -154,14 +167,64 @@ export default function Article() {
 
     useEffect(() => {
         dispatch(action.setAdmin("บทความ"))
+        reload()
     }, [])
+
+    const reload = async () => {
+        setLoadingTable(true)
+        await Http.post(config.api.contentBlog)
+            .then(res => {
+                const data = res.data.message
+                if (data === "success") {
+                    const items = res.data.items
+                    // console.log(items)
+                    setData(items)
+                    setDataFilt(items)
+                }
+            })
+            .catch(e => { })
+            .finally(() => {
+                setLoadingTable(false)
+            })
+    }
+
+    const setAlert = (typeAlert, nameAlert) => {
+        setAlerttype(typeAlert)
+        setAlertname(nameAlert)
+        setOpenAlert(true)
+    }
+
+    const deleteBlog = async id => {
+        setLoadingTable(true)
+        await Http.delete(config.api.deleteBlog, {
+            params: {
+                id,
+            },
+        })
+            .then(res => {
+                // console.log(res)
+                const data = res.data.message
+                if (data === "success") {
+                    setAlert("success", "ลบข้อมูลเรียบร้อย !")
+                } else {
+                    setAlert("error", data)
+                }
+            })
+            .catch(e => {
+                setAlert("error", "เกิดข้อผิดพลาดจาก server !")
+            })
+            .finally(() => {
+                reload()
+                setLoadingTable(false)
+            })
+    }
 
 
 
     const onSearch = values => {
-        // const filter = alasql(`select * from ? where categoryName like '%${values}%'`, [dataFilt])
-        console.log(values)
-        const filter = []
+        const filter = alasql(`select * from ? where title like '%${values}%'`, [dataFilt])
+        // console.log(values)
+        // const filter = []
         setData(filter)
     }
 
@@ -177,7 +240,7 @@ export default function Article() {
             <Maneger>
                 <Grid container>
                     <Grid item xs={5} style={{ marginTop: "5px" }}>
-                        <Search placeholder="ค้นหาบทความ" allowClear onSearch={onSearch} />
+                        <Search placeholder="ค้นหาหัวข้อบทความ" allowClear onSearch={onSearch} />
                     </Grid>
                     <Grid item xs={3} style={{ marginTop: "5px", marginLeft: "20px" }}>
                         <Button type="primary" shape="round" onClick={handleClickOpen}>
@@ -189,7 +252,7 @@ export default function Article() {
                     </Grid>
                     <Grid item xs={12} style={{ marginTop: "10px" }}>
                         <Table
-                            rowKey={"categoryId"}
+                            rowKey={"blogId"}
                             loading={{
                                 spinning: LoadingTable,
                                 size: "large",
@@ -213,6 +276,11 @@ export default function Article() {
                 </Grid>
 
             </Maneger>
+            <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={openAlert} autoHideDuration={3000} onClose={() => setOpenAlert(!openAlert)}>
+                <Alert onClose={() => setOpenAlert(!openAlert)} severity={Alerttype}>
+                    {Alertname}
+                </Alert>
+            </Snackbar>
         </React.Fragment>
     )
 
