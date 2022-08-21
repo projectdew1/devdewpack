@@ -22,6 +22,7 @@ import '@react-page/plugins-spacer/lib/index.css'
 import '@react-page/plugins-video/lib/index.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import TagManager from 'react-gtm-module';
 
 import { wrapper } from "../redux"
 
@@ -37,6 +38,7 @@ function MyApp(props) {
         if (jssStyles) {
             jssStyles.parentElement.removeChild(jssStyles)
         }
+        TagManager.initialize({ gtmId: 'GTM-TM7H4FZ' });
     }, [])
 
     return (
