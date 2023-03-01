@@ -50,6 +50,7 @@
 	},
 	"scripts": {
 		"dev": "SET NODE_OPTIONS=--openssl-legacy-provider && next dev",
+        "buildnode": "SET NODE_OPTIONS=--openssl-legacy-provider && next build",
 		"build": "next build && next export",
 		"start": "next start"
 	},
