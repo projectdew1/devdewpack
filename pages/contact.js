@@ -136,6 +136,10 @@ const Contact = () => {
     const Submitt = async e => {
         e.preventDefault()
         await sendData()
+        // google ads tracking
+        window.dataLayer.push({
+            event: 'submit_ec'
+          });
     }
 
     const cleatData = () => {
