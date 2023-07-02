@@ -3,16 +3,17 @@ import Maneger from "../../../../Layouts/Maneger"
 
 import { useDispatch } from "react-redux"
 import action from "../../../../redux/actions"
+import Article from "../../../../component/Article/Article"
 
 export default function EditArticle() {
-    const dispatch = useDispatch()
+	const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(action.setAdmin("แก้ไขบทความ"))
-    }, [])
-    return (
-        <React.Fragment>
-            <Maneger>ยังไม่ได้ทำ</Maneger>
-        </React.Fragment>
-    )
+	useEffect(() => {
+		dispatch(action.setAdmin("แก้ไขบทความ"))
+	}, [])
+	return (
+		<React.Fragment>
+			<Article />
+		</React.Fragment>
+	)
 }
