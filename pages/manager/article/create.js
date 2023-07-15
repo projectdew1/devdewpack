@@ -12,7 +12,7 @@ export default function EditArticle() {
 	}, [])
 	return (
 		<React.Fragment>
-			<Article />
+			<Article edit={false} />
 		</React.Fragment>
 	)
 }

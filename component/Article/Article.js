@@ -35,13 +35,13 @@ const layout = {
 	wrapperCol: { span: 20 },
 }
 
-export default function CreateArticle() {
+const CreateArticle = props => {
 	const [formDialog] = Form.useForm()
 	const [form] = Form.useForm()
 	const router = useRouter()
 	const dispatch = useDispatch()
 
-	const edit = useSelector(state => state.data.edit)
+	const id = useSelector(state => state.data.id)
 
 	const [value, setValue] = useState(null)
 	const [Loading, setLoading] = useState(false)
@@ -53,6 +53,9 @@ export default function CreateArticle() {
 	const [open, setOpen] = useState(false)
 	const [LoadingTable, setLoadingTable] = useState(false)
 	const [data, setData] = useState([])
+
+	//edit
+	const [checkEdit, setcheckEdit] = useState(false)
 
 	const columns = [
 		{
@@ -114,10 +117,60 @@ export default function CreateArticle() {
 		},
 	]
 
-	useEffect(() => {
-		console.log(router.query)
-		console.log(router)
+	useEffect(async () => {
+		// console.log(router.query)
+		// console.log(router.pathname.includes("edit"))
+		// console.log("props", props)
+
+		setcheckEdit(props.edit)
+		if (props.edit) {
+			await fetchData()
+		}
 	}, [])
+
+	const fetchData = async () => {
+		setLoading(true)
+		await Http.post(config.api.idBlog, null, {
+			params: {
+				id: props.name,
+			},
+		})
+			.then(async res => {
+				const { message, items } = res.data
+				console.log(items)
+				if (message === "success") {
+					form.setFieldsValue({
+						title: items[0].title ?? "",
+						seo: items[0].blogSeo ?? "",
+					})
+					setValue(JSON.parse(items[0].content ?? ""))
+
+					if ((items[0].fileName !== "") | (items[0].fileName !== null)) {
+						let fileData = null
+						let url = config.ImageHosting + items[0].local
+
+						await Http.get(config.api.base64, {
+							params: {
+								url,
+							},
+						}).then(response => {
+							fileData = dataURLtoFile(response.data.base64, items[0].fileImage)
+							// console.log("Here is JavaScript File Object", fileData)
+							form.setFieldsValue({
+								upload: [{ name: items[0].fileImage, originFileObj: fileData }],
+							})
+						})
+					}
+				}
+			})
+			.catch(e => {
+				console.log(e)
+				setAlert("error", "เกิดข้อผิดพลาดจาก server !")
+			})
+			.finally(async res => {
+				setLoading(false)
+			})
+	}
 
 	const handleClickOpen = () => {
 		// console.log(value)
@@ -150,19 +203,19 @@ export default function CreateArticle() {
 		return e && e.fileList
 	}
 
-	const onFinish = async val => {
+	const saveData = async val => {
 		const cook = Cookies.get(config.master)
 		const token = cook ? jwt_decode(cook).user : null
 		const upload = val.upload ? (val.upload.length > 0 ? val.upload[0].originFileObj : null) : null
 		let data = new FormData()
 		data.append("FormFile", upload)
 		setLoading(true)
-		console.log({
-			seo: val.seo,
-			user: token,
-			title: val.title,
-			content: JSON.stringify(value),
-		})
+		// console.log({
+		// 	seo: val.seo,
+		// 	user: token,
+		// 	title: val.title,
+		// 	content: JSON.stringify(value),
+		// })
 		await Http.post(config.api.addBlog, data, {
 			params: {
 				seo: val.seo,
@@ -190,6 +243,16 @@ export default function CreateArticle() {
 			.finally(async res => {
 				setLoading(false)
 			})
+	}
+
+	const editData = async val => {}
+
+	const onFinish = async val => {
+		if (checkEdit) {
+			await editData(val)
+		} else {
+			await saveData(val)
+		}
 	}
 
 	const onReset = () => {
@@ -509,3 +572,5 @@ export default function CreateArticle() {
 		</React.Fragment>
 	)
 }
+
+export default CreateArticle

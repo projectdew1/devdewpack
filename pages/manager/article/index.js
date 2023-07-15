@@ -34,7 +34,7 @@ import alasql from "alasql"
 
 const { Search } = Input
 
-export default function Article() {
+const Article = () => {
 	const router = useRouter()
 	const dispatch = useDispatch()
 
@@ -204,8 +204,10 @@ export default function Article() {
 	}
 
 	const handleClickEdit = row => {
-		// router.push(`/manager/article/edit/${row.blogId}`)
-		router.push({ pathname: "/manager/article/edit/[name]", query: { name: row.blogId } })
+		// console.log(row)
+		// dispatch(action.setId(`${row.enID}`))
+		router.push(`/manager/article/edit/${row.enID}`)
+		// router.push({ pathname: "/manager/article/edit/[name]", query: { name: row.enID } })
 	}
 
 	const deleteBlog = async id => {
@@ -292,3 +294,5 @@ export default function Article() {
 		</React.Fragment>
 	)
 }
+
+export default Article
