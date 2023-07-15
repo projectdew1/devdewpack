@@ -70,6 +70,7 @@ const api = {
 	updateBlog: blog + "/updateBlog",
 	deleteBlog: blog + "/deleteBlog",
 	idBlog: blog + "/idBlog",
+	listBolg: blog + "/listBlogid",
 }
 
 export default {
